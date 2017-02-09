@@ -42,10 +42,10 @@
                     <primary>
                         <dsn>
                             <adapter value="mysql" />
-                            <username value="root" />
-                            <password value="lamer31337" />
+                            <username value="" />
+                            <password value="" />
                             <host value="localhost" />
-                            <dbname value="eprice_kz_production" />
+                            <dbname value="price_kz_production" />
                         </dsn>
                         <options>
                             <charset value="utf8" />
@@ -176,7 +176,7 @@
                         <dsn>
                             <adapter value="mysql" />
                             <username value="eprice_staging" />
-                            <password value="aTsXyn7Fb37VySWZ" />
+                            <password value="" />
                             <host value="localhost" />
                             <dbname value="eprice_kz_staging" />
                         </dsn>
@@ -193,7 +193,7 @@
                     <primary>
                         <dsn>
                             <adapter value="mysql" />
-                            <username value="root" />
+                            <username value="" />
                             <password value="" />
                             <host value="localhost" />
                             <dbname value="eprice_kz_development" />
