@@ -1,0 +1,16 @@
+<!--categories-->
+<div class="categoriesList">
+    <h1 class="baraholkaMyItemH1"><?php echo $this->title;?></h1>
+    <?php if(Users_Model_UserService::getUserAuthIdentity()->role == Users_Model_User::ROLE_MANAGER): ?>
+        <?php echo $this->userMenu($this->shop->Manager); ?>
+    <?php else: ?>
+        <?php echo $this->userMenu($this->shop->User); ?>
+    <?php endif; ?>
+
+    <!--blocks of goods-->
+    <div class="baraholkaMyListItemWide leftMarginReset">
+        <?php echo $this->form;?>
+    </div>
+    <!--/blocks of goods-->
+</div>
+<!--/categories-->

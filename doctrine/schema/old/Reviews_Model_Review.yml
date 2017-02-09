@@ -1,0 +1,20 @@
+## бренды
+
+Reviews_Model_Review:
+  tableName: reviews_must_deleted
+  options:
+    type: INNODB
+    collate: utf8_unicode_ci
+    charset: utf8
+  actAs:
+    Timestampable:
+  columns:
+    id:
+      type: integer(4)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    mark:
+      type: integer(4)
+      notnull: true
+    comment: string(255)

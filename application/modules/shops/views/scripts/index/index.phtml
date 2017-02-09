@@ -1,0 +1,50 @@
+<?php $this->headScript()->appendFile('/javascripts/shops-list.js');?>
+<h1><?php echo $this->title;?> </h1>
+<!--about page content-->
+<div class="alphabetWrapper">
+    <div class="brandsListAlphabet">
+        <?php echo $this->blockAlphabet($this->shopsByLetter); ?>
+    </div>
+    <span class="chooseAllComents chooseAllComentsPiked" id="all">все <i><?php echo $this->ShopsCount(); ?></i></span>
+    <span class="chooseAllComents" id="withComment">с отзывами <i><?php echo $this->ShopsCount(true); ?></i></span>
+    <div id="headerSearchChooseCity2"><span>Выберите город...</span>
+        <!--hidden block-->
+        <ul id="innerSortChooseCity">
+            <?php foreach ($this->GetCities() as $city):?>
+            <li><b><?php echo $city; ?></b></li>
+            <?php endforeach;?>
+        </ul>
+        <!--/hidden block-->
+    </div>
+</div>
+ <?php if (count($this->shopsByLetter)):?>
+ <?php foreach($this->shopsByLetter as $key => $shops): ?>
+    <div class="brandRows">
+        <h5 id="<?php echo $key; ?>"><?php echo $key; ?></h5>
+        <ul>
+            <?php foreach($shops as $shop): ?>
+                <?php if(is_null($shop->chain_shop_id)): ?>
+                    <li><a href="<?php echo $this->url(array(
+                        'module' => 'shops',
+                        'controller' => 'index',
+                        'action' => 'view',
+                        'id' => $shop->id),
+                    'default', true); ?>"><?php echo $shop->name ?></a></li>
+                <?php else: ?>
+                    <li><a href="<?php echo $this->url(array(
+                        'module' => 'shops',
+                        'controller' => 'index',
+                        'action' => 'chain-view',
+                        'id' => $shop->chain_shop_id),
+                    'default', true); ?>"><?php echo $shop->chain_name ?></a></li>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </ul>
+        <span class="backToUpBut"><span><a href="#">Наверх</a></span></span>
+    </div>
+<?php endforeach; ?>
+<?php else:?>
+    <div class="brandRows">
+        <?php echo $this->infoMessage($this->translate('Продавцы по данным критериям отсутствуют.')); ?>
+    </div>
+<?php endif; ?>

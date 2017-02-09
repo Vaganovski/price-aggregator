@@ -1,0 +1,16 @@
+## Пользователь
+
+Users_Model_User:
+  tableName: users
+  inheritance:
+    extends: Users_Model_UserExtended
+    type: concrete
+  columns:
+    name:
+      type: string(255)
+    city: string(100)
+    role:
+      type: enum
+      notnull: true
+      values: [administrator, member, merchant, manager]
+    phone: string(255)

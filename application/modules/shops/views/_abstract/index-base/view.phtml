@@ -1,0 +1,45 @@
+<div class="companyOtziv">
+    <h1><?php echo $this->title; ?></h1>
+
+    <!--about page content-->
+    <div class="adressOfSeller">
+        <a class="seeAllPrice" href="<?php echo $this->url(array(
+                        'module'=> 'catalog',
+                        'controller'=> 'products',
+                        'action'=>'shop-list',
+                        'id'=>$this->shop->id
+                    ), 'default', true); ?>"><i>Просмотреть весь прайс-лист <?php echo $this->shop->name; ?></i> <img width="13" height="5" alt="" src="/images/inner/next-arrow.png"></a>
+        <?php if ($this->shop->image_preview_url):?>
+        <img class="logoOfComp" alt="<?php echo $this->escape($this->shop->name); ?>" src="<?php echo $this->shop->image_preview_url; ?>">
+        <?php endif;?>
+        <dl>
+            <dt>Адрес</dt><dd><?php echo $this->shop->city; ?><?php if($this->shop->address): ?>, <?php echo $this->shop->address; endif;?></dd>
+            <?php if ($this->shop->phone): ?>
+            <dt>Телефоны</dt><dd><?php echo $this->shop->phone; ?></dd>
+            <?php endif;?>
+            <?php if ($this->shop->site): ?>
+            <dt>Сайт</dt><dd><a href="<?php echo $this->shop->site_url; ?>"><?php echo $this->shop->site; ?></a></dd>
+            <?php endif;?>
+            <?php if ($this->shop->work_time): ?>
+            <dt>Режим работы</dt><dd><?php echo $this->shop->work_time; ?></dd>
+            <?php endif;?>
+            <?php if ($this->shop->description): ?>
+            <dt>Описание</dt><dd><?php echo $this->shop->description; ?></dd>
+            <?php endif;?>
+            <?php if ($this->shop->delivery): ?>
+            <dt>Доставка</dt><dd><?php echo $this->shop->delivery; ?></dd>
+            <?php endif;?>
+            <?php if ($this->shop->credit): ?>
+            <dt>Возможность кредита</dt><dd><?php echo $this->shop->credit; ?></dd>
+            <?php endif;?>
+        </dl>
+        <div style="clear: both"></div>
+    </div>
+    
+    <?php $this->CommentsTree()->setServiceLayer('shops', 'comment', 'comments'); ?>
+
+    <?php echo $this->CommentsTree()->getCommentsTree($this->shop->id); ?>
+
+    <?php echo $this->PopularProducts()->getProducts(); ?>
+        <!--/about page content-->
+</div>

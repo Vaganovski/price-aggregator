@@ -1,0 +1,13 @@
+.contentWrap {
+margin-top: 8px;
+}
+.contentWrap h1 {
+margin-left: 17%;
+}
+.contentWrap h1 span {
+color: #b3b3b3;
+font-size: 14px;
+margin-left: 3px;
+position: relative;
+top: -1px;
+}

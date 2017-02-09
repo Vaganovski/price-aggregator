@@ -1,0 +1,21 @@
+<div class="categoriesList userprofile">
+    <h1 class="baraholkaMyItemH1"><?php echo $this->title;?></h1>
+    <?php echo $this->userMenu($this->user); ?>
+    <div class="baraholkaMyListItemWide leftMarginReset">
+        <div class="baraholkaMainaddAndSearchMyList">
+            <a class="baraholkaAddPost" href="<?php echo $this->url(array(
+                        'module' => 'marketplace',
+                        'controller' => 'products',
+                        'action' => 'new'),
+                    'default', true); ?>"><?php echo $this->translate('Добавить объявление'); ?></a>
+        </div>
+    <?php if (is_object($this->products)): $count = $this->products->count(); else: $count = 0; endif; ?>
+    <?php if ($count > 0): ?>
+        <?php echo $this->render('/products/partial/item-list.phtml'); ?>
+
+        <?php echo $this->pagination($this->paginator)->create_links(); ?>
+    <?php else: ?>
+        <?php echo $this->infoMessage($this->translate('Товары пока отсутствуют.')); ?>
+    <?php endif;?>
+    </div>
+</div>

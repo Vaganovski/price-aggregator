@@ -1,0 +1,147 @@
+<?php foreach($this->shops as $shop): ?>
+    <?php $prices = $this->GetPrices($this->productId, $shop->id, $this->orderBy, $this->sortDirection);?>
+    <?php $price = $prices->getFirst();?>
+    <?php $countPrices = $prices->count();?>
+    <tr id="sm<?php echo $shop->id; ?>p0">
+        <td class="nameOfCompTable">
+            <?php if (is_null($shop->chain_shop_id)): ?>
+                <?php if (strlen($price->url)): ?>
+                    <noindex>
+                        <a href="<?php echo $price->url?>" target="_blank" rel="nofollow">
+                                                    <?php echo $shop->name; ?>
+                        </a>
+                    </noindex>
+                <?php else:?>
+                    <a href="<?php echo $this->url(array(
+                            'module' => 'shops',
+                            'controller' => 'index',
+                            'action' => 'view',
+                            'id' => $shop->id),
+                        'default', true); ?>">
+                        <?php echo $shop->name; ?>
+                    </a>
+                <?php endif;?>
+            <?php else:?>
+                <a href="<?php echo $this->url(array(
+                        'module' => 'shops',
+                        'controller' => 'index',
+                        'action' => 'chain-view',
+                        'id' => $shop->chain_shop_id),
+                    'default', true); ?>">
+                    <?php echo $shop->chain_name; ?>
+                </a>
+            <?php endif;?>
+            <?php if ($countPrices > 1):?>
+            <span class="show-variant"><a class="shopsReviews" id="s<?php echo $shop->id; ?>" href="#">
+                <?php echo $countPrices; ?> <?php echo $this->translate(array(_('вариант'), _('варианта'), _('вариантов'), $countPrices, Zend_Locale::findLocale())); ?>
+            </a></span>
+            <?php endif;?>
+            <?php $countComments = $this->ShopCommentsCount($shop->id); ?>
+            <?php if ($countComments > 0):?>
+            <span><a class="shopsReviews" href="<?php echo $this->url(array(
+                                                'module' => 'shops',
+                                                'controller' => 'index',
+                                                'action' => 'view',
+                                                'id' => $shop->id),
+                                            'default', true); ?>">
+                <?php echo $countComments; ?> <?php echo $this->translate(array(_('отзыв'), _('отзыва'), _('отзывов'), $countComments, Zend_Locale::findLocale())); ?>
+            </a></span>
+            <?php endif;?>
+        </td>
+        <td class="priceTable">
+            <span class="redPrice"><?php echo $this->sortDirection == 'ASC' ? round($shop->min_price) : round($shop->max_price); ?></span>
+            <span>тенге</span>
+        </td>
+        <td class="haveWe">
+            <span><?php echo $price->available; ?></span>
+        </td>
+        <td class="toBuyTable">
+            <?php if($shop->Manager->id !== null): ?>
+                <span id="p<?php echo $price->id; ?>"><?php echo $this->translate('купить'); ?></span>
+            <?php endif; ?>
+        </td>
+        <td class="contactsTable">
+            <span class="contacts-wrapper">
+                <span><?php echo $this->translate('адрес и телефон'); ?></span>
+                <div class="shop-contact">
+                    <?php if (is_null($shop->chain_shop_id)): ?>
+                        <h4>
+                            <?php if (strlen($price->url)): ?>
+                                <noindex>
+                                    <a href="<?php echo $price->url?>" target="_blank" rel="nofollow">
+                                                                <?php echo $shop->name; ?>
+                                    </a>
+                                </noindex>
+                            <?php else:?>
+                                <a href="<?php echo $this->url(array(
+                                        'module' => 'shops',
+                                        'controller' => 'index',
+                                        'action' => 'view',
+                                        'id' => $shop->id),
+                                    'default', true); ?>">
+                                    <?php echo $shop->name; ?>
+                                </a>
+                            <?php endif;?>
+                        </h4>
+                        <p>г. <?php echo $shop->city; ?><?php if($shop->address): ?>, <?php echo $shop->address; endif;?></p>
+                        <p><span><?php echo $this->translate('тел.'); ?>:</span> <?php echo $shop->phone; ?></p>
+                        <p class="timeOfWork">
+                                    <?php echo $this->translate('Режим работы'); ?>:
+                            <?php echo $shop->work_time; ?>
+                        </p>
+                    <?php else: ?>
+                        <h4><?php echo sprintf($this->translate('Сеть магазинов "%s"'), $shop->chain_name); ?></h4>
+                        <p><a href="<?php echo $this->url(array(
+                                'module' => 'shops',
+                                'controller' => 'index',
+                                'action' => 'chain-view',
+                                'id' => $shop->chain_shop_id),
+                            'default', true); ?>"><?php echo $this->translate('Посмотреть список всех магазинов сети'); ?></a></p>
+                    <?php endif; ?>
+                        <i></i>
+                </div>
+            </span>
+        </td>
+    </tr>
+    <?php if ($countPrices > 1):?>
+        <?php foreach($prices as $price): ?>
+            <tr id="s<?php echo $shop->id; ?>p<?php echo $price->id; ?>" style="display: none">
+                <td class="name-comp variant-rows">
+                    <?php if (strlen($price->url)): ?>
+                        <noindex>
+                            <span class="variant-desc"><a class="shopsReviews" href="<?php echo $price->url?>" target="_blank" rel="nofollow">
+
+                            </a></span>
+                        </noindex>
+                        <p><?php echo $price->description; ?></p>
+                    <?php else:?>
+                        <span class="variant-desc"><a class="shopsReviews" href="<?php echo $this->url(array(
+                                                        'module' => 'shops',
+                                                        'controller' => 'index',
+                                                        'action' => 'view',
+                                                        'id' => $shop->id),
+                                                    'default', true); ?>">
+                                                    <?php echo $price->Product->name; ?>
+                        </a></span>
+                        <p><?php echo $price->description; ?></p>
+                    <?php endif;?>
+                </td>
+                <td class="priceTable variant-rows">
+                    <span class="redPrice"><?php echo $price->price; ?></span>
+                    тенге
+                </td>
+                <td class="haveWe variant-rows">
+                    <span><?php echo $price->available; ?></span>
+                </td>
+                <td class="contactsTable variant-rows">
+                    &nbsp;
+                </td>
+                <td class="toBuyTable variant-rows">
+                    <?php if($shop->Manager->id !== null): ?>
+                        <span id="p<?php echo $price->id; ?>"><?php echo $this->translate('купить'); ?></span>
+                    <?php endif; ?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    <?php endif;?>
+<?php endforeach; ?>

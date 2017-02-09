@@ -1,0 +1,164 @@
+<form  id="<?php echo $this->element->getId();?>"
+       action="<?php echo $this->element->getAction();?>"
+       method="<?php echo $this->element->getMethod();?>" class="bla">
+    <div  class="otherPagesEditRows">
+        <div class="otherPagesEditRowsLabelCont">
+            <label for="<?php echo $this->element->name->getName(); ?>">
+                <?php echo $this->element->name->getLabel(); ?>
+            </label>
+        </div>
+        <div class="otherPagesEditRowsInputWide">
+            <?php echo $this->element->name; ?>
+        </div>
+        <div class="otherPagesEditRowsDescription"><b>Пример:</b> Mycomp (Без ТОО, АО и ИП)</div>
+        <?php echo $this->renderElementErrors($this->element->name); ?>
+    </div>
+
+    <?php if($this->element->chain_shop_id): ?>
+    <div  class="otherPagesEditRows">
+        <div class="otherPagesEditRowsLabelCont">
+            <label for="<?php echo $this->element->chain_shop_id->getName(); ?>">
+                <?php echo $this->element->chain_shop_id->getLabel(); ?>
+            </label>
+        </div>
+        <div class="inputTextWide inputTextMiddle">
+            <?php echo $this->element->chain_shop_id; ?>
+        </div>
+        <?php echo $this->renderElementErrors($this->element->chain_shop_id); ?>
+    </div>
+    <?php endif; ?>
+    
+    <div  class="otherPagesEditRows">
+        <div class="otherPagesEditRowsLabelCont">
+            <label for="<?php echo $this->element->city->getName(); ?>">
+                <?php echo $this->element->city->getLabel(); ?>
+            </label>
+        </div>
+        <div class="inputTextWide inputTextMiddle">
+            <?php echo $this->element->city; ?>
+        </div>
+        <?php echo $this->renderElementErrors($this->element->city); ?>
+    </div>
+
+    <div  class="otherPagesEditRows">
+        <div class="otherPagesEditRowsLabelCont">
+            <label for="<?php echo $this->element->type->getName(); ?>">
+                <?php echo $this->element->type->getLabel(); ?>
+            </label>
+        </div>
+        <div class="inputTextWide inputTextMiddle">
+            <?php echo $this->element->type; ?>
+        </div>
+        <?php echo $this->renderElementErrors($this->element->type); ?>
+    </div>
+
+    <div  class="otherPagesEditRows">
+        <div class="otherPagesEditRowsLabelCont">
+            <label for="<?php echo $this->element->address->getName(); ?>">
+                <?php echo $this->element->address->getLabel(); ?>
+            </label>
+        </div>
+        <div class="otherPagesEditRowsInputWide">
+            <?php echo $this->element->address; ?>
+        </div>
+        <div class="otherPagesEditRowsDescription"><b>Пример:</b> пр. Абылай хана 78, уг. ул. Гоголя</div>
+        <?php echo $this->renderElementErrors($this->element->address); ?>
+    </div>
+
+    <div  class="otherPagesEditRows">
+        <div class="otherPagesEditRowsLabelCont">
+            <label for="<?php echo $this->element->email->getName(); ?>">
+                <?php echo $this->element->email->getLabel(); ?>
+            </label>
+        </div>
+        <div class="otherPagesEditRowsInputWide">
+            <?php echo $this->element->email; ?>
+        </div>
+        <div class="otherPagesEditRowsDescription"><b>Пример:</b> username@sitecompany.kz </div>
+        <?php echo $this->renderElementErrors($this->element->email); ?>
+    </div>
+
+    <div  class="otherPagesEditRows">
+        <div class="otherPagesEditRowsLabelCont">
+            <label for="<?php echo $this->element->phone->getName(); ?>">
+                <?php echo $this->element->phone->getLabel(); ?>
+            </label>
+        </div>
+        <div class="otherPagesEditRowsInputWide">
+            <?php echo $this->element->phone; ?>
+        </div>
+        <div class="otherPagesEditRowsDescription"><b>Пример:</b> 8 (xxx) xxx-xx-xx, 8 (xxx) xxx-xx-xx </div>
+        <?php echo $this->renderElementErrors($this->element->phone); ?>
+    </div>
+
+    <div  class="otherPagesEditRows">
+        <div class="otherPagesEditRowsLabelCont">
+            <label for="<?php echo $this->element->site->getName(); ?>">
+                <?php echo $this->element->site->getLabel(); ?>
+            </label>
+        </div>
+        <div class="otherPagesEditRowsInputWide">
+            <?php echo $this->element->site; ?>
+        </div>
+        <div class="otherPagesEditRowsDescription"><b>Пример:</b> http://www.sitecompany.kz</div>
+        <?php echo $this->renderElementErrors($this->element->site); ?>
+    </div>
+
+    <div  class="otherPagesEditRows">
+        <div class="otherPagesEditRowsLabelCont">
+            <label for="<?php echo $this->element->work_time->getName(); ?>">
+                <?php echo $this->element->work_time->getLabel(); ?>
+            </label>
+        </div>
+        <div class="otherPagesEditRowsInputWide">
+            <?php echo $this->element->work_time; ?>
+        </div>
+        <div class="otherPagesEditRowsDescription"><b>Пример:</b> пн.–сб. 10.00–19.00   вс.11.00–18.00</div>
+        <?php echo $this->renderElementErrors($this->element->work_time); ?>
+    </div>
+
+    <div  class="otherPagesEditRows">
+        <div class="otherPagesEditRowsLabelCont">
+            <label for="<?php echo $this->element->description->getName(); ?>">
+                <?php echo $this->element->description->getLabel(); ?>
+            </label>
+        </div>
+        <div class="otherPagesEditRowsInputWide inputMiddleEdit shop-textarea">
+            <?php echo $this->element->description; ?>
+        </div>
+        <?php echo $this->renderElementErrors($this->element->description); ?>
+    </div>
+    
+    <div  class="otherPagesEditRows">
+        <div class="otherPagesEditRowsLabelCont">
+            <label for="<?php echo $this->element->delivery->getName(); ?>">
+                <?php echo $this->element->delivery->getLabel(); ?>
+            </label>
+        </div>
+        <div class="otherPagesEditRowsInputWide inputMiddleEdit">
+            <?php echo $this->element->delivery; ?>
+        </div>
+        <?php echo $this->renderElementErrors($this->element->delivery); ?>
+    </div>
+
+    <div  class="otherPagesEditRows">
+        <div class="otherPagesEditRowsLabelCont">
+            <label for="<?php echo $this->element->credit->getName(); ?>">
+                <?php echo $this->element->credit->getLabel(); ?>
+            </label>
+        </div>
+        <div class="otherPagesEditRowsInputWide inputMiddleEdit">
+            <?php echo $this->element->credit; ?>
+        </div>
+        <?php echo $this->renderElementErrors($this->element->credit); ?>
+    </div>
+    
+    <?php echo $this->element->user_id; ?>
+    <?php if ($this->element->id): ?>
+        <?php echo $this->element->id; ?>
+    <?php endif;?>
+    <div  class="otherPagesEditRowsClear">
+        <?php echo $this->element->submit; ?>
+    </div>
+</form>
+

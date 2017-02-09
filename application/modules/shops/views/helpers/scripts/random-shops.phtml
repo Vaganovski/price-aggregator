@@ -1,0 +1,28 @@
+<?php if ($this->shops):?>
+<!--sellers-->
+<div class="footerSellers">
+    <span><?php echo $this->translate('Продавцы'); ?>:</span>
+    <ul>
+        <?php foreach ($this->shops as $shop): ?>
+        <li>
+            <a href="<?php echo $this->url(array(
+                            'module' => 'shops',
+                            'controller' => 'index',
+                            'action' => 'view',
+                            'id' => $shop->id),
+                        'default', true); ?>">
+                <img src="<?php echo $shop->image_thumbnail_greyscale_url; ?>" alt="<?php echo $shop->name; ?>" />
+            </a>
+        </li>
+        <?php endforeach; ?>
+    </ul>
+    <div class="footerSellersAll"><a href="<?php echo $this->url(array(
+                            'module' => 'shops',
+                            'controller' => 'index',
+                            'action' => 'index'),
+                        'default', true); ?>"><?php echo $this->translate('Весь список'); ?></a> <?php echo $this->ShopsCount(); ?></div>
+</div>
+<!--/sellers-->
+<?php else: ?>
+<div class="footerSellers"><br/><br/></div>
+<?php endif; ?>

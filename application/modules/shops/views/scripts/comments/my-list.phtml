@@ -1,0 +1,23 @@
+<?php if ($this->IsAllowed($this->shop, 'reply-comment')): ?>
+<div id="reply-form" style="display: none">
+    <div class="blueOtzivBlock">
+        <h6>Ответ от</h6>
+        <h5> <?php echo $this->shop->name;?>:</h5>
+        <?php echo $this->formCommentsReply; ?>
+        <div class="blueOtzivBlockCor1"></div>
+        <div class="blueOtzivBlockCor2"></div>
+        <div class="blueOtzivBlockCor3"></div>
+        <div class="blueOtzivBlockCor4"></div>
+    </div>
+</div>
+<?php endif; ?>
+<div class="baraholkaMyListItemWide padTop14 leftMarginReset">
+<?php if ($this->commentsTree): ?>
+    <?php echo $this->commentsTree; ?>
+<?php else: ?>
+    <?php echo $this->infoMessage($this->translate('К вашему магазину пока нет отзывов.')); ?>
+<?php endif; ?>
+</div>
+<?php if ($this->IsAllowed($this->shop, 'new-comment')): ?>
+<?php echo $this->formCommentsNew; ?>
+<?php endif; ?>

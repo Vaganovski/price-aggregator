@@ -1,0 +1,7 @@
+<h1 class="baraholkaMyItemH1">Отзывы</h1>
+<?php echo $this->userMenu($this->user); ?>
+<?php $this->CommentsTree(); ?>
+<?php echo $this->CommentsTree()
+                ->setServiceLayer('shops', 'comment', 'comments')
+                ->setRenderItemMethod('RenderCommentMyItem')
+                ->getCommentsTree($this->shopId, 'my-list'); ?>

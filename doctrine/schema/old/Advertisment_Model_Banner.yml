@@ -1,0 +1,43 @@
+## баннеры
+
+Advertisment_Model_Banner:
+  tableName: advertisment_banners
+  options:
+    type: INNODB
+    collate: utf8_unicode_ci
+    charset: utf8
+  actAs:
+    Timestampable:
+  columns:
+    id:
+      type: integer(4)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    type:
+      type: enum
+      notnull: true
+      values: [top, right]
+    background_color: string(7)
+    background_image: string(45)
+    url: string(255)
+    show_on:
+      type: enum
+      notnull: true
+      values: [anywhere, on-main, none, in-place]
+      default: none
+    page_placement: string(255)
+    rotation: boolean
+    last_renewal_date: timestamp
+    untill_date: timestamp
+    status:
+      type: enum
+      notnull: true
+      values: [available, disable]
+      default: disable
+    period:
+      type: int(4)
+      notnull: true
+    impressions:
+      type: int(4)
+      notnull: true

@@ -1,0 +1,12 @@
+<p>
+    Пользователь сообщил об ошибке в описании товара <a href="<?php echo $this->serverUrl() . $this->url(array(
+                                                'module' => 'catalog',
+                                                'controller' => 'products',
+                                                'action' => 'view',
+                                                'id' => $this->product->id),
+                                            'default', true); ?>"><?php echo $this->product->name; ?></a>
+</p>
+<p><u>Сообщение:</u></p>
+<p>
+    <?php echo $this->message; ?>
+</p>

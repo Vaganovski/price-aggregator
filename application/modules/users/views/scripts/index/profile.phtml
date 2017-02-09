@@ -1,0 +1,29 @@
+<div class="userprofile">
+    <?php if (Zend_Auth::getInstance()->hasIdentity() && Zend_Auth::getInstance()->getIdentity()->id == $this->user->id): ?>
+        <h1 class="baraholkaMyItemH1">
+            <?php echo $this->escape($this->user->name) ?>
+        </h1>
+
+        <?php echo $this->userMenu($this->user); ?>
+    <?php else: ?>
+        <h1 class="baraholkaTitleH1">
+            <?php echo $this->escape($this->user->name) ?>
+        </h1>
+    <?php endif; ?>
+
+    <dl class="otherPagesUserpage">
+        <?php if(strlen($this->user->city)): ?>
+            <p><?php echo $this->translate('Город'); ?>: <strong><?php echo $this->user->city; ?></strong></p>
+        <?php endif; ?>
+        <?php if(strlen($this->user->email) 
+                && $this->isAllowed($this->user,'view-email')): ?>
+            <p><?php echo $this->translate('E-mail'); ?>: <a href="mailto:<?php echo $this->user->email ?>"><strong><?php echo $this->user->email ?></strong></a></p>
+        <?php endif; ?>
+        <br />
+        <a href="<?php echo $this->url(array(
+                'module'=>'users',
+                'controller'=>'index',
+                'action'=>'profile-edit',
+            ), 'default', true); ?>"><?php echo $this->translate('Редактировать'); ?></a>
+    </dl>
+</div>

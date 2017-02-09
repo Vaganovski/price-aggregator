@@ -1,0 +1,23 @@
+<p>
+    <?php echo $this->translate('Здравствуйте!'); ?>
+</p>
+<p>
+    <?php echo sprintf($this->translate('Для Вас была создана учетная запись на eprice.kz')); ?>
+</p>
+<p>
+    <?php echo $this->translate('Данные для входа'); ?>:
+</p>
+
+<?php if (isset($this->password)):?>
+    <p><?php echo $this->translate('Логин'); ?>: <?php echo $this->user->login; ?></p>
+    <p><?php echo $this->translate('Пароль'); ?>: <?php echo $this->escape($this->password); ?></p>
+<?php endif; ?>
+
+<br />
+
+
+<p>
+    <?php echo $this->translate('С уважением,'); ?>
+    <br />
+    <?php echo $this->translate('команда eprice.kz'); ?>
+</p>

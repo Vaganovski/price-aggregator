@@ -1,0 +1,37 @@
+<h1>Товары / модели</h1>
+<div class="adminSortByType">
+    <a href="<?php echo $this->url(array(
+                        'module' => 'marketplace',
+                        'controller' => 'products',
+                        'action' => 'list-admin',
+                        'tab' => 'no-approved'),
+                    'default', true); ?>" <?php echo ($this->tab == 'no-approved' ? 'class="adminSortByTypeActive"' : ''); ?>>отклоненные</a>
+    <a href="<?php echo $this->url(array(
+                        'module' => 'marketplace',
+                        'controller' => 'products',
+                        'action' => 'list-admin',
+                        'tab' => 'approved'),
+                    'default', true); ?>" <?php echo ($this->tab == 'approved' ? 'class="adminSortByTypeActive"' : ''); ?>>подтвержденные</a>
+    <a href="<?php echo $this->url(array(
+                        'module' => 'marketplace',
+                        'controller' => 'products',
+                        'action' => 'list-admin',
+                        'tab' => 'all'),
+                    'default', true); ?>" <?php echo ($this->tab == 'all' || !$this->tab ? 'class="adminSortByTypeActive"' : ''); ?>>все</a>
+    <span>показывать:</span>
+</div>
+
+
+<?php echo $this->ProductSearchForm()
+                            ->setServiceLayer('marketplace', 'product')
+                            ->setViewScript('catalog')
+                            ->getSearchForm('searchAdmin'); ?>
+<?php if (is_object($this->products)): $count = $this->products->count(); else: $count = 0; endif; ?>
+<?php if ($count > 0): ?>
+    <?php echo $this->render('/products/partial/item-list-admin.phtml'); ?>
+
+    <?php echo $this->pagination($this->paginator)->create_links('admin'); ?>
+<?php else: ?>
+    <div style="clear:both"></div>
+    <?php echo $this->infoMessage($this->translate('Товары пока отсутствуют.')); ?>
+<?php endif;?>

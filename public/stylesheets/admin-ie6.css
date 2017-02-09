@@ -1,0 +1,193 @@
+html {
+filter: expression(document.execCommand("BackgroundImageCache", false, true));
+}
+.main {
+width:expression(document.body.clientWidth < 1260? "1260px": "auto" );
+height: 100%;
+}
+input {
+z-index: expression(
+runtimeStyle.zIndex = 1,
+type == "text" ? (className += " formText") : 0,
+type == "password" ? (className += " formText") : 0,
+type == "submit" ? (className += " formSubmit") : 0
+)
+}
+.footerWrap {
+width:expression(document.body.clientWidth < 1260? "1260px": "auto" );
+height: 148px;
+}
+.footerBusinessLinks li,
+.footerCopy li {
+z-index: expression(
+runtimeStyle.zIndex = 1,
+this == parentNode.firstChild ? (className += " first-child") : 0
+)
+}
+.footerBusinessLinks .first-child {
+margin: 0;
+padding: 0;
+background: none;
+}
+.footerCopy .first-child {
+padding: 0;
+background: none;
+}
+.footerStat div {
+margin: 0 380px 0 280px;
+}
+.footerBusinessLinks {
+right: 4%;
+}.footerCopy {
+position: absolute;
+top: 81px;
+left: -50px;
+}
+.footerWrap {
+height: 83px;
+}
+.footerCopy {
+top: 22px;
+left: 0;
+}
+.adminStartPage .adminStartPageInputWrap{
+width: 235px;
+height:43px;
+}
+.adminStartPage .formSubmit{
+background:url(/images/admin/s-button.png) 0 2px no-repeat;
+border:none;
+color:#FFFFFF;
+cursor:pointer;
+font-size:18px;
+height:40px;
+width:99px;
+margin:18px 0 0 72px;
+display:block;
+padding:0;
+}
+.adminHeader{
+height:127px;
+}
+.adminMainThreeColsTitles h3{
+width:295px;
+}
+.adminMainMenu{
+width:252px;
+}
+.adminHeader h2{
+width:299px;
+}
+.adminMainMenu{
+position:relative;
+}
+.listAdminDescriptionGetPass{
+width:192px;
+}
+.adminSearchGoodsChar .formSubmit {
+background:none;
+border:none;
+float:right;
+cursor:pointer;
+margin:9px 4px 0 0;
+width:16px;
+height:18px;
+}
+.adminSearchGoodsChar .formText {
+background:none;
+border:none;
+float:left;
+font-weight:bold;
+color:#6e6e6e;
+font-size:10px;
+margin:9px 0 0 16px;
+width:130px;
+}
+.adminGoodsCharBigForm .formSubmit {
+background:url(/images/admin/s-button-red.png) no-repeat;
+border:none;
+color:#FFFFFF;
+cursor:pointer;
+font-weight:bold;
+font-size:14px;
+height:44px;
+width:116px;
+float:left;
+margin:23px 0 0 252px;
+}
+.adminBaraholkaAddThemeForm .formSubmit{
+background:url(/images/admin/s-button3.png) no-repeat 0 1px;
+border:none;
+color:#FFFFFF;
+cursor:pointer;
+float:left;
+font-size:11px;
+font-weight:bold;
+height:22px;
+margin:10px 0 0 10px;
+padding:0;
+width:80px;
+}
+.adminBaraholkaAddThemeForm2 .formSubmit{
+margin:-8px 0 0 5px;
+}
+.adminShablAddAParam{
+height:21px;
+}
+.adminShablAParamRowsRowEdenicy{
+margin-right:143px;
+}
+.wid100 .formSubmit{
+display:block;
+background:url(/images/admin/s-button-red.png) no-repeat 0 2px;
+border:none;
+color:#FFFFFF;
+cursor:pointer;
+font-size:14px;
+height:46px;
+margin:34px 0 0 364px;
+padding:0;
+width:116px;
+float:none;
+}
+.adminPopularGoodsRow{
+padding-bottom:0px;
+}
+.adminPopularGoodsRow li {
+float:left;
+margin:0 10px 15px 0;
+width:112px;
+position:relative;
+}
+.adminNameOfBanner{
+height:49px;
+}
+.adminAddReklamRowCol1{
+width:191px;
+}
+.adminAddReklamRowCol1 .BlueBackBlock {
+width:164px;
+}
+.adminAddReklamRowCol1 .WhiteBackBlock {
+width:164px;
+}
+.adminAddReklamRowCol2{
+width:430px;
+}
+.adminAddReklamRowCol3 .adminAddReklamRowCol3Delete{
+height:44px;
+}
+.adminAddReklamRowCol1{
+height:281px;
+}
+
+
+
+
+
+
+
+
+
+
+

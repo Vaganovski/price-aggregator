@@ -1,0 +1,26 @@
+<?php //$this->headLink()->appendStylesheet('/stylesheets/notebooks.css'); ?>
+<div class="innerSearchBlock">
+    <?php if ((is_object($this->brands) && $this->brands->count()) || $this->categories) :?>
+    <form class="shureSearch" action="#">
+        <h5>Уточнить поиск</h5>
+
+        
+        <div class="innerSearchBlockChoosen">
+            <h6>производители</h6>
+            <ul class="innerSearchBlockProducerList">
+                <?php foreach ($this->brands as $brand): ?>
+                <li><div id="b<?php echo $brand->id; ?>"><span><?php echo $brand->name; ?></span></div></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        
+        <div class="listOfComp">
+            <div><span>Все категории</span></div>
+
+            <?php echo $this->CreateCategoriesTree()->getCategoriesTree($this->categories); ?>
+        </div>
+    </form>
+    <div class="innderSearchBlockBot"></div>
+    <?php endif;?>
+</div>
+<?php echo $this->render('/search/index.ajax.phtml'); ?>

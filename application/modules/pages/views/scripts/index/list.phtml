@@ -1,0 +1,21 @@
+<h1>
+    <?php echo $this->title; ?>
+</h1>
+<?php if ($this->IsAllowed('mvc:pages:index', 'new')): ?>
+<div class="action">
+    <a href="<?php echo $this->url(array(
+            'module'=>'pages',
+            'controller'=>'index',
+            'action'=>'new'
+       ), 'default', true); ?>">
+       <?php echo $this->translate('Создать страницу'); ?>
+    </a>
+</div>
+<?php endif; ?>
+
+<?php if ($this->pages->count()): ?>
+    <?php echo $this->render('/index/partial/item.phtml'); ?>
+    <?php echo $this->pagination($this->paginator)->create_links('admin'); ?>
+<?php else: ?>
+    <?php echo $this->infoMessage($this->translate('Страницы отсутствуют.')); ?>
+<?php endif; ?>

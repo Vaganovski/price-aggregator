@@ -1,0 +1,31 @@
+<div id="windowLogin">
+    <div id="windowLoginClose" title="<?php echo $this->translate('закрыть окно'); ?>"></div>
+    <h6><?php echo $this->translate('Авторизация'); ?></h6>
+        <?php echo $this->renderFormErrors($this->element); ?>
+        <form id="<?php echo $this->element->getId();?>"
+              action="<?php echo $this->element->getAction();?>"
+                  method="<?php echo $this->element->getMethod();?>">
+            <div>
+                <label for="<?php echo $this->element->login->getName(); ?>"><?php echo $this->translate('Логин'); ?>:</label>
+                <span><?php echo $this->element->login; ?></span>
+                <?php echo $this->renderElementErrors($this->element->login); ?>
+                <label for="<?php echo $this->element->login->getName(); ?>"><?php echo $this->translate('Пароль'); ?>:</label>
+                <span><?php echo $this->element->password; ?></span>
+                <?php $errors; ?>
+                <?php echo $this->renderElementErrors($this->element->password); ?>
+                <?php echo $this->element->submit; ?>
+            </div>
+        </form>
+        <div class="windowLoginForgotPass"><a href="<?php echo $this->url(array(
+            'module' => 'users',
+            'controller' => 'index',
+            'action' => 'password-restore'),
+        'default', true); ?>"><?php echo $this->translate('Забыли пароль?'); ?></a></div>
+        <div class="windowLoginRegistration"><a href="<?php echo $this->url(array(
+            'module' => 'users',
+            'controller' => 'index',
+            'action' => 'registration'),
+        'default', true); ?>"><?php echo $this->translate('Регистрация!'); ?></a></div>
+    <div class="windowLoginTop"></div>
+    <div class="windowLoginBot"></div>
+</div>

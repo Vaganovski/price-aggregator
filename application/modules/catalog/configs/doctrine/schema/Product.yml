@@ -1,0 +1,26 @@
+## товари
+
+Catalog_Model_Product:
+  tableName: catalog_products
+  inheritance:
+    extends: Products_Model_Product
+    type: concrete
+  columns:
+    clicks:
+      type: int(4)
+      notnull: true
+    brand_id:
+      type: integer(4)
+      unsigned: true
+    min_price: decimal(14,2)
+    max_price: decimal(14,2)
+    avg_price: decimal(14,2)
+    image_to_download: string()
+  relations:
+    Brand:
+      class: Catalog_Model_Brand
+      local: brand_id
+      foreign: id
+      foreignAlias: Products
+      onUpdate: CASCADE
+      onDelete: CASCADE

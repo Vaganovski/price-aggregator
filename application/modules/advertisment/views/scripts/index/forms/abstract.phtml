@@ -1,0 +1,103 @@
+<?php $this->headScript()->appendFile('/javascripts/thickbox/thickbox.js'); ?>
+<?php $this->headLink()->appendStylesheet('/stylesheets/thickbox/thickbox.css'); ?>
+<form  id="<?php echo $this->element->getId();?>"
+       action="<?php echo $this->element->getAction();?>"
+       method="<?php echo $this->element->getMethod();?>"
+       enctype="<?php echo $this->element->getEnctype();?>">
+
+   <?php $dataFromModel = $this->element->getAttrib('dataFromModel');?>
+    <div class="adminAddReklamRowCol1">
+        <div class="BlueBackBlock" id="banner-images">
+            <?php if ($dataFromModel) :?>
+            <?php foreach ($dataFromModel['images'] as $image):?>
+            <b id="i<?php echo $image->id; ?>"><a href="<?php echo $image->image_url; ?>" class="thickbox"><?php echo $image->image_filename; ?></a><i></i></b>
+            <?php endforeach;?>
+            <?php endif;?>
+            <div class="adminGoodsUploadPhotoButton"><?php echo $this->element->image_filename;?></div>
+        </div>
+
+        <label for="<?php echo $this->element->background_color->getName(); ?>">
+                <?php echo $this->element->background_color->getLabel(); ?>
+        </label>
+        <div class="adminInputContainerRek">
+            <?php echo $this->element->background_color; ?>
+        </div>
+
+        <?php if ($this->element->background_image):?>
+        <label for="adminInputContainerRek2">картинка&nbsp;фона:</label>
+        <div class="BlueBackBlock WhiteBackBlock" id="backgound-image">
+            <?php if (strlen($dataFromModel['background_image'])):?>
+            <b id="b<?php echo $dataFromModel['banner_id']; ?>">
+                <a href="<?php echo $dataFromModel['background_image_url']; ?>" class="thickbox"><?php echo $dataFromModel['background_image']; ?></a>
+            <i></i>
+            </b>
+            <?php endif;?>
+            <div class="adminGoodsUploadPhotoButton"><?php echo $this->element->background_image; ?></div>
+        </div>
+        <?php endif; ?>
+
+        <label for="<?php echo $this->element->url->getName(); ?>">
+                <?php echo $this->element->url->getLabel(); ?> <strong>(если не флэш)</strong>
+        </label>
+        <div class="adminInputContainerRek">
+            <?php echo $this->element->url; ?>
+        </div>
+    </div>
+
+    <div class="adminAddReklamRowCol2">
+        <?php if ($dataFromModel) :?>
+            <div class="adminAddReklamRowCol2rowWide">
+                <p>Дата начала размещения:</p>
+                <b><?php echo $dataFromModel['created_at']; ?></b>
+            </div>
+
+            <div class="adminAddReklamRowCol2rowMid marRight40">
+                <p>С момента размещения прошло:</p>
+                <b><?php echo $dataFromModel['days_ago']; ?> дн.</b>
+            </div>
+
+            <div class="adminAddReklamRowCol2rowMid">
+                <p>Осталось до окончания срока:</p>
+                <b><?php echo $dataFromModel['diff_untill_date_now_date']; ?> дн.</b>
+            </div>
+        <?php endif; ?>
+        <div class="adminAddReklamRowCol2rowSelect">
+            <label for="<?php echo $this->element->period->getName(); ?>">
+                <?php echo $this->element->period->getLabel(); ?>
+            </label>
+            <div>
+                <?php echo $this->element->period; ?>
+            </div>
+            <?php if ($dataFromModel) :?>
+                <p>Последнее продление: <?php echo $dataFromModel['last_renewal_date']; ?> на <b><?php echo $dataFromModel['period']; ?></b> дн.</p>
+            <?php endif; ?>
+        </div>
+    </div>
+
+    <div class="adminAddReklamRowCol3">
+        <div class="adminAddReklamRowCol3Check">
+            <?php echo $this->element->show_on; ?>
+
+            <?php if ($this->element->page_placement):?>
+                <label for="<?php echo $this->element->page_placement->getName(); ?>" id="page_placement">
+                        <?php echo $this->element->page_placement->getLabel(); ?>
+                </label>
+                <div class="adminInputContainerRek">
+                    <?php echo $this->element->page_placement; ?>
+                </div>
+            <?php endif;?>
+            
+            <div class="adminSmallCheckBox marTop5">
+                <?php echo $this->element->rotation; ?>
+            </div>
+            <label for="<?php echo $this->element->rotation->getName(); ?>">
+                <b><?php echo $this->element->rotation->getLabel(); ?></b>
+            </label>
+        </div>
+
+        <?php echo $this->element->id; ?>
+        <?php echo $this->element->type; ?>
+        <?php echo $this->element->submit; ?>
+        <span class="adminAddReklamRowCol3Delete">Удалить</span>
+    </div>
+</form>

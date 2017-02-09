@@ -1,0 +1,19 @@
+.categoriesList{
+margin:0 34px 0 69px;
+}
+h1{
+border-bottom:1px solid #D5E6ED;
+margin:0 0 27px -48px !important;
+padding: 0 0 10px 21% !important;
+font-size:20px !important;
+color:#2c2c2c !important;
+}
+h1 span{
+color:#989898;
+font-size:14px;
+position:relative;
+top:-2px;
+}
+.myListMenu{
+padding-top:8px;
+}

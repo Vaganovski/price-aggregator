@@ -1,0 +1,30 @@
+## Менеджеры
+
+Shops_Model_Manager:
+  tableName: shops_managers
+  actAs:
+    Timestampable:
+  options:
+    type: INNODB
+    collate: utf8_unicode_ci
+    charset: utf8
+  columns:
+    id:
+      type: integer(4)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    name: string(255)
+    phone: string(255)
+    email:
+      type: string(128)
+      notnull: true
+      unique: true
+      email: true
+    city:
+      type: string(140)
+      notnull: true
+    shop_id:
+      type: integer(4)
+      unsigned: true
+      notnull: false

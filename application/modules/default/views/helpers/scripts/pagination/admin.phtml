@@ -1,0 +1,82 @@
+<?php
+/**
+ * Digg goodsetective pagination style
+ *
+ * @preview  « 1 2 … 5 6 7 8 9 10 11 12 13 14 … 25 26 »
+ */
+?>
+<?php $query = $this->requestQuery(); ?>
+<?php if ($this->total_pages > 1):?>
+<div class="adminPageNav">
+    <i><?php echo $this->translate('Страницы'); ?>:</i>
+        <ul>
+	<?php if ($this->previous_page): ?>
+                <li><a href="<?php echo $this->url(array('page' => $this->previous_page)) . $query; ?>" class="prev"><?php echo $this->translate('Вперед'); ?></a></li>
+	<?php endif ?>
+
+
+	<?php if ($this->total_pages < 13): /* « Previous  1 2 3 4 5 6 7 8 9 10 11 12  Next » */ ?>
+
+		<?php for ($i = 1; $i <= $this->total_pages; $i++): ?>
+			<?php if ($i == $this->current_page): ?>
+                                <li class="adminPageNavActive"><?php echo $i ?></li>
+			<?php else: ?>
+				<li><a href="<?php echo $this->url(array('page' => $i)) . $query; ?>"><?php echo $i ?></a></li>
+			<?php endif ?>
+		<?php endfor ?>
+
+	<?php elseif ($this->current_page < 9): /* « Previous  1 2 3 4 5 6 7 8 9 10 … 25 26  Next » */ ?>
+
+		<?php for ($i = 1; $i <= 10; $i++): ?>
+			<?php if ($i == $this->current_page): ?>
+				<li class="adminPageNavActive"><?php echo $i ?></li>
+			<?php else: ?>
+				<li><a href="<?php echo $this->url(array('page' => $i)) . $query; ?>"><?php echo $i ?></a></li>
+			<?php endif ?>
+		<?php endfor ?>
+
+		<li>&hellip;</li>
+		<li><a href="<?php echo $this->url(array('page' => $this->total_pages - 1)) . $query; ?>"><?php echo $this->total_pages - 1 ?></a></li>
+		<li><a href="<?php echo $this->url(array('page' =>  $this->total_pages )) . $query; ?>"><?php echo $this->total_pages ?></a></li>
+
+	<?php elseif ($this->current_page > $this->total_pages - 8): /* « Previous  1 2 … 17 18 19 20 21 22 23 24 25 26  Next » */ ?>
+
+		<li><a href="<?php echo $this->url(array('page' => 1)) . $query; ?>">1</a></li>
+		<li><a href="<?php echo $this->url(array('page' => 2)) . $query; ?>">2</a></li>
+                <li>&hellip;</li>
+
+		<?php for ($i = $this->total_pages - 9; $i <= $this->total_pages; $i++): ?>
+			<?php if ($i == $this->current_page): ?>
+				<li class="adminPageNavActive"><?php echo $i ?></li>
+			<?php else: ?>
+				<li><a href="<?php echo $this->url(array('page' => $i)) . $query; ?>"><?php echo $i ?></a></li>
+			<?php endif ?>
+		<?php endfor ?>
+
+	<?php else: /* « Previous  1 2 … 5 6 7 8 9 10 11 12 13 14 … 25 26  Next » */ ?>
+
+		<li><a href="<?php echo $this->url(array('page' => 1)) . $query; ?>">1</a></li>
+		<li><a href="<?php echo $this->url(array('page' => 2)) . $query; ?>">2</a></li>
+		<li>&hellip;</li>
+
+		<?php for ($i = $this->current_page - 5; $i <= $this->current_page + 5; $i++): ?>
+			<?php if ($i == $this->current_page): ?>
+				<li class="adminPageNavActive"><?php echo $i ?></li>
+			<?php else: ?>
+				<li><a href="<?php echo $this->url(array('page' => $i)) . $query; ?>"><?php echo $i ?></a></li>
+			<?php endif ?>
+		<?php endfor ?>
+
+		<li>&hellip;</li>
+		<li><a href="<?php echo $this->url(array('page' => $this->total_pages - 1)) . $query; ?>"><?php echo $this->total_pages - 1 ?></a></li>
+		<li><a href="<?php echo $this->url(array('page' => $this->total_pages )) . $query; ?>"><?php echo $this->total_pages ?></a></li>
+
+	<?php endif ?>
+
+
+	<?php if ($this->next_page): ?>
+                <li><a href="<?php echo $this->url(array('page' => $this->next_page)) . $query; ?>" class="next"><?php echo $this->translate('Вперед'); ?></a></li>
+	<?php endif ?>
+    </ul>
+</div>
+<?php endif ?>

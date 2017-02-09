@@ -1,0 +1,32 @@
+<?php if ($this->user):?>
+<h1>
+    <?php echo $this->escape($this->title) ?>
+</h1>
+<div class="action">
+    <a href="<?php echo $this->url(array(
+        'module'=>'users',
+        'action'=>'edit',
+        'id'=>$this->user->id,
+    ), 'default', true); ?>"><?php echo $this->translate('Редактировать'); ?></a>
+    <a href="<?php echo $this->url(array(
+        'module'=>'users',
+        'action'=>'delete',
+        'id'=>$this->user->id,
+    ), 'default', true); ?>"><?php echo $this->translate('Удалить'); ?></a>
+</div>
+<p>
+    <strong><?php echo $this->translate('Имя'); ?>:</strong> <?php echo  $this->escape($this->user->name) ?>
+</p>
+<p>
+    <strong><?php echo $this->translate('Город'); ?>:</strong> <?php echo  $this->escape($this->user->city) ?>
+</p>
+<p>
+    <strong><?php echo $this->translate('Email'); ?>:</strong> <?php echo  $this->escape($this->user->email) ?>
+</p>
+<p>
+    <strong><?php echo $this->translate('Роль'); ?>:</strong> <?php echo  $this->escape($this->user->role) ?>
+</p>
+<?php else: ?>
+    <?php echo $this->infoMessage(_('Такого пользователя не существует')); ?>
+<?php endif;?>
+ 

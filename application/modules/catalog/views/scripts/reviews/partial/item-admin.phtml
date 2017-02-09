@@ -1,0 +1,58 @@
+<table class="listAdminFirmsZayavki"> <!--для того чтобы развернуть абзац надо добавить ему класс "adminOtzivGoods2POpened"-->
+    <tbody>
+        <?php foreach ($this->reviews as $review):?>
+        <tr>
+            <td class="adminOtzivGoods1"><?php echo $this->translate('от'); ?>
+                <a href="<?php echo $this->url(array(
+                                        'module' => 'users',
+                                        'controller' => 'index',
+                                        'action' => 'view',
+                                        'id' => $review->User->id),
+                                    'default', true); ?>">
+                        <?php echo $review->User->login; ?></a>:</td>
+            <td class="adminOtzivGoods2">
+                <?php $contains = 0; ?>
+                <?php if (strlen($review->advantages)): ?>
+                    <p><b><?php echo $this->translate('Достоинства'); ?>:</b> <?php echo $review->advantages; ?></p>
+                <?php $contains++; endif; ?>
+                <?php if (strlen($review->disadvantages)): ?>
+                    <p><b><?php echo $this->translate('Недостатки'); ?>:</b> <?php echo $review->disadvantages; ?></p>
+                <?php $contains++; endif; ?>
+                <?php if (strlen($review->comment)): ?>
+                    <p><b><?php echo $this->translate('Комментарий'); ?>:</b> <?php echo $review->comment; ?></p>
+                <?php $contains++; endif; ?>
+                <?php if($contains > 1): ?>
+                    <span><?php echo $this->translate('развернуть...'); ?></span>
+                <?php endif; ?>
+            </td>
+            <td class="adminOtzivGoods3"><?php echo $review->created_at_formated; ?></td>
+            <td class="adminOtzivGoods4"><a href="<?php echo $this->url(array(
+                                        'module' => 'catalog',
+                                        'controller' => 'products',
+                                        'action' => 'view',
+                                        'id' => $review->Product->id),
+                                    'default', true); ?>"><?php echo $review->Product->name; ?></a></td>
+            <td class="adminOtzivGoods5">
+
+                <?php $urlEdit = $this->url(array('module' => 'catalog','controller' =>'reviews',
+                        'action' => 'edit', 'id' => $review->id),'default', true); ?>
+                <?php $urlApproveType1 = $this->url(array('module' => 'catalog','controller' => 'reviews',
+                        'action' => 'approve', 'id' => $review->id, 'type' => 1), 'default', true); ?>
+                <?php $urlApproveType2 = $this->url(array('module' => 'catalog','controller' => 'reviews',
+                        'action' => 'approve', 'id' => $review->id, 'type' => 2), 'default', true); ?>
+                
+                <?php if($this->tab == 'no-approved'):?>
+                    <a href="<?php echo $urlEdit; ?>"><?php echo $this->translate('редактировать'); ?></a>
+                    <a href="<?php echo $urlApproveType2; ?>"><?php echo $this->translate('одобрить'); ?></a>
+                 <?php elseif($this->tab == 'approved'):?>
+                    <a href="<?php echo $urlEdit; ?>"><?php echo $this->translate('редактировать'); ?></a>
+                    <a href="<?php echo $urlApproveType1; ?>"><?php echo $this->translate('отклонить'); ?></a>
+                <?php else:?>
+                    <a href="<?php echo $urlApproveType2; ?>"><?php echo $this->translate('одобрить'); ?></a>&nbsp;
+                    <a href="<?php echo $urlApproveType1; ?>"><?php echo $this->translate('отклонить'); ?></a>
+                <?php endif; ?>
+            </td>
+        </tr>
+        <?php endforeach;?>
+    </tbody>
+</table>

@@ -1,0 +1,24 @@
+<p>
+    <?php echo $this->translate('Здравствуйте!'); ?>
+</p>
+<p>
+    <?php echo $this->translate('Результат обработки прайса'); ?>:
+</p>
+    <ul>
+        <?php foreach ($this->messages as $message): ?>
+            <li><?php echo array_pop($message); ?></li>
+        <?php endforeach; ?>
+    </ul>
+<p>
+    <a href="<?php $url = $this->serverUrl() . $this->url(array('module' => 'shops', 'controller' => 'index',
+                                         'action' => 'profile'),
+                                   'default', true); echo $url;?>">
+       <?php echo $this->translate('Перейти в свою учетную запись'); ?>
+    </a>
+</p>
+
+<p>
+    <?php echo $this->translate('С уважением,'); ?>
+    <br />
+    <?php echo $this->translate('команда eprice.kz'); ?>
+</p>

@@ -1,0 +1,38 @@
+<table class="pages-container table-list">
+    <thead>
+        <th><?php echo $this->translate('Заголовок'); ?></th>
+        <th><?php echo $this->translate('Действие'); ?></th>
+    </thead>
+    <tbody>
+    <?php foreach ($this->pages as $page): ?>
+        <tr>
+            <td>
+                <a href="<?php echo $this->url(array(
+                             'alias' => $page->alias
+                        ), 'pages-view', true); ?>">
+                    <?php echo $this->escape($page->title); ?>
+                </a>
+            </td>
+            <td class="action">
+            <?php if ($this->IsAllowed('mvc:pages:index', 'edit') &&
+                $this->IsAllowed('mvc:pages:index', 'delete')): ?>
+                <a href="<?php echo $this->url(array(
+                            'module' => 'pages',
+                            'controller'=>'index',
+                            'action'=>'edit',
+                            'id'=>$page->id
+                        ), 'default', true); ?>"><?php echo $this->translate('Редактировать'); ?></a>
+                <a class="page-delete" href="<?php echo $this->url(array(
+                            'module' => 'pages',
+                            'controller'=>'index',
+                            'action'=>'delete',
+                            'id'=>$page->id
+                        ), 'default', true); ?>"><?php echo $this->translate('Удалить'); ?>
+                </a>
+            <?php endif; ?>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+
+    </tbody>
+</table>

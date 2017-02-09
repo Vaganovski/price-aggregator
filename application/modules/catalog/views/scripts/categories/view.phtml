@@ -1,0 +1,100 @@
+<?php echo $this->subCategories($this->categoryService); ?>
+
+<?php if (is_object($this->products)): $count = $this->products->count(); else: $count = 0; endif; ?>
+<?php if ($count > 0): ?>
+<div class="innerSearchBlock">
+    <form action="#">
+        <div class="innerSearchBlogkKeyWord">
+            <label for="searchKeyWord">ключевое слово</label>
+            <input type="text" id="searchKeyWord">
+        </div>
+        <div class="innerSearchBlockPrice">
+            <label for="price">цена</label>
+            <span class="innerSearchBlockPriceInp"><input type="text" value="0" id="price_from"></span>
+            &mdash;
+            <span class="innerSearchBlockPriceInp"><input type="text" value="500000" id="price_to"></span>
+            <span>тенге</span>
+        </div>
+
+        <div id="slider-range"></div>
+
+
+        <!--producers-->
+        <?php if ($this->brands->count()) :?>
+        <div class="innerSearchBlockChoosen">
+            <h6>производители <i>|</i> <span><b class="reset-categories">все</b></span></h6>
+            <ul class="innerSearchBlockProducerList">
+                <?php foreach ($this->brands as $brand): ?>
+                <li><div id="b<?php echo $brand->id; ?>"><span><?php echo $brand->name; ?></span></div></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <?php endif;?>
+        <?php $i = 0;?>
+        <?php $k = 0;?>
+        <?php if (isset($this->featuresSets['simple'])): ?>
+            <?php foreach ($this->featuresSets['simple'] as $field):?>
+                <?php if ($field->type == 'text'): continue; endif; ?>
+                <?php if (false) :?>
+                    <div class="innerSearchBlockPrice">
+                        <label for="price"><?php echo $field->title;?></label>
+                        <span class="innerSearchBlockPriceInp"><input type="text" value="0" id="price_from"></span>
+                        &mdash;
+                        <span class="innerSearchBlockPriceInp"><input type="text" value="500000" id="price_to"></span>
+                        <span><?php echo $field->unit;?></span>
+                    </div>
+
+                    <div id="slider-range"></div>
+                <?php else:?>
+                    <?php if ($i == 0): ?>
+                        <?php if ($k == 0): ?>
+                            <?php $cssClass = ' innerSearchBlockShowLineOpen';?>
+                            <?php $style = '';?>
+                        <?php else:?>
+                            <?php $cssClass = '';?>
+                            <?php $style = 'style="display:none;"';?>
+                        <?php endif;?>
+                    <div class="innerSearchBlockChoosen">
+                        <div class="innerSearchBlockShowLine<?php echo $cssClass;?>"></div>
+                    <?php endif;?>
+                        <div class="innerSearchBlockCol">
+                            <h6><span><?php if ($k > 1): ?><b><?php endif;?>
+                            <?php echo $field->title;?><?php if ($k > 1): ?></b><?php endif;?></span></h6>
+                            <ul <?php echo $style;?>>
+                                <?php foreach ($field->Values as $value):?>
+                                <li><div id="f-<?php echo $field->id; ?>-<?php echo $value->id; ?>"><span><?php echo $value->title;?></span></div></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                    <?php $i++; $k++; ?>
+
+                    <?php if ($i == 2): ?>
+                    <?php $i = 0;?>
+                    </div>
+                    <?php endif;?>
+                <?php endif;?>
+            <?php endforeach; ?>
+            <?php if ($i == 1): ?>
+            </div>
+            <?php endif;?>
+        <?php endif;?>
+        <?php if (isset($this->featuresSets['sliding'])): ?>
+            <?php foreach ($this->featuresSets['sliding'] as $field):?>
+                <div class="innerSearchBlockPrice">
+                    <label for="price"><?php echo $field->title;?></label>
+                    <div>
+                        <span class="innerSearchBlockPriceInp"><input type="text" value="0" id="f_from_<?php echo $field->id;?>"></span>
+                        &mdash;
+                        <span class="innerSearchBlockPriceInp"><input type="text" value="500000" id="f_to_<?php echo $field->id;?>"></span>
+                        <span><?php echo $field->unit;?></span>
+                    </div>
+                </div>
+
+                <div id="slider-range-<?php echo $field->id;?>"></div>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </form>
+    <div class="innderSearchBlockBot"></div>
+</div>
+<?php endif;?>
+<?php echo $this->render('/products/list.phtml'); ?>

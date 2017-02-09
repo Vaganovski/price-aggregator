@@ -1,0 +1,4 @@
+<?php
+/**
+ * If this file exists, then APPLICAION_ENV defined as "development"
+ */

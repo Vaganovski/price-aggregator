@@ -1,0 +1,10 @@
+<?php if ($this->countCompare > 0): ?>
+    <span class="hedaerMyList<?php echo $this->class; ?>" id="compare-link">
+        <a href="<?php echo $this->url(array(
+        'module' => 'catalog',
+        'controller' => 'products',
+        'action' => 'compare',
+        'products' => implode('-', $this->productIds)), 'default', true); ?>">
+        <?php echo $this->translate('Товаров к сравнению'); ?></a><span> (<?php echo $this->countCompare; ?>)</span>
+    </span>
+<?php endif; ?>

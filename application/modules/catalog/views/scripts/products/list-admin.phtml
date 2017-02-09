@@ -1,0 +1,44 @@
+<h1><?php echo $this->title ?></h1>
+
+<?php $query = $this->requestQuery(); ?>
+<div class="adminSortByType">
+    <a href="<?php echo $this->url(array(
+                        'module' => 'catalog',
+                        'controller' => 'products',
+                        'action' => 'list-admin',
+                        'tab' => 'no-filled'),
+                    'default', true) . $query; ?>" <?php echo ($this->tab == 'no-filled' ? 'class="adminSortByTypeActive"' : ''); ?>>незаполненные</a>
+    <a href="<?php echo $this->url(array(
+                        'module' => 'catalog',
+                        'controller' => 'products',
+                        'action' => 'list-admin',
+                        'tab' => 'filled'),
+                    'default', true) . $query; ?>" <?php echo ($this->tab == 'filled' ? 'class="adminSortByTypeActive"' : ''); ?>>заполненные</a>
+    <a href="<?php echo $this->url(array(
+                        'module' => 'catalog',
+                        'controller' => 'products',
+                        'action' => 'list-admin',
+                        'tab' => 'new'),
+                    'default', true) . $query; ?>" <?php echo ($this->tab == 'new' || !$this->tab ? 'class="adminSortByTypeActive"' : ''); ?>>новые</a>
+    <span>показывать:</span>
+</div>
+
+<?php echo $this->ProductSearchForm()
+                            ->setViewScript('catalog')
+                            ->getSearchForm('searchAdmin'); ?>
+
+<!--<br />
+<h3><a href="<?php echo $this->url(array(
+                        'module' => 'catalog',
+                        'controller' => 'products',
+                        'action' => 'new'),
+                    'default', true); ?>"><?php echo $this->translate('Добавить товар'); ?></a></h3>-->
+
+
+<?php if (is_object($this->products) && $this->products->count() > 0): ?>
+    <?php echo $this->render('partial/item-table.phtml'); ?>
+    <?php echo $this->pagination($this->paginator)->create_links('admin'); ?>
+<?php else: ?>
+    <div style="clear:both"></div>                    
+    <?php echo $this->infoMessage($this->translate('Товары пока отсутствуют.')); ?>
+<?php endif; ?>

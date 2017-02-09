@@ -1,0 +1,20 @@
+## Коментарии
+
+Shops_Model_Comment:
+  tableName: shops_comments
+  inheritance:
+    extends: Comments_Model_Comment
+    type: concrete
+  actAs: [SoftDelete]
+  columns:
+    mark:
+      type: enum
+      values: [good, normal, bad]
+  relations:
+    CommentedShop:
+      class: Shops_Model_Shop
+      local: entity_id
+      foreign: id
+      foreignAlias: ShopComments
+      onUpdate: CASCADE
+      onDelete: CASCADE

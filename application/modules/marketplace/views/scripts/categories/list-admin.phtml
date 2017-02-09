@@ -1,0 +1,11 @@
+<h1><?php echo $this->title; ?></h1>
+<a class="adminBaraholkaAddAPart" href="<?php echo $this->url(array(
+                                    'module'=>$this->moduleName,
+                                    'controller'=>$this->controllerName,
+                                    'action'=>'new'
+                                ), 'default', true); ?>"><?php echo $this->translate('новая категория'); ?></a>
+<?php echo $this->CategoriesTree()
+                ->setServiceLayer('marketplace', 'category')
+                ->setControllerName('categories')
+                ->setViewScript('categories')
+                ->getCategoriesTree(); ?>

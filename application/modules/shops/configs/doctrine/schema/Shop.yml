@@ -1,0 +1,75 @@
+## Магазин
+
+Shops_Model_Shop:
+  tableName: shops
+  inheritance:
+    extends: Shops_Model_ShopBase
+    type: concrete
+  columns:
+    description: string()
+    work_time: string(255)
+    credit: string(120)
+    delivery: string(120)
+    status:
+      type: enum
+      notnull: true
+      values: [available, disable, new]
+      default: new
+    type:
+      type: enum
+      notnull: true
+      values: [normal, internet]
+      default: normal
+    period:
+      type: int(4)
+      notnull: true
+    price_filename:
+      type: string(45)
+      notnull: true
+    price_status:
+      type: enum
+      notnull: true
+      values: [absent, queue, processed]
+      default: absent
+    price_updated_at:
+      type: timestamp
+      notnull: false
+    last_renewal_date: datetime()
+    untill_date: datetime()
+    email:
+      type: string(128)
+      notnull: true
+      unique: false
+      email: true
+    chain_shop_id:
+      type: integer(4)
+      unsigned: true
+    chain_name: string(255)
+    manager_id:
+      type: integer(4)
+      unsigned: true
+    message_id:
+      type: integer(4)
+      unsigned: true
+  relations:
+    User:
+      class: Users_Model_User
+      local: user_id
+      foreign: id
+      foreignAlias: UserShop
+      onUpdate: CASCADE
+      onDelete: CASCADE
+    Manager:
+      class: Users_Model_User
+      local: manager_id
+      foreign: id
+      foreignAlias: Shop
+      onUpdate: CASCADE
+      onDelete: CASCADE
+    ChainShop:
+      class: Shops_Model_ChainShop
+      local: chain_shop_id
+      foreign: id
+      foreignAlias: Shops
+      onUpdate: CASCADE
+      onDelete: CASCADE

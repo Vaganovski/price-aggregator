@@ -1,0 +1,9 @@
+<?php if ($this->countMyList > 0): ?>
+    <span class="hedaerMyList<?php echo $this->class; ?>" id="my-list-link">
+        <a href="<?php echo $this->url(array(
+        'module' => 'catalog',
+        'controller' => 'products',
+        'action' => 'my-list'), 'default', true); ?>">
+            <?php echo $this->translate('Мой список'); ?></a><span> (<?php echo $this->countMyList; ?>)</span>
+    </span>
+<?php endif; ?>

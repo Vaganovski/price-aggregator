@@ -1,0 +1,28 @@
+.indexScroll li a b {
+    margin-top: 7px;
+}
+.indexScroll li span img {
+z-index: expression(
+runtimeStyle.zIndex = 1,
+this == ((75/2)-parseInt(offsetHeight)/2) <0 ? style.marginTop="0" : style.marginTop=(75/2)-(parseInt(offsetHeight)/2) +'px');
+}
+.adminPopularGoodsRow li span  {
+display: block;
+}
+.adminPopularGoodsRow li span img {
+z-index: expression(
+runtimeStyle.zIndex = 1,
+this == ((75/2)-parseInt(offsetHeight)/2) <0 ? style.marginTop="0" : style.marginTop=(75/2)-(parseInt(offsetHeight)/2) +'px');
+}
+#windowLogin form input[type=submit] {
+padding: 7px 0;
+}
+
+.contactsTable {
+position: static !important;
+}
+
+.innerSearchBlockPriceInp {
+    position: relative;
+    top: 6px;
+}

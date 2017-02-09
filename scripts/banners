@@ -1,0 +1,26 @@
+#!/usr/bin/env php
+<?php
+/**
+ * Doctrine CLI script
+ */
+
+require_once 'common.php';
+
+require_once 'Zend/Application.php';
+
+// Create application, bootstrap, and run
+$application = new Zend_Application(
+    APPLICATION_ENV,
+    APPLICATION_PATH . '/configs/application.xml'
+);
+
+$application->getBootstrap()
+    ->bootstrap();
+
+// выбираем все подписки
+$bannerServiceLayer = new Advertisment_Model_BannerService();
+$banners = $bannerServiceLayer->getMapper()->findAllMustBeDisabled();
+foreach ($banners as $banner) {
+    $banner->status = 'disable';
+    $banner->save();
+}

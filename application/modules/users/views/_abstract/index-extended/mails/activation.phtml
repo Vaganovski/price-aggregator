@@ -1,0 +1,25 @@
+<p>
+    <?php echo $this->translate('Здравствуйте!'); ?>
+</p>
+<p>
+    <?php echo $this->translate('Вы зарегистрировались на сайте eprice.kz, указав этот e-mail.'); ?>
+</p>
+<p>
+    <?php echo $this->translate('Для подтверждения  вашего e-mail пройдите, пожалуйста, по указанной ссылке:'); ?>
+    <a href="<?php $url = $this->serverUrl() . $this->url(array('module' => 'users', 'controller' => 'index',
+                                         'action' => 'activation',
+                                         'id' => $this->user->id,
+                                         'code' => $this->user->activation_code),
+                                   'default', true); echo $url; ?>">
+       <?php echo $url; ?>
+    </a>
+</p>
+<p>
+    <?php echo $this->translate('Если же Вы не регистрировались на сайте, просто проигнорируйте это  письмо, больше мы Вас не побеспокоим.'); ?>
+</p>
+<p>
+    <?php echo $this->translate('С уважением,'); ?>
+</p>
+<p>
+    <?php echo $this->translate('команда eprice.kz'); ?>
+</p>

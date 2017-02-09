@@ -1,0 +1,82 @@
+.ac_results {
+        -moz-background-clip:border;
+        -moz-background-inline-policy:continuous;
+        -moz-background-origin:padding;
+        background:#FFFFFF none repeat scroll 0 0;
+        border:1px solid #E5E5E5;
+        font-size:12px;
+        left:16px;
+        margin: 3px 0 0 16px;
+        padding:5px 13px;
+        position:absolute;
+        top:31px;
+	overflow: hidden;
+	z-index: 99999;
+}
+
+.ac_results ul {
+	width: 100%;
+	list-style-position: outside;
+	list-style: none;
+	padding: 0 5px 0 0;
+	margin: 0;
+}
+
+.ac_results li {
+	/*margin: 0px;
+	padding: 2px 5px;
+	cursor: default;
+	display: block;*/
+	/* 
+	if width will be 100% horizontal scrollbar will apear 
+	when scroll mode will be used
+	*/
+	/*width: 100%;*/
+	/*font: menu;
+	font-size: 12px;*/
+	/* 
+	it is very important, if line-height not setted or setted 
+	in relative units scroll will be broken in firefox
+	*/
+	/*line-height: 16px;*/
+        border-top:1px solid #DCE9F1;
+        cursor:pointer;
+        display:block;
+        margin:0;
+        padding:4px 130px 4px 0;
+        position:relative;
+	overflow: hidden;
+}
+
+.ac_loading {
+	background: white url('indicator.gif') right center no-repeat;
+}
+
+.ac_odd {
+	/*background-color: #eee;*/
+        color:#3A3B3B;
+}
+
+.ac_even {
+	/*background-color: #eee;*/
+        color:#3A3B3B;
+}
+
+.ac_over {
+	/*background-color: #0A246A;
+	color: white;*/
+        color:#939393;
+}
+.ac_results li:first-child {
+border: none;
+}
+.ac_results li:hover {
+/*color: #939393;*/
+}
+.ac_results li span {
+position: absolute;
+top: 5px;
+right: 0;
+font-size: 10px;
+color: #9d9d9d;
+}

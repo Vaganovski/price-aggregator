@@ -1,0 +1,15 @@
+<h1 class="baraholkaMyItemH1"><?php echo $this->title; ?></h1>
+
+
+<?php echo $this->userMenu($this->user); ?>
+
+<div class="baraholkaMyListItemWide leftMarginReset">
+    <?php if (is_object($this->shops)): $count = $this->shops->count(); else: $count = 0; endif; ?>
+    <?php echo $this->tabMenu('shops', $count); ?>
+
+    <?php if ($count > 0): ?>
+        <?php echo $this->render('partial/item-my.phtml'); ?>
+    <?php else: ?>
+        <?php echo $this->infoMessage($this->translate('Магазинов пока нет.')); ?>
+    <?php endif; ?>
+</div>

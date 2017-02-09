@@ -1,0 +1,61 @@
+<h1 class="baraholkaTitleH1 marbot33"><?php echo $this->title; ?></h1>
+<!--класс для пиктограмм аналогичные как в категоряих, отличаются только префиксом. В основном списке indexCategoriesComp, в подкатегориях categoriesListComp -->
+<div class="otherPagesPostPriceRightCol">
+    <?php echo $this->form; ?>
+    <?php if ($this->isAllowed('mvc:users:index','registration')):?>
+     <a class="otherPagesPostPriceRightColregisterFirm" href="<?php echo $this->url(array(
+            'module'=>'users',
+            'controller'=>'index',
+            'action'=>'registration',
+            'role'=>'merchant'
+     ), 'default', true); ?>">Регистрация фирмы</a>
+     <?php endif; ?>
+</div>
+<div class="otherPagesPostPriceleftCol">
+
+<p><strong>Общие положения</strong><br />
+  Прием прайс-листов и обновление информации на сайте  производится в личной панели продавца.
+  Для этого необходимо пройти регистрацию продавца и загрузить прайс в формате XLS, либо выслать его на наш email. Вы можете обновлять свой прайс до 3 раз в день.<br />
+  Присланный прайс-лист размещается на сайте не более 60 дней.  По истечении указанного времени и при отсутствии свежего прайс-листа публикация  прерывается до получения свежего прайс-листа Абонента. Срок обслуживания в этом  случае не продлевается.</p>
+<p><strong>Требования,  предъявляемые к прайс-листам</strong><br />
+  Прайс-листы принимаются в формате XLS (Office 2003). <br /><br>
+ <a href="http://eprice.kz/upload/prices/primer.xls">Образец прайс листа в XLS</a><br /><br>
+  <a href="http://eprice.kz/upload/prices/primer.xls.zip">Скачать в архиве ZIP</a><br><br>
+ <br />
+  В прайс-листе нужно указывать только те товары, которые Вы  реально можете предоставить покупателю. Администрация сайта оставляет за собой  право не публиковать прайс-лист в случае если:  цены указанные в прайс-листе отличаются от  реальных или в случае несоответствия прайс-строк правилам подачи. Не  допускается указание цен:  1 тенге,  договорная и т.п. Цены указываются только в казахстанских тенге. </p>
+<p><strong>Стоимость услуг</strong><br />
+На данный момент сайт находится в бета-режиме и размещение  прайс-листов абсолютно <strong>бесплатно</strong>.</p>
+<p>
+
+
+<p><span class="blueBackCont">Связаться с менеджерами сайта можно с 10-00 до 18-00 по телефонам:</span></p>
+<div class="phoneNumbers">
+<ul>
+<li><span>(727)</span> 394-48-38</li>
+<li><span>(701)</span> 779-12-56</li>
+<li><span>(701)</span> 900-10-14</li>
+<li><span>(727)</span> 327-48-83</li>
+
+</ul>
+</div><br>
+<span class="blueBackCont">Также мы всегда ответим на любой ваш вопрос через:</span>
+<div class="otherContacts">
+<ul>
+<li><span>e-mail: </span><strong><a href="mailto:manager@eprice.kz">manager@eprice.kz</a></strong></li>
+</ul>
+</div>
+
+
+
+</p>
+
+<p><br />
+<a class="otherPagesPostPriceleftColTour" href="http://eprice.kz/page/tutorial/">Прочитать руководство <br><span>html-версия</span></a><br>
+<a class="otherPagesPostPriceleftColTour" href="http://eprice.kz/page/videotutorial/">Посмотреть видеоурок <span>Формат видео: MP4 </span></a>
+
+
+<br />
+</p>
+	
+	
+</div>

@@ -1,0 +1,32 @@
+<h1>
+    <?php echo $this->title;?>
+</h1>
+
+<!--about page content-->
+<div class="alphabetWrapper">
+    <div class="brandsListAlphabet">
+        <?php echo $this->blockAlphabet($this->brandsByLetter); ?>
+    </div>
+</div>
+ <?php if (count($this->brandsByLetter)):?>
+ <?php foreach($this->brandsByLetter as $key => $brands): ?>
+    <div class="brandRows">
+        <h5 id="<?php echo $key; ?>"><?php echo $key; ?></h5>
+        <ul>
+            <?php foreach($brands as $brand): ?>
+                <li><a href="<?php echo $this->url(array(
+                        'module' => 'catalog',
+                        'controller' => 'brands',
+                        'action' => 'view',
+                        'id' => $brand->id),
+                    'default', true); ?>"><?php echo $brand->name ?></a></li>
+            <?php endforeach; ?>
+        </ul>
+        <span class="backToUpBut"><span><a href="#"><?php echo $this->translate('Наверх'); ?></a></span></span>
+    </div>
+<?php endforeach; ?>
+<?php else:?>
+    <div class="brandRows">
+        <?php echo $this->infoMessage($this->translate('Производители в данный момент отсутствуют.')); ?>
+    </div>
+<?php endif; ?>

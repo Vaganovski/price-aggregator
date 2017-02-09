@@ -1,0 +1,57 @@
+<ul class="myListUl">
+<?php foreach($this->prices as $price): ?>
+    <?php if ($price->Product->image_thumbnail_url): $image = $price->Product->image_thumbnail_url; else: $image = '/images/no-photo.png'; endif;?>
+    <li>
+        <a class="myListPic" href="<?php echo $this->url(array(
+                                        'module' => 'catalog',
+                                        'controller' => 'products',
+                                        'action' => 'view',
+                                        'id' => $price->Product->id),
+                                    'default', true); ?>">
+            <img alt="<?php echo $price->Product->name ?>" src="<?php echo $image ?>">
+        </a>
+        <div class="myListDesc">
+            <h6><a href="<?php echo $this->url(array(
+                                        'module' => 'catalog',
+                                        'controller' => 'products',
+                                        'action' => 'view',
+                                        'id' => $price->Product->id),
+                                    'default', true); ?>"><?php echo $price->Product->name ?></a>
+                                       <?php $countReviews = $this->ReviewsCount($price->Product->id); ?>
+                                       <?php if ($countReviews > 0):?>
+                                        &nbsp;|&nbsp;<span>
+                                            <a href="<?php echo $this->url(array(
+                                            'module' => 'catalog',
+                                            'controller' => 'reviews',
+                                            'action' => 'list',
+                                            'id' => $price->Product->id),
+                                        'default', true); ?>">
+                                                <?php echo $countReviews; ?> <?php echo $this->translate(array(_('отзыв'), _('отзыва'), _('отзывов'), $countReviews, $this->locale));?>
+                                            </a>
+                                        </span>
+                                        <?php else:?>
+                                            <?php if ($this->isAllowed('mvc:catalog:reviews', 'new')):?> 
+                                            &nbsp;|&nbsp;<span>
+                                                <a href="<?php echo $this->url(array(
+                                                'module' => 'catalog',
+                                                'controller' => 'reviews',
+                                                'action' => 'new'),
+                                            'default', true); ?>">
+                                                    <?php echo $this->translate('Написать отзыв'); ?>
+                                                </a>
+                                            </span>
+                                            <?php endif;?>
+                                        <?php endif;?>
+            </h6>
+            <div class="myListDescPrice">
+                <?php echo $price->price; ?> тенге
+            </div>
+            <div class="myListDescChar"><?php echo $price->Product->Categories->getFirst()->title ?>
+                <?php if (strlen($price->Product->description)): ?>
+                    | <?php echo $this->truncate(strip_tags($price->Product->description), 500); ?>
+                <?php endif; ?>
+            </div>
+        </div>
+    </li>
+<?php endforeach; ?>
+</ul>

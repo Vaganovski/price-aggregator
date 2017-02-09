@@ -1,0 +1,14 @@
+## категории
+
+Marketplace_Model_Category:
+  tableName: marketplace_categories
+  inheritance:
+    extends: Categories_Model_Category
+    type: concrete
+  relations:
+    Products:
+      local: category_id
+      foreign: product_id
+      class: Marketplace_Model_Product
+      foreignAlias: Categories
+      refClass: Marketplace_Model_CategoryProduct

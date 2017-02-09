@@ -1,0 +1,16 @@
+<br />  
+<div class="my-shops-list">
+    <?php foreach($this->chains as $chain): ?>
+        <div class="item">
+            <h2>
+                <a href="<?php echo $this->url(array(
+                    'module' => 'shops',
+                    'controller' => 'index',
+                    'action'=>'profile',
+                    'chain-id'=>$chain->id
+                ), 'default', true); ?>"><?php echo $chain->name;?></a>
+            </h2>
+        </div>
+    <br />
+    <?php endforeach; ?>
+</div>

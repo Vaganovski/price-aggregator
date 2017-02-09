@@ -1,0 +1,88 @@
+<form id="<?php echo $this->element->getId();?>" action="<?php echo $this->element->getAction();?>" method="<?php echo $this->element->getMethod();?>">
+    <?php if ($this->element->role->getValue() == 'merchant'): ?>
+    <p>Для регистрации фирмы заполните следующую форму. В ближайшее время с Вами свяжется наш менеджер для уточнения деталей.</p>
+    <?php endif;?>
+    <div class="leftColumnReg">
+
+        <div class="registerRows">
+            <div class="labelContenter">
+                <label for="<?php echo $this->element->login->getName(); ?>"><?php echo $this->translate('Логин'); ?></label>
+                <span><?php echo $this->translate('Цифры, лат. буквы, дефис или подчеркивание 4-10 симв.'); ?></span>
+            </div>
+            <div class="inputTextWide"><?php echo $this->element->login; ?></div>
+            <?php echo $this->renderElementErrors($this->element->login); ?>
+        </div>
+
+        <div class="registerRows">
+            <div class="labelContenter">
+                <label for="<?php echo $this->element->password->getName(); ?>"><?php echo $this->translate('Пароль'); ?></label>
+                <span><?php echo $this->translate('Цифры, лат. буквы, дефис или подчеркивание не менее 4 симв.'); ?></span>
+            </div>
+            <div class="inputTextWide"><?php echo $this->element->password; ?></div>
+            <?php echo $this->renderElementErrors($this->element->password); ?>
+        </div>
+        
+        <div class="registerRows">
+            <div class="labelContenter">
+                <label for="<?php echo $this->element->password_confirm->getName(); ?>"><?php echo $this->translate('Подтверждения пароля'); ?></label>
+            </div>
+            <div class="inputTextWide"><?php echo $this->element->password_confirm; ?></div>
+            <?php echo $this->renderElementErrors($this->element->password_confirm); ?>
+        </div>
+
+        <div class="registerRows">
+            <div class="labelContenter">
+                <label for="<?php echo $this->element->name->getName(); ?>"><?php echo $this->element->name->getLabel() ?></label>
+            </div>
+            <div class="inputTextWide"><?php echo $this->element->name; ?></div>
+            <?php echo $this->renderElementErrors($this->element->name); ?>
+        </div>
+        
+        <div class="registerRows registerRows2">
+            <div class="labelContenter">
+                <label for="<?php echo $this->element->city->getName(); ?>"><?php echo $this->translate('Город'); ?></label>
+            </div>
+            <div class="inputTextWide inputTextMiddle">
+                <?php echo $this->element->city; ?>
+            </div>
+            <?php echo $this->renderElementErrors($this->element->city); ?>
+        </div>
+
+        <?php if($this->element->phone): ?>
+            <div class="registerRows">
+                <div class="labelContenter">
+                    <label for="<?php echo $this->element->phone->getName(); ?>"><?php echo $this->element->phone->getLabel() ?></label>
+                </div>
+                <div class="inputTextWide"><?php echo $this->element->phone; ?></div>
+                <?php echo $this->renderElementErrors($this->element->phone); ?>
+            </div>
+        <?php endif; ?>
+
+        <div class="registerRows bot33">
+            <div class="labelContenter">
+                <label for="<?php echo $this->element->email->getName(); ?>"><?php echo $this->translate('E-mail'); ?></label>
+            </div>
+            <div class="inputTextWide inputTextMiddle"><?php echo $this->element->email; ?></div>
+            <?php echo $this->renderElementErrors($this->element->email); ?>
+        </div>
+        
+
+        <?php if($this->element->captcha): ?>
+            <div class="registerRows bot18">
+                <?php echo $this->element->captcha; ?>
+                <?php echo $this->renderElementErrors($this->element->captcha); ?>
+            </div>
+        <?php endif; ?>
+
+    </div>
+    <?php echo $this->element->role; ?>
+    <?php echo $this->element->id; ?>
+    <div class="rightColumnReg">
+        <p> </p>
+    </div>
+    <div class="formSbutton">
+        <input type="submit" value="<?php echo $this->element->submit->getLabel(); ?>"/>
+        <p><?php echo $this->element->submit->getDescription(); ?></p>
+    </div>
+    
+</form>

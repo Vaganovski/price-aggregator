@@ -1,0 +1,98 @@
+<?php if (is_object($this->products)): $count = $this->products->count(); $width = ($count * 300) + 224; else: $count = 0; endif; ?>
+
+<h1 class="baraholkaMyItemH1" <?php echo ($count > 3) ? 'style="width:' . ($width - 189) . 'px"' : ''; ?>><?php echo $this->title; ?></h1>
+<div class="innerContentGoodsSravn" <?php echo isset($width) ? 'style="width:' . $width . 'px"' : ''; ?>>
+    <div class="goodsSravnTableWrapper">
+        <div class="goodsSravnTableCol1" <?php echo isset($width) ? 'style="width:224px"' : ''; ?>>
+            <a class="backButton" href="<?php echo $this->backUrl; ?>"><?php echo $this->translate('Вернуться назад'); ?></a>
+        </div>
+        <?php $i = 1; ?>
+        <?php if (is_object($this->products)): $count = $this->products->count(); else: $count = 0; endif; ?>
+        <?php if ($count > 0): ?>
+            <?php foreach($this->products as $product): ?>
+            <?php if ($product->image_thumbnail_url): $image = $product->image_thumbnail_url; else: $image = '/images/no-photo.png'; endif;?>
+            <div  class="goodsSravnTableCol234" id="p<?php echo $product->id; ?>" <?php echo isset($width) ? 'style="width:300px"' : ''; ?>>
+                <a class="myListPic" href="<?php echo $this->url(array(
+                                                'module' => 'catalog',
+                                                'controller' => 'products',
+                                                'action' => 'view',
+                                                'id' => $product->id),
+                                            'default', true); ?>">
+                    <img alt="<?php echo $product->name ?>" src="<?php echo $image ?>">
+                </a>
+                <?php $pricesCount = $product->Prices->count(); ?>
+                <?php if ($pricesCount == 1) :?>
+                    <a class="myListAmountOffers" href="<?php echo $this->url(array(
+                                            'module' => 'catalog',
+                                            'controller' => 'products',
+                                            'action' => 'view',
+                                            'id' => $product->id),
+                                        'default', true); ?>"><?php echo $product->Prices->getFirst()->Shop->name; ?></a>
+                <?php elseif ($pricesCount > 0): ?>
+                    <a class="myListAmountOffers" href="<?php echo $this->url(array(
+                                            'module' => 'catalog',
+                                            'controller' => 'products',
+                                            'action' => 'view',
+                                            'id' => $product->id),
+                                        'default', true); ?>#where-buy"><?php echo $product->Prices->count(); ?> <?php echo $this->translate(array(_('предложение'), _('предложения'), _('предложений'), $product->Prices->count(), $this->locale)); ?></a>
+                <?php else: ?>
+                    <?php echo $this->translate('нет предложений'); ?>
+                <?php endif;?>
+                <div class="myListDesc">
+                    <h6><a href="<?php echo $this->url(array(
+                                        'module' => 'catalog',
+                                        'controller' => 'products',
+                                        'action' => 'view',
+                                        'id' => $product->id),
+                                    'default', true); ?>"><?php echo $product->name ?></a></h6>
+                    <div class="myListDescPrice"><?php echo $product->price; ?></div>
+                    <div class="myListDescChar"><?php echo $product->Categories->getFirst()->title ?>
+                        <?php if (strlen($product->description)): ?>
+                            | <?php echo $this->truncate($product->description); ?>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <?php $pos = array_search($product->id, $this->productIds);
+                      $forLink = $this->productIds;
+                      unset($forLink[$pos]);
+                ?>
+                <a class="myListDel" href="<?php echo $this->url(array(
+                                            'module' => 'catalog',
+                                            'controller' => 'products',
+                                            'action' => 'compare',
+                                            'products' => implode('-', $forLink),
+                                            'delete' => 1),
+                                        'default', true); ?>" id="c<?php echo $product->price; ?>"><span>удалить</span></a>
+            </div>
+            <?php $i++; ?>
+            <?php endforeach; ?>
+        <?php endif;?>
+
+    </div>
+
+    <?php $countFeatures = count($this->features); ?>
+    <?php if ($countFeatures > 0): ?>
+        <?php foreach($this->features as $keySet => $feature): ?>
+        <h3><?php echo $keySet; ?></h3>
+        <table>
+            <tbody>
+                <?php foreach($feature as $keyField => $field): ?>
+                <tr class="blueBackTable">
+                    <td class="goodsSravnTableCol1" <?php echo isset($width) ? 'style="width:220px"' : 'style="width:5.6%"'; ?>><span><?php echo $keyField?></span></td>
+                    <?php foreach($this->featuresProducts as $key => $value): ?>
+                        <td class="goodsSravnTableCol234" id="p<?php echo $key; ?>f" <?php echo isset($width) ? 'style="width:300px"' : 'style="width:5.6%"'; ?>><?php echo isset ($value[$keySet][$keyField]) ? $value[$keySet][$keyField] : '&nbsp;'; ?></td>
+                    <?php endforeach; ?>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+
+      <?php endforeach; ?>
+  <?php elseif ($count > 0):?>
+      <?php echo $this->infoMessage($this->translate('У текущих товаров нет характеристик')); ?>
+  <?php endif;?>
+  <?php if ($count == 0): ?>
+      <?php echo $this->infoMessage($this->translate('Товаров для сравнения по характеристикам нету')); ?>
+  <?php endif;?>
+
+</div>

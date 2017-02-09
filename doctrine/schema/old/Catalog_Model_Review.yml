@@ -1,0 +1,34 @@
+## категории
+
+Catalog_Model_Review:
+  tableName: catalog_products_reviews
+  inheritance:
+    extends: Reviews_Model_Review
+    type: concrete
+  columns:
+    advantages: string(255)
+    disadvantages: string(255)
+    approve:
+      type: integer(1)
+      notnull: true
+    product_id:
+      type: integer(4)
+      unsigned: true
+    user_id:
+      type: integer(4)
+      unsigned: true
+  relations:
+    Product:
+      local: product_id
+      foreign: id
+      class: Catalog_Model_Product
+      foreignAlias: Reviews
+      onUpdate: CASCADE
+      onDelete: CASCADE
+    User:
+      local: user_id
+      foreign: id
+      class: Users_Model_User
+      foreignAlias: Reviews
+      onUpdate: CASCADE
+      onDelete: CASCADE

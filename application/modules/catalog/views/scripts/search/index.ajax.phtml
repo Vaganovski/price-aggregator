@@ -1,0 +1,27 @@
+<div class="contentCatalog">
+    <div class="contentCatalog2">
+        <h1>
+            <?php echo $this->title; ?>
+        </h1>
+    <?php if (is_array($this->products) || is_object($this->products)): $count = count($this->products); else: $count = 0; endif; ?>
+    <?php if ($count > 0): ?>
+        <div class="innerCatalogSortAndStat">
+            <?php $totalItemCount = $this->paginator->getTotalItemCount();?>
+                найдено:<b><?php echo $totalItemCount;?></b> <?php echo $this->translate(array(_('товар'), _('товара'), _('товаров'), $totalItemCount, Zend_Locale::findLocale())); ?>
+                <div class="innerCatalogSort">
+                        <?php echo $this->translate('Сортировать по:'); ?>
+                        <span><i id="price"><?php echo $this->translate('цене'); ?></i></span> <!--innerCatalogSortActive2 будет стрелочка вниз-->
+                        <span><i id="score"><?php echo $this->translate('релевантности'); ?></i></span>
+                </div>
+        </div>
+        <?php $this->search = 1;?>
+        <?php echo $this->render('/products/partial/item-list.phtml'); ?>
+
+        <?php echo $this->pagination($this->paginator)->create_links(); ?>
+    <?php else: ?>
+        <?php echo $this->infoMessage($this->translate('Товары по заданому запросу отсутствуют.')); ?>
+    <?php endif;?>
+        <div id="backFormPopup"></div>
+        <div id="backFormloading"><img width="23" height="23" alt="" src="/images/inner/ajax-loader.gif"><span>Загрузка...</span></div>
+    </div>
+</div>

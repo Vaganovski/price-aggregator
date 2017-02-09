@@ -1,0 +1,7 @@
+<ul class="simpleTree">
+    <li class="root" id='0'><span><?php echo $this->translate('Категории'); ?></span>
+        <ul>
+<?php echo $this->render($this->CategoriesTree()->getViewScript('item')); ?>
+        </ul>
+    </li>
+</ul>

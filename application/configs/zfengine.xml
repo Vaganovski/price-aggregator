@@ -1,0 +1,206 @@
+<config xmlns:zf="http://framework.zend.com/xml/zend-config-xml/1.0/">
+    <production>
+        <autoloaderNamespaces>
+            <ZFEngine value="ZFEngine" />
+            <Doctrine value="Doctrine" />
+            <App value="App" />
+        </autoloaderNamespaces>
+        <includePaths>
+            <doctrine_library><zf:const zf:name="APPLICATION_PATH" />/../library/Doctrine</doctrine_library>
+        </includePaths>
+        <pluginPaths>
+            <ZFEngine_Application_Resource value="ZFEngine/Application/Resource" />
+        </pluginPaths>
+        <resources>
+            <!--<modules />-->
+            <frontController>
+                <actionhelperpaths>
+                    <ZFEngine_Controller_Action_Helper value="ZFEngine/Controller/Action/Helper" />
+                </actionhelperpaths>
+            </frontController>
+            <view>
+                <helperPath>
+                    <ZFEngine_View_Helper value="ZFEngine/View/Helper" />
+                    <Categories_View_Helper><zf:const zf:name="APPLICATION_PATH" />/modules/categories/views/helpers</Categories_View_Helper>
+                    <Catalog_View_Helper><zf:const zf:name="APPLICATION_PATH" />/modules/catalog/views/helpers</Catalog_View_Helper>
+                    <Users_View_Helper><zf:const zf:name="APPLICATION_PATH" />/modules/users/views/helpers</Users_View_Helper>
+                    <Default_View_Helper><zf:const zf:name="APPLICATION_PATH" />/modules/default/views/helpers</Default_View_Helper>
+                    <Comments_View_Helper><zf:const zf:name="APPLICATION_PATH" />/modules/comments/views/helpers</Comments_View_Helper>
+                    <Advertisment_View_Helper><zf:const zf:name="APPLICATION_PATH" />/modules/advertisment/views/helpers</Advertisment_View_Helper>
+                    <Shops_View_Helper><zf:const zf:name="APPLICATION_PATH" />/modules/shops/views/helpers</Shops_View_Helper>
+                    <Marketplace_View_Helper><zf:const zf:name="APPLICATION_PATH" />/modules/marketplace/views/helpers</Marketplace_View_Helper>
+                </helperPath>
+                <helpers>
+                    <headTitle>
+                        <setSeparator value=" | " />
+                    </headTitle>
+                </helpers>
+                <doctype value="XHTML11" />
+            </view>
+            <doctrine>
+                <connections>
+                    <primary>
+                        <dsn>
+                            <adapter value="mysql" />
+                            <username value="root" />
+                            <password value="lamer31337" />
+                            <host value="localhost" />
+                            <dbname value="eprice_kz_production" />
+                        </dsn>
+                        <options>
+                            <charset value="utf8" />
+                            <collate value="utf8_general_ci" />
+                            <!--<listeners value="Doctrine_Connection_Profiler" />-->
+                        </options>
+                        <attributes>
+                            <attr_autoload_table_classes value="1" />
+                            <attr_use_native_enum value="1" />
+                            <attr_quote_identifier value="1" />
+                            <attr_auto_free_query_objects value="1" />
+                            <attr_auto_accessor_override value="1" />
+                            <!--!?-->
+                            <attr_model_loading value="1" />
+
+                            <!-- Cache settings -->
+                            <attr_result_cache>
+                                <driver value="memcache" />
+                                <lifespan value="3600" />
+                                <options>
+                                    <servers>
+                                        <host value="localhost" />
+                                        <port value="11211" />
+                                        <persistent value="1" />
+                                    </servers>
+                                    <compression value="0" />
+                                </options>
+                            </attr_result_cache>
+                        </attributes>
+                    </primary>
+                </connections>
+            </doctrine>
+            <cache>
+                <core>
+                    <frontend>
+                        <adapter>core</adapter>
+                        <params>
+                            <caching>true</caching>
+                            <automatic_serialization>true</automatic_serialization>
+                            <lifetime>3600</lifetime>
+                        </params>
+                    </frontend>
+                    <backend>
+                        <adapter>file</adapter>
+                        <params>
+                            <cache_dir><zf:const zf:name="APPLICATION_PATH" />/../tmp</cache_dir>
+                        </params>
+                    </backend>
+                </core>
+                <counters>
+                    <frontend>
+                        <adapter>core</adapter>
+                        <params>
+                            <caching>true</caching>
+                            <automatic_serialization>true</automatic_serialization>
+                            <lifetime>300</lifetime>
+                        </params>
+                    </frontend>
+                    <backend>
+                        <adapter>file</adapter>
+                        <params>
+                            <cache_dir><zf:const zf:name="APPLICATION_PATH" />/../tmp</cache_dir>
+                        </params>
+                    </backend>
+                </counters>
+                <config>
+                    <frontend>
+                        <adapter>file</adapter>
+                        <params>
+                            <caching>true</caching>
+                            <master_files><zf:const zf:name="APPLICATION_PATH" />/configs/application.xml</master_files>
+                            <master_files><zf:const zf:name="APPLICATION_PATH" />/configs/zfengine.xml</master_files>
+                            <automatic_serialization>true</automatic_serialization>
+                            <lifetime>null</lifetime>
+                        </params>
+                    </frontend>
+                    <backend>
+                        <adapter>file</adapter>
+                        <params>
+                            <cache_dir><zf:const zf:name="APPLICATION_PATH" />/../tmp</cache_dir>
+                        </params>
+                    </backend>
+                </config>
+            </cache>
+            <modules>
+                <resourceLoader>
+                    <controller>
+                        <namespace>Controller</namespace>
+                        <path>controllers</path>
+                    </controller>
+                    <viewhelper>
+                        <namespace>View_Helper</namespace>
+                        <path>views/helpers</path>
+                    </viewhelper>
+                </resourceLoader>
+                <routes />
+                <acl />
+                <configs />
+            </modules>
+        </resources>
+        <doctrine_cli>
+            <!-- Doctrine CLI params -->
+            <data_fixtures_path><zf:const zf:name="APPLICATION_PATH" />/../doctrine/data/fixtures</data_fixtures_path>
+            <migrations_path><zf:const zf:name="APPLICATION_PATH" />/../doctrine/migrations</migrations_path>
+            <sql_path><zf:const zf:name="APPLICATION_PATH" />/../doctrine/data/sql</sql_path>
+            <yaml_schema_path><zf:const zf:name="APPLICATION_PATH" />/../doctrine/schema</yaml_schema_path>
+            <generate_models_options>
+                <packagesPrefix value="Plugin" />
+                <packagesPath><zf:const zf:name="APPLICATION_PATH" />/packages</packagesPath>
+                <baseClassesDirectory value="Base" />
+                <generateBaseClasses value="1" />
+                <generateTableClasses value="1" />
+            </generate_models_options>
+            <!-- Doctrine CLI params for ZFEngine -->
+            <modules_path><zf:const zf:name="APPLICATION_PATH" />/modules/</modules_path>
+            <old_schema_path><zf:const zf:name="APPLICATION_PATH" />/../doctrine/schema/old/</old_schema_path>
+            <temp_schema_path><zf:const zf:name="APPLICATION_PATH" />/../tmp/schema/</temp_schema_path>
+        </doctrine_cli>
+    </production>
+    <testing zf:extends="production">
+    </testing>
+    <staging zf:extends="production">
+        <resources>
+            <!--<debugToolbar />-->
+            <doctrine>
+                <connections>
+                    <primary>
+                        <dsn>
+                            <adapter value="mysql" />
+                            <username value="eprice_staging" />
+                            <password value="aTsXyn7Fb37VySWZ" />
+                            <host value="localhost" />
+                            <dbname value="eprice_kz_staging" />
+                        </dsn>
+                    </primary>
+                </connections>
+            </doctrine>
+        </resources>
+    </staging>
+    <development zf:extends="production">
+        <resources>
+            <debugToolbar />
+            <doctrine>
+                <connections>
+                    <primary>
+                        <dsn>
+                            <adapter value="mysql" />
+                            <username value="root" />
+                            <password value="" />
+                            <host value="localhost" />
+                            <dbname value="eprice_kz_development" />
+                        </dsn>
+                    </primary>
+                </connections>
+            </doctrine>
+        </resources>
+    </development>
+</config>

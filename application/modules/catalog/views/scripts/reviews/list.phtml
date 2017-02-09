@@ -1,0 +1,19 @@
+<?php $this->headLink()->appendStylesheet('/stylesheets/wide-list.css');?>
+<div class="WideListOtziv">
+    <a class="feedback" href="<?php echo $this->url(array(
+                                        'module' => 'catalog',
+                                        'controller' => 'reviews',
+                                        'action' => 'new',
+                                        'id' => $this->productId),
+                                    'default', true); ?>"><?php echo $this->translate('Написать отзыв'); ?></a>
+    <h1><?php echo $this->title;?> <span>(<?php echo $this->paginator->getTotalItemCount();?>)</span></h1>
+    <?php if (is_object($this->reviews)): $count = $this->reviews->count(); else: $count = 0; endif; ?>
+    <?php if ($count > 0): ?>
+        <?php echo $this->render('partial/item.phtml'); ?>
+        <?php echo $this->pagination($this->paginator)->create_links(); ?>
+
+    <?php echo $this->render('partial/product.phtml'); ?>
+    <?php else: ?>
+        <?php echo $this->infoMessage($this->translate('Отзывы к товару пока отсутствуют.')); ?>
+    <?php endif;?>
+</div>

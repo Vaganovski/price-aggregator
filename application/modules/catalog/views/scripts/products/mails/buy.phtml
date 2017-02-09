@@ -1,0 +1,19 @@
+<p><b><?php echo $this->translate('Здравствуйте!'); ?></b></p>
+<p><?php echo $this->translate('Вы получили заказ на товар от пользователя сайта eprice.kz!'); ?></p>
+<p><?php echo $this->translate('Товар:'); ?> <b><?php echo $this->escape($this->product);?></b></p>
+<p><u><?php echo $this->translate('Данные о клиенте'); ?>:</u></p>
+<p><?php echo $this->translate('Имя'); ?>: <?php echo $this->escape($this->formValues['name']);?></p>
+<p><?php echo $this->translate('Город'); ?>: <?php echo $this->escape($this->formValues['city']);?></p>
+<?php if (!empty($this->formValues['description'])):?>
+<p><?php echo $this->translate('Телефон'); ?>: <?php echo $this->escape($this->formValues['phone']);?></p>
+<?php endif; ?>
+<p><?php echo $this->translate('E-mail'); ?>: <?php echo $this->escape($this->formValues['email']);?></p>
+<?php if (!empty($this->formValues['description'])):?>
+<p><?php echo $this->translate('Примечание'); ?>:<br/> <?php echo $this->escape($this->formValues['description']);?></p>
+<?php endif; ?>
+<p>
+<?php echo $this->translate('С уважением,'); ?>
+</p>
+<p>
+<?php echo $this->translate('команда eprice.kz'); ?>
+</p>

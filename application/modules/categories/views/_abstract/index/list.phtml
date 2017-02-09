@@ -1,0 +1,10 @@
+<h1>
+    <?php echo $this->title; ?>
+</h1>
+<?php if ($this->categories): ?>
+
+    <?php echo $this->render('/partial/item-subcategories.phtml'); ?>
+
+<?php else: ?>
+    <?php echo $this->translate('В данной категорий нет подкатегорий.'); ?>
+<?php endif; ?>

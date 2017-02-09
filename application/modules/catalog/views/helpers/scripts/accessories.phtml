@@ -1,0 +1,17 @@
+<?php if (is_object($this->accessories)): $count = $this->accessories->count(); else: $count = 0; endif; ?>
+<?php if ($count > 0): ?>
+<div class="acsessoirs">
+    <h6><?php echo $this->translate('Аксессуары'); ?></h6>
+    <ul>
+        <?php foreach ($this->accessories as $accessory):?>
+        <?php $actinName = $accessory->CategoryAccessory->getNode()->hasChildren() ? 'list' : 'view'; ?>
+        <li><a href="<?php echo $this->url(array(
+                                'module'=> 'catalog',
+                                'controller'=> 'categories',
+                                'action'=> $actinName,
+                                'alias'=> $accessory->CategoryAccessory->alias,
+                            ), 'default', true); ?>"><?php echo $accessory->CategoryAccessory->title; ?></a></li>
+        <?php endforeach;?>
+    </ul>
+</div>
+<?php endif;?>

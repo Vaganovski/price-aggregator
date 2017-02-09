@@ -1,0 +1,63 @@
+<div class="contentCatalog">
+    <?php if(!isset($this->categories)): ?>
+        <h1><?php echo $this->title; ?></h1>
+    <?php endif; ?>
+    <?php if (is_object($this->products)): $count = $this->products->count(); else: $count = 0; endif; ?>
+    <?php if($count>0 || !isset($this->categories)): ?>
+        <div class="innerCatalogSortAndStat">
+            <?php if ($count > 0): ?>
+                <?php $totalItemCount = $this->paginator->getTotalItemCount();?>
+                <?php $itemCountPerPage = $this->paginator->getItemCountPerPage();?>
+                <?php $from = ($this->paginator->getCurrentPageNumber() - 1) * $itemCountPerPage + 1;?>
+                <?php $to = $from + $itemCountPerPage - 1;?>
+                <?php if ($to > $totalItemCount): $to = $totalItemCount; endif;?>
+                <?php if ($count == 0 ): $from -= 1; endif;?>
+                <div class="innerCatalogStat">Показано: <b><?php echo $totalItemCount;?></b>
+                    <i><?php echo $this->translate(array(_('модель'), _('модели'), _('моделей'), $totalItemCount, Zend_Locale::findLocale())); ?> с <?php echo $from;?> по <?php echo $to;?></i></div>
+            <?php endif;?>
+            <div class="innerCatalogSort">
+                <?php if ($count > 0): ?>
+                                        <?php echo $this->translate('Сортировать по:'); ?>
+                <span><i id="price"><?php echo $this->translate('цене'); ?></i></span> <!--innerCatalogSortActive2 будет стрелочка вниз-->
+                <span><i id="popular"><?php echo $this->translate('популярности'); ?></i></span>
+                <span><i id="new"><?php echo $this->translate('новизне'); ?></i></span>
+                <?php endif;?>
+                <div>город <span id="city"><i><?php echo $this->city; ?></i></span></div>
+                <!--hidden block-->
+                <ul id="innerSortChooseCity">
+                    <li><b>Все</b></li>
+                    <?php foreach ($this->GetCities() as $city):?>
+                    <li><b><?php echo $city; ?></b></li>
+                    <?php endforeach;?>
+                </ul>
+                <!--/hidden block-->
+            </div>
+        </div>
+<?php endif; ?>
+<?php if ($count > 0): ?>
+    <?php echo $this->render('/products/partial/item-list.phtml'); ?>
+    
+    <?php echo $this->pagination($this->paginator)->create_links(); ?>
+
+    <div class="innerCatalogActions">
+                            <?php echo $this->translate('Отмеченные:'); ?>  <span id="innerCatalogChooseAmount">0</span>
+        <a id="innerCatalogMoveToList" href="#"><span><?php echo $this->translate('отправить в список'); ?></span></a>
+        <a id="innerCatalogAddComparison" href="#"><span><?php echo $this->translate('добавить к сравнению'); ?></span></a>
+        <a id="innerCatalogOpenComparison" style="display: none;" href="<?php echo $this->url(array(
+                                        'module' => 'catalog',
+                                        'controller' => 'products',
+                                        'action' => 'compare',
+                                        'products' => ''),
+                                    'default', true); ?>">
+            <span><?php echo $this->translate('перейти к сравнению'); ?></span>
+        </a>
+        <div class="innerCatalogActionsLeft"></div>
+    </div>
+<?php else: ?>
+    <?php if(!isset($this->categories)): ?>
+        <?php echo $this->infoMessage($this->translate('Товары пока отсутствуют.')); ?>
+    <?php endif; ?>
+<?php endif;?>
+    <div id="backFormPopup"></div>
+    <div id="backFormloading"><img width="23" height="23" alt="" src="/images/inner/ajax-loader.gif"><span>Загрузка...</span></div>
+</div>

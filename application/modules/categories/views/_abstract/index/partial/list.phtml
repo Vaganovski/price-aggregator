@@ -1,0 +1,37 @@
+<?php foreach ($this->categories as $category): ?>
+    <div>
+        <h3><a href="<?php echo $this->url(array(
+                                'module'=>$this->moduleName,
+                                'controller'=>$this->controllerName,
+                                'action'=>'list',
+                                'alias'=>$category->alias,
+                            ), 'default', true); ?>"><?php echo $category->title; ?></a></h3>
+        <?php $categoriesChild = $category->getChildren(3); ?>
+        <?php if ($categoriesChild): ?>
+            <?php $categoriesChildCount = $categoriesChild->count(); ?>
+            <div>
+                <?php $i = 1; ?>
+                <?php foreach ($categoriesChild as $categoryChild): ?>
+                    <?php $actionName = 'list'; ?>
+                    <?php if (!$categoryChild->getNode()->hasChildren()): ?>
+                        <?php $actionName = 'view'; ?>
+                    <?php endif; ?>
+                    <a href="<?php echo $this->url(array(
+                                'module'=>$this->moduleName,
+                                'controller'=>$this->controllerName,
+                                'action'=>$actionName,
+                                'alias'=>$categoryChild->alias,
+                            ), 'default', true); ?>"><?php echo $categoryChild->title; ?></a>
+                    <?php echo ($i == 3 || $i == $categoriesChildCount) ? ', <a href="'. $this->url(array(
+                                'module'=>$this->moduleName,
+                                'controller'=>$this->controllerName,
+                                'action'=>'list',
+                                'alias'=>$category->alias,
+                            ), 'default', true). '">...</a>' : ', '; ?>
+                    <?php $i++; ?>
+                <?php endforeach; ?>
+
+            </div>
+        <?php endif; ?>
+    </div>
+<?php endforeach; ?>

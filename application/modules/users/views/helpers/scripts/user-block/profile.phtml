@@ -1,0 +1,36 @@
+<div class="headerLogin headerLogged">
+<?php $user = Zend_Auth::getInstance()->getIdentity(); ?>
+<?php $urlProfile = $this->url(array(
+        'module' => 'users',
+        'controller' => 'index',
+        'action' => 'profile'), 'default', true
+    );   ?>
+    <a href="<?php echo $urlProfile;?>" class="headerLoggedNick"><i><?php echo $user->login ?></i></a>
+    <span class="simpleText"><?php echo $this->translate('Вы вошли как'); ?></span>
+    <div class="clearRight" id="link-container">
+<?php if ($user->role == Users_Model_User::ROLE_ADMINISTRATOR): ?>
+        <a href="<?php echo $this->url(array(
+                        'module' => 'default',
+                        'controller' => 'index',
+                        'action' => 'admin'),
+                    'default', true
+                 ); ?>" style="color: #18506D; font-weight: bold"><?php echo $this->translate('Админка'); ?></a>
+<?php elseif ($user->role == Users_Model_User::ROLE_MERCHANT): ?>
+        <a href="<?php echo $this->url(array(
+                        'module' => 'shops',
+                        'controller' => 'index',
+                        'action' => 'new'),
+                    'default', true
+                 ); ?>" style="color: #18506D; font-weight: bold"><?php echo $this->translate('Добавить магазин'); ?></a>
+<?php endif; ?>
+        <?php echo $this->CompareProductsCountLink(); ?>
+        <?php echo $this->MyListProductsCountLink(); ?>
+        <a class="exitButton" href="<?php
+        echo $this->url(array(
+            'module' => 'users',
+            'controller' => 'index',
+            'action' => 'logout'), 'default', true
+        ); ?>"><i><?php echo $this->translate('выйти'); ?></i></a>
+    </div>
+</div>
+

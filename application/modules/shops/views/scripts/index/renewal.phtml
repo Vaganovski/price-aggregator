@@ -1,0 +1,20 @@
+<?php $last_renewal_date = new Zend_Date($this->shop->last_renewal_date); ?>
+<h1><?php echo $this->escape($this->title); ?></h1>
+<?php echo $this->tabMenu('shops'); ?>
+<div class="listAdminFirmsZayavkiNameCompany"><b><?php echo $this->shop->name;?></b><a href="<?php echo $this->url(array(
+                        'module'=>$this->moduleName,
+                        'controller'=>$this->controllerName,
+                        'action'=>'view-admin',
+                        'id'=>$this->shop->id
+                    ), 'default', true); ?>">профиль</a></div>
+<div class="listAdminFirmsZayavkiProdleniye">
+    <p>последнее продление: <?php echo $last_renewal_date->toString("dd.MM.YYYY");?>   на <b><?php echo $this->shop->period;?></b> дн.</p>
+    <?php if ($this->shop->diff_untill_date_now_date > 0): ?>
+    <p>срок размещения истекает через <b><?php echo $this->shop->diff_untill_date_now_date;?></b> дн.</p>
+    <?php else:?>
+    <p>истек</p>
+    <?php endif;?>
+    <h4>Продлить на</h4>
+    <?php echo $this->form; ?>
+</div>
+

@@ -1,0 +1,174 @@
+.width{
+width: 204px;
+float: left;
+margin: 4px 0 0 5px;
+}
+.selectArea, .center_a, .selectArea .left, .scrollbar-up, .scrollbar-down, .scrollbar-handle {
+background: url(/images/inner/select.png) no-repeat; /* (edit) сгруппированная картинка для select */
+}
+.selectArea {
+height:27px !important; /* (edit) высота нестандартного select */
+background-position: 0 -54px; /* (edit) середина select */
+background-repeat: repeat-x;
+position: relative;
+}
+.selectArea input { /* поле input для селекта, для работостопосбности формы */
+color: #292928 !important; /* (edit) цвет шрифта */
+font-size: 12px !important; /* (edit) размер шрифта в селекте */
+border: none !important;
+background: none !important;
+position: absolute;
+margin:7px 0 0 8px !important;
+top: 0; /* (edit) */
+left: -9px; /* (edit) */
+width: 80% !important; /* чтобы не залезть на стрелку селекта */
+height: 100% !important;
+font-family: Arial; /* edit */
+padding: 0 0 0 8px !important; /* (edit) внутренний отступ слева в селекте */
+cursor: pointer;
+height: auto !important; /* чтобы текст в селектах был выровнен одинаково по вертикали */
+}
+.center_a { /* правая часть селекта */
+background-position: right -27px; /* (edit)  картинка правой части селекта */
+cursor: pointer;
+height: 100%;
+position: absolute;
+top: 0;
+right: 0;
+width: 100% !important;
+}
+* html .center_a {
+right: -1px;
+overflow: hidden;
+}
+.selectArea .left { /* левая граница селекта */
+width:2px; /* (edit) ширина левой части слекта */
+background-position: 0 0; /* (edit) каринка левой части селекта */
+left: 0;
+height: 100%;
+float:left;
+overflow: hidden;
+position: relative;
+
+}
+/* выпадающий список значений селекта */
+.selectArea .optionsDivInvisible, .selectArea .optionsDivVisible {
+border-bottom: 1px solid #a2a2a2; /* (edit) цвет нижней границы бордюра */
+background: #fff !important; /* (edit) цвет выпадающего списка */
+top: 27px !important; /* позиция появления выпадающего списка. должны быть равна высоте селекта или высота слекта-1 (или 2) */
+position:absolute !important;
+margin: 0 !important;
+z-index:200;
+text-align: left;
+left: 0 !important;
+width: 100% !important;
+overflow: hidden;
+}
+.optionsDivVisible {display:block;}
+.selectArea .optionsDivInvisible span {
+padding: 2px 0 !important; /* (edit) внутренние отступы элементов списка */
+border-left: 1px solid #a2a2a2 !important; /* (edit) цвета бордюров выпадающего списка */
+border-right: 1px solid #a2a2a2 !important; /* (edit) */
+color: #1b1b1b !important; /* (edit) цвет текста выпадающего меню */
+font-size: 12px !important; /* (edit) размер шрифта выпадающего меню */
+text-indent: 10px; /* (edit) отступ слева для элементов списка  */
+display: block;
+height: 15px; /* (edit) высоту желательно указываеть во избежание глюков */
+cursor: pointer;
+margin:0 !important;
+float: none !important;
+background: none;
+}
+.selectArea .scrollbar-container span {
+margin-left: -5px !important;
+}
+.selectArea .optionsDivInvisible span:hover {
+background: #ccc; /* (edit) цвет фона подсветки пункта меню */
+color: #fff !important; /* (edit) цвет текста подсветки пункта меню */
+}
+.selectArea .optionsDivInvisible span.over { /* пвтор для ie6,котрый не понимает hover на элементах отличных от ссылок */
+background: #ccc;  /* (edit) цвет фона подсветки пункта меню */
+color: #fff !important; /* (edit) цвет текста подсветки пункта меню */
+}
+.scrollbar-container {
+height: 150px; /* высота выпадающего списка для списка с прокруткой  */
+margin: 0 !important;
+padding: 0 !important;
+overflow: hidden;
+position: relative !important;
+border-left: 1px solid #a2a2a2 !important; /* (edit) цвета бордюров выпадающего списка с прокруткой */
+border-right: 1px solid #a2a2a2 !important; /* (edit) */
+display: block !important;
+float: none !important;
+clear: none !important;
+width: auto !important;
+}
+* html .scrollbar-container {
+width: 100% !important;
+}
+.scrollbar-up, .scrollbar-down {
+width: 14px; /* (edit) размеры стрелок в блоке с прокруткой */
+height: 14px; /* (edit) */
+overflow: hidden;
+position: absolute !important;
+top: 0;
+right: 0;
+left: auto;
+cursor: pointer;
+z-index: 40;
+background-position: -11px -81px; /* (edit) картинка для стрелки вверх */
+margin: 0 !important;
+padding: 0 !important;
+}
+.scrollbar-down {
+top: auto;
+bottom: 0;
+background-position: -11px -95px; /* (edit) картинка для стрелки вниз */
+}
+.scrollbar-track {
+height: 121px; /* высота полосы прокрутки */
+width: 13px; /* (edit) ширина полосы прокрутки */
+background: #fff; /* (edit) цвет полосы прокрути */
+position: absolute !important;
+top: 14px;
+right: 0;
+z-index: 30;
+margin: 0 !important;
+padding: 0 !important;
+}
+* html .scrollbar-track, * html .scrollbar-up, * html .scrollbar-down {
+right: 0px;
+}
+.scrollbar-handle {
+cursor: pointer;
+position: absolute !important;
+right: 0;
+top: 0;
+width: 13px; /* (edit) размеры ползунка в блоке с прокруткой */
+height: 17px; /* (edit) */
+overflow: hidden;
+margin: 0 !important;
+background-position: -12px -108px; /* (edit) картинка для ползунка */
+display: block;
+}
+.container2 {
+height: 103px;
+width: 100% !important;
+clear: none !important;
+position: static !important;
+margin: 0 !important;
+padding: 0 !important;
+}
+.scroller-container {
+top: 0;
+left: 0;
+z-index: 20;
+position: absolute !important;
+width: 1000px !important;
+display: block !important;
+margin: 0 !important;
+padding: 0 !important;
+}
+.selectArea .optionsDivInvisible .scroller-container span {
+border: none !important;
+}

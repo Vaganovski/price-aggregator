@@ -1,0 +1,16 @@
+<div id="reply-form" style="display: none">
+  <?php echo $this->formCommentsReply; ?>
+</div>
+<div id="comments">
+    <h3><?php echo $this->translate('Comments'); ?></h3>
+<?php if ($this->commentsTree): ?>
+    <?php echo $this->commentsTree; ?>
+<?php else: ?>
+    <div class="nocomments"><?php echo $this->translate('Ваш отзыв может стать первым.'); ?></div>
+<?php endif; ?>
+</div>
+<?php $resource = sprintf('mvc:%s:%s', $this->CommentsTree()->getParam('module'),
+                $this->CommentsTree()->getParam('controller')); ?>
+<?php if ($this->IsAllowed($resource, 'new')): ?>
+<?php echo $this->formCommentsNew; ?>
+<?php endif; ?>

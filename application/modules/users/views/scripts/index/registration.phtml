@@ -1,0 +1,10 @@
+<h1 class="baraholkaTitleH1">
+    <?php echo $this->title; ?>
+</h1>
+<?php if(isset($this->user)): ?>
+    <?php $email = '<a href="mailto:' . $this->user->email . '">' . $this->user->email . '</a>'; ?>
+    <?php echo $this->infoMessage(sprintf($this->translate('Спасибо! Пожалуйста проверьте %s и подтвердите регистрацию.'), $email)); ?>
+<?php else: ?>
+    <?php echo $this->form; ?>
+    <?php //echo $this->renderFormErrors($this->form); ?>
+<?php endif; ?>

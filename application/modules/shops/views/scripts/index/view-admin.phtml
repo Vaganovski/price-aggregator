@@ -1,0 +1,95 @@
+<h1><?php echo $this->title; ?></h1>
+<?php echo $this->tabMenu('shops'); ?>
+<?php $last_renewal_date = new Zend_Date($this->shop->last_renewal_date); ?>
+<?php $updated_at = new Zend_Date($this->shop->updated_at); ?>
+<!--таблица заявок-->
+<table class="listAdminFirmsZayavki">
+    <tbody>
+        <tr>
+            <td class="listAdminFirmsZayavkiCol1 wid1143"><b><?php echo $this->shop->name; ?></b></td>
+            <td class="listAdminFirmsZayavkiCol2 wid266">
+                <?php echo $this->translate('последнее продление'); ?>: <?php echo $last_renewal_date->toString("dd.MM.YYYY");?>
+                <span>на <b><?php echo $this->shop->period;?></b> <?php echo $this->translate('дн.'); ?></span></td>
+            <?php if ($this->shop->diff_untill_date_now_date > 0): ?>
+            <td class="listAdminFirmsZayavkiCol21"><?php echo $this->translate('истекает через'); ?> <b><?php echo $this->shop->diff_untill_date_now_date;?></b> дн.</td>
+            <?php else:?>
+            <td class="listAdminFirmsZayavkiCol21"><b><?php echo $this->translate('истек'); ?></b></td>
+            <?php endif;?>
+            <td class="listAdminFirmsZayavkiCol3 wid90"><a href="<?php echo $this->url(array(
+                    'module'=>$this->moduleName,
+                    'controller'=>$this->controllerName,
+                    'action'=>'renewal',
+                    'id'=>$this->shop->id
+                ), 'default', true); ?>"><?php echo $this->translate('продлить'); ?></a></td>
+            <td class="listAdminFirmsZayavkiCol4 wid209"><a href="<?php echo $this->url(array(
+                    'module'=>$this->moduleName,
+                    'controller'=>$this->controllerName,
+                    'action'=>'disable',
+                    'id'=>$this->shop->id
+                ), 'default', true); ?>"><?php echo $this->translate('отключить'); ?></a></td>
+        </tr>
+    </tbody>
+</table>
+<!--/таблица заявок-->
+
+<div class="listAdminDescriptionWrapper">
+    <div class="otherPagesMyCompanyMainContactList">
+        <p><span><?php echo $this->translate('Название фирмы'); ?></span><i><?php echo $this->shop->name; ?></i></p>
+        <p><span><?php echo $this->translate('Адрес'); ?></span><i><?php echo $this->shop->city; ?><?php if($this->shop->address): ?>, <?php echo $this->shop->address; endif;?></i></p>
+        <?php if ($this->shop->phone): ?>
+        <p><span><?php echo $this->translate('Телефоны'); ?></span><i><?php echo $this->shop->phone; ?></i></p>
+        <?php endif;?>
+        <?php if ($this->shop->site): ?>
+        <p><span><?php echo $this->translate('Сайт'); ?></span><i><a href="<?php echo $this->shop->site_url; ?>" target="_blank"><?php echo $this->shop->site; ?></a></i></p>
+        <?php endif;?>
+        <?php if ($this->shop->work_time): ?>
+        <p><span><?php echo $this->translate('Режим работы'); ?></span><i><?php echo $this->shop->work_time; ?></i></p>
+        <?php endif;?>
+        <?php if ($this->shop->delivery): ?>
+        <p><span><?php echo $this->translate('Доставка'); ?></span><i><?php echo $this->shop->delivery; ?></i></p>
+        <?php endif;?>
+        <?php if ($this->shop->credit): ?>
+        <p><span><?php echo $this->translate('Возможность кредита'); ?></span><i><?php echo $this->shop->credit; ?></i></p>
+        <?php endif;?>
+    </div>
+
+    <div class="otherPagesMyCompanyMainContactList">
+            <?php if ($this->shop->Manager->id !== null):?>
+                <?php $manager = $this->shop->Manager; ?>
+                <p><span><?php echo $this->translate('Логин'); ?></span><i><?php echo $manager->login; ?></i></p>
+                <p><span><?php echo $this->translate('Ф.И.О. менеджера'); ?></span><i><?php echo $manager->name; ?></i></p>
+                <p><span><?php echo $this->translate('Телефон менеджера'); ?></span><i><?php echo $manager->phone; ?></i></p>
+                <p><span><?php echo $this->translate('E-mail менеджера'); ?></span><i><?php echo $manager->email; ?></i></p>
+                <p><span><?php echo $this->translate('Город'); ?></span><i><?php echo $manager->city; ?></i></p>
+            <?php endif;?>
+    </div>
+
+    <div class="listAdminDescriptionToDownload">
+        <a href="<?php echo $this->url(array(
+                    'module'=> 'catalog',
+                    'controller'=> 'products',
+                    'action'=>'shop-list',
+                    'id'=>$this->shop->id
+                ), 'default', true); ?>" target="_blank" class="listAdminDescriptionToDownloadAllGoods"><?php echo $this->translate('Все товары'); ?> <?php echo $this->shop->User->login; ?></a>
+        <?php if (strlen($this->shop->price_filename)): ?>
+        <p><?php echo $this->translate('Загруженный прайс-лист'); ?>:</p>
+            <div>
+                <a href="<?php echo $this->shop->price_filename_url; ?>"><?php echo $this->translate('Скачать XLS'); ?></a><br/><span><?php echo $updated_at->toString("dd.MM.YYYY");?></span>
+            </div>
+        <?php endif;?>
+    </div>
+</div>
+
+<div class="listAdminDescriptionGetPass">
+    <p>логин:</p>
+    <h5><?php echo $this->shop->User->login; ?></h5>
+    <p><a href="<?php echo $this->url(array(
+                    'module'=> 'users',
+                    'controller'=> 'index',
+                    'action'=>'password-change-admin',
+                    'id'=>$this->shop->User->id,
+                    'shop-id'=>$this->shop->id
+                ), 'default', true); ?>"><?php echo $this->translate('сменить пароль'); ?></a></p>
+</div>
+
+

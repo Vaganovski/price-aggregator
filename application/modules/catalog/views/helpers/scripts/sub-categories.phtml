@@ -1,0 +1,6 @@
+<?php if ($this->categories): ?>
+    <h1><?php echo $this->title; ?></h1>
+    <div class="categoriesList bar-inner sub-categories">
+        <?php echo $this->render('/partial/item-subcategories.phtml'); ?>
+    </div>
+<?php endif; ?>

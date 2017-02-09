@@ -1,0 +1,16 @@
+## Настройки
+
+Default_Model_Settings:
+  tableName: settings
+  columns:
+    key:
+      type: string(128)
+      primary: true
+      unique: true
+    value: string(128)
+    description: string()
+    type:
+      type: enum
+      notnull: true
+      values: [boolean, int]
+      default: boolean

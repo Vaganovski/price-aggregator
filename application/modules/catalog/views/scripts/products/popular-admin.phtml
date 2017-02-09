@@ -1,0 +1,26 @@
+<h1><?php echo $this->title; ?></h1>
+<div class="adminSortByType">
+    <a href="<?php echo $this->url(array(
+                                'module'=>$this->moduleName,
+                                'controller'=>$this->controllerName,
+                                'action'=>'popular-admin',
+                                'visible'=>'-1'
+                            ), 'default', true); ?>"
+        <?php echo $this->visible == -1 ? 'class="adminSortByTypeActive"' : ''?>>
+                            скрытые
+    </a>
+    <a href="<?php echo $this->url(array(
+                                'module'=>$this->moduleName,
+                                'controller'=>$this->controllerName,
+                                'action'=>'popular-admin'
+                            ), 'default', true); ?>"
+       <?php echo $this->visible == 0 ? 'class="adminSortByTypeActive"' : ''?>>
+                            все
+    </a>
+    <span><?php echo $this->translate('показывать'); ?>:</span>
+</div>
+<?php if ($this->products): ?>
+<?php echo $this->render('partial/item-in-row.phtml'); ?>
+<?php else: ?>
+<?php echo $this->translate('Популярных товаров в данный момент нет'); ?>
+<?php endif; ?>

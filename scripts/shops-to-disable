@@ -1,0 +1,30 @@
+#!/usr/bin/env php
+<?php
+/**
+ * Doctrine CLI script
+ */
+
+require_once 'common.php';
+
+require_once 'Zend/Application.php';
+
+// Create application, bootstrap, and run
+$application = new Zend_Application(
+    APPLICATION_ENV,
+    APPLICATION_PATH . '/configs/application.xml'
+);
+
+$application->getBootstrap()
+    ->bootstrap();
+
+Zend_Controller_Front::getInstance()->setParam('bootstrap', $application->getBootstrap());
+
+// выбираем все подписки
+$shopServiceLayer = new Shops_Model_ShopService();
+$shops = $shopServiceLayer->getMapper()->findAllMustBeDisabled();
+foreach ($shops as $shop) {
+    $shop->status = 'disable';
+    $shop->save();
+    $shopServiceLayer->setModel($shop);
+    $shopServiceLayer->updatePrices();
+}

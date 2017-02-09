@@ -1,0 +1,33 @@
+<?php $i = 0; ?>
+<?php foreach ($this->products as $product):?>
+    <?php if ($i == 0):?>
+        <ul class="adminPopularGoodsRow">
+    <?php endif;?>
+            <li>
+                <a href="<?php echo $this->url(array(
+                                        'module' => 'catalog',
+                                        'controller' => 'products',
+                                        'action' => 'view',
+                                        'id' => $product->id),
+                                    'default', true); ?>">
+                    <span><img src="<?php echo $product->image_thumbnail_url; ?>" alt="<?php echo $product->name; ?>" /></span>
+                    <b><?php echo $product->name; ?></b>
+                                                        от <?php echo $product->min_price_formated; ?> тг
+                </a>
+                <a href="#" id="h<?php echo $product->id; ?>" class="visible-hide"
+                    <?php echo ($product->visible) ? '' : 'style="display:none"';?>>
+                    <?php echo $this->translate('скрыть'); ?>
+                </a>
+                <a href="#" id="s<?php echo $product->id; ?>" class="visible-show"
+                    <?php echo ($product->visible) ? 'style="display:none"' : '';?>>
+                    <?php echo $this->translate('показать'); ?>
+                </a>
+                
+                
+            </li>
+    <?php $i++; ?>
+    <?php if ($i == 7):?>
+        </ul>
+    <?php $i = 0;?>
+    <?php endif;?>
+<?php endforeach; ?>

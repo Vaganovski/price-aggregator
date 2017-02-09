@@ -1,0 +1,36 @@
+<table class="listAdminFirmsZayavki"> <!--для того чтобы развернуть абзац надо добавить ему класс "adminOtzivGoods2POpened"-->
+    <tbody>
+        <?php foreach ($this->comments as $comment):?>
+        <tr>
+            <td class="adminOtzivGoods1">
+                от <a href="<?php echo $this->url(array(
+                                            'module' => 'users',
+                                            'controller' => 'index',
+                                            'action' => 'view',
+                                            'id' => $comment->User->id,
+                                        ), 'default', true)?>"><?php echo $comment->User->login?></a>:<p>для
+                    <a href="<?php echo $this->url(array(
+                                            'module' => 'shops',
+                                            'controller' => 'index',
+                                            'action' => 'view-admin',
+                                            'id' => $comment->CommentedShop->id,
+                                        ), 'default', true)?>"><?php echo $comment->CommentedShop->name; ?></a>
+                </p>
+            </td>
+            <td class="adminOtzivGoods2">
+                <p><?php echo $comment->text; ?></p>
+            </td>
+            <td class="adminOtzivGoods3"><?php echo $comment->created_at_formated; ?></td>
+            <?php if ($this->tab == 'new'):?>
+            <td class="adminOtzivGoods44"><a href="<?php echo $this->url(array(
+                                            'module' => 'shops',
+                                            'controller' => 'comments',
+                                            'action' => 'edit-admin',
+                                            'id' => $comment->id,
+                                        ), 'default', true)?>">изменить</a></td>
+            <td class="adminOtzivGoods5"><a href="#" class="delete-comment" id="d<?php echo $comment->id; ?>">удалить</a></td>
+            <?php endif;?>
+        </tr>
+        <?php endforeach;?>
+    </tbody>
+</table>

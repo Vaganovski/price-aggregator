@@ -1,0 +1,77 @@
+<?php foreach($this->prices as $price): ?>
+<tr>
+    <td class="nameOfCompTable">
+        <?php if (strlen($price->url)): ?>
+            <noindex>
+                <a href="<?php echo $price->url?>" target="_blank" rel="nofollow">
+                                            <?php echo $price->Shop->name; ?>
+                </a>
+            </noindex>
+        <?php else:?>
+            <a href="<?php echo $this->url(array(
+                                            'module' => 'shops',
+                                            'controller' => 'index',
+                                            'action' => 'view',
+                                            'id' => $price->Shop->id),
+                                        'default', true); ?>">
+                                        <?php echo $price->Shop->name; ?>
+            </a>
+        <?php endif;?>
+        <?php $countComments = $this->ShopCommentsCount($price->Shop->id); ?>
+        <?php if ($countComments > 0):?>
+        <span><a class="shopsReviews" href="<?php echo $this->url(array(
+                                            'module' => 'shops',
+                                            'controller' => 'index',
+                                            'action' => 'view',
+                                            'id' => $price->Shop->id),
+                                        'default', true); ?>">
+            <?php echo $countComments; ?> <?php echo $this->translate(array(_('отзыв'), _('отзыва'), _('отзывов'), $countComments, Zend_Locale::findLocale())); ?>
+        </a></span>
+        <?php endif;?>
+    </td>
+    <td class="priceTable">
+        <span class="redPrice"><?php echo $price->price; ?></span>
+        тенге
+    </td>
+    <td class="haveWe">
+        <span><?php echo $price->available; ?></span>
+    </td>
+    <td class="toBuyTable">
+        <?php if($price->Shop->Manager->id !== null): ?>
+            <span id="s<?php echo $price->Shop->id; ?>"><?php echo $this->translate('купить'); ?></span>
+        <?php endif; ?>
+    </td>
+    <td class="contactsTable">
+        <span class="contacts-wrapper">
+            <span><?php echo $this->translate('адрес и телефон'); ?></span>
+            <div class="shop-contact">
+                <h4>
+                    <?php if (strlen($price->url)): ?>
+                        <noindex>
+                            <a href="<?php echo $price->url?>" target="_blank" rel="nofollow">
+                                                        <?php echo $price->Shop->name; ?>
+                            </a>
+                        </noindex>
+                    <?php else:?>
+                        <a href="<?php echo $this->url(array(
+                                                        'module' => 'shops',
+                                                        'controller' => 'index',
+                                                        'action' => 'view',
+                                                        'id' => $price->Shop->id),
+                                                    'default', true); ?>">
+                                                    <?php echo $price->Shop->name; ?>
+                        </a>
+                    <?php endif;?>
+                </h4>
+                <p>г. <?php echo $price->Shop->city; ?><?php if($price->Shop->address): ?>, <?php echo $price->Shop->address; endif;?></p>
+                <p><span><?php echo $this->translate('тел.'); ?>:</span> <?php echo $price->Shop->phone; ?></p>
+                <p class="timeOfWork">
+                            <?php echo $this->translate('Режим работы'); ?>:
+                    <?php echo $price->Shop->work_time; ?>
+                </p>
+                <i></i>
+            </div>
+        </span>
+    </td>
+</tr>
+<?php endforeach; ?>

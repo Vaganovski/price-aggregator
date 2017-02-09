@@ -1,0 +1,355 @@
+.footerWrap {
+height: 83px;
+}
+.innerChrumb li {
+z-index: expression(
+runtimeStyle.zIndex = 1,
+this == parentNode.firstChild ? (className += " first-child") : 0
+)
+}
+.innerChrumb .first-child {
+background: none;
+padding-left: 0;
+}
+.innerChrumb .first-child a {
+background: url(/images/inner/to-main.gif) no-repeat;
+padding-left: 20px;
+}
+.footerCopy {
+top: 22px;
+left: 0;
+}
+.contentWrap .categoriesList .categoriesListColumn {
+width: 44%;
+}
+.myList h1 {
+margin-left: 16%;
+position: relative;
+left: 2px;
+}
+.myListMenu {
+width: 16%;
+}
+.myListDesc h6 span {
+position: static;
+top: 0;
+}
+.myListUl {
+margin-left: 16%;
+}
+.innerSearchBlockPriceInp {
+top: 5px;
+}
+#innerSearchBlockStrip {
+filter:progid:DXImageTransform.Microsoft.Alpha(opacity=70);
+}
+.innerPageNav li,
+.innerPageNav li a {
+height: 28px;
+position:relative;
+}
+.innerPageNav ul{
+	position:relative;
+}
+
+
+.innerPageNav li.adminPageNavActive {
+width: 28px;
+overflow: visible;
+height: 28px;
+zoom:1;
+position:relative;
+}
+.innerPageNav li a {
+width: 28px;
+overflow: visible;
+height: 28px;
+}
+
+
+.innerPageNav div {
+float: left;
+}
+.innerCatalogActions {
+height: 41px;
+}
+.projectMapSite .shortTour, .projectMapSite .registerFirm{
+width:272px;
+height:91px;
+}
+.projectMapSite{
+height:245px;
+}
+.projectMapSiteGoods{
+zoom: 1;
+}
+.brandsListAlphabet ul li {
+z-index: expression( 
+runtimeStyle.zIndex = 1,
+this == parentNode.firstChild ? (className += " first-child") : 0 
+)
+}
+.labelContenter{
+width:194px;
+}
+.brandRows  h5{
+width: 190px;
+}
+.width{
+width: 194px !important;
+float: left !important;
+margin: 7px 0 0 11px !important;
+}
+.WideListOtziv .feedback{
+width:127px;
+height:26px;
+}
+.WideListOtziv .otzivDescr {
+zoom: 1;
+}
+.WideListOtziv{
+height:500px;
+}
+.contentCatalog form .backFormPopup{
+margin:0 395px 0 0;
+}
+.contentCatalog form {
+height:1px;
+}
+.contentCatalog form .backFormloading{
+width:286px;
+height:131px;
+}
+.contentCatalog form .backFormloading{ 
+background: none; 
+filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/inner/loading-popup.png'); 
+}
+.innerCatalogSort{
+margin-right: 395px;
+}
+.priceAndActions {
+height: 45px;
+}
+.tableContenter{
+margin-right:37px;
+padding-right:0;
+float:left;
+}
+.tableContenter table{
+width:100%;
+}
+.contactsTable span div{
+width:156px;
+}
+.WideListOtziv2{
+height:71px;
+}
+#fastOrder {
+position: absolute;
+}
+#fastOrder {
+width: 389px;
+height: 530px;
+}
+#fastOrder .labelContenter{
+width:97px;
+}
+#fastOrder .registerRows .inputTextarea textarea{
+width:202px;
+height:61px;
+}
+#fastOrder .registerRows .inputTextarea{
+margin-left:48px;
+height:75px;
+}
+#fastOrder .formSubmit {
+width: 117px;
+height: 38px;
+font-size: 14px;
+font-weight:bold;
+color: #0f0f10;
+border: none;
+background: url(/images/popup/s-button.png);
+cursor: pointer;
+float: left;
+margin: 17px 0 0 101px;
+}
+.goodsSravnTableCol234 .myListDel{
+position:relative;
+float: left;
+right:0;
+top:0;
+}
+.tableContenter{
+margin-left:2%;
+}
+.contentWrap {
+overflow: visible;
+}
+.innerCatalogSort{
+right:395px !important;
+}
+.acsessoirs{
+padding-bottom:200px;
+}
+.formOtziv .registerRows .inputTextarea{
+width:481px;
+height:95px;
+}
+.formOtziv .registerRows .inputTextarea textarea{
+height:84px;
+width:470px;
+}
+.baraholkaAddPost{
+height:26px !important;
+}
+.baraholkaMainaddAndSearch .baraholkaSearchBlock .formSubmit{
+background:url(/images/baraholka/s-button.png) 0 1px no-repeat;
+border:none;
+color:#FFFFFF;
+cursor:pointer;
+font-size:12px;
+height:27px;
+width:76px;
+float:left;
+padding:0;
+margin:3px 0 0 3px;
+}
+.baraholkaListItemWideDescrMoreInfo{
+height:23px;
+}
+.baraholkaMyListItemWideTextWrap .baraholkaMyListItemWideText textarea{
+width:470px;
+height: 84px;
+}
+.baraholkaMyListItemWideTextWrap .baraholkaMyListItemWideText{
+margin-right:21px;
+}
+.baraholkaMyListItemWideTextWrap .formSubmit{
+display:block;
+background:url(/images/baraholka/s-button2.png) 0 2px no-repeat;
+border:none;
+color:#295D78;
+cursor:pointer;
+font-size:12px;
+height:28px;
+padding:0;
+width:100px;
+position:relative;
+top:4px;
+}
+.otherPagesPostPriceRightCol .formSubmit {
+background:transparent url(/images/inner/comp-submit.png) no-repeat scroll 0 2px;
+border:none;
+color:#FFFFFF;
+cursor:pointer;
+float:left;
+font-size:13px;
+height:33px;
+margin:0 0 0 7px;
+padding:0;
+width:80px;
+}
+.otherPagesPostPriceRightCol .otherPagesPostPriceRightColregisterFirm {
+height:53px;
+width:228px;
+}
+.otherPagesPostPriceleftCol .otherPagesPostPriceleftColTour{
+width:272px;
+height:91px;
+}
+.bla{
+width:80%;
+}
+.otherPagesEditRowsClear .formSubmit {
+border:none;
+cursor:pointer;
+font-size:12px;
+height:27px;
+background:url(/images/inner/input-blue.png) no-repeat 0 1px;
+color:#314956;
+width:100px;
+float:left;
+margin:28px 0 0 170px;
+}
+.baraholkaMyListItemWideWithBord2 .formSubmit {
+background:transparent url(/images/inner/input-blue.png) no-repeat scroll 0 1px;
+border:medium none;
+color:#314956;
+cursor:pointer;
+display: block;
+font-size:12px;
+height:27px;
+margin:14px 0 0 94px;
+width:100px;
+}
+.floatForIe6{
+padding-right:30px;
+width:auto;
+}
+.otherPagesMyCompanyMainRightColBlueBlock{
+width:388px;
+}
+.otherPagesMyCompanyMainRightColBlueBlock .formSubmit {
+background:url(/images/inner/input-blue-back.png) no-repeat 0 1px;
+border:none;
+color:#314956;
+cursor:pointer;
+display:block;
+font-size:12px;
+height:27px;
+margin:9px 0 32px 0;
+width:100px;
+}
+.otherPagesMyCompanyMainDownloadPrices ul a{
+float:left;
+}
+.blueOtzivBlock{
+width:100%;
+}
+.blueOtzivBlockCor1, .blueOtzivBlockCor2, .blueOtzivBlockCor3,.blueOtzivBlockCor4{
+font-size:1px;
+}
+.blueOtzivBlockCor2 {
+righty:expression(parentNode.offsetWidth % 2 ? style.right="-1px" : style.right="0px");
+bottomy:expression(parentNode.offsetHeight % 2 ? style.top="-1px" : style.top="0px");
+}
+.blueOtzivBlockCor3 {
+righty:expression(parentNode.offsetWidth % 2 ? style.right="-1px" : style.right="0px");
+bottomy:expression(parentNode.offsetHeight % 2 ? style.bottom="-1px" : style.bottom="0px");
+}
+.blueOtzivBlock .formSubmit {
+background:transparent url(/images/inner/s-button3.png) no-repeat scroll 0 2px !important;
+border:medium none;
+color:#314956 !important;
+cursor:pointer;
+float:left;
+font-size:12px;
+height:28px;
+padding:0;
+position:relative;
+top:4px;
+width:100px;
+margin-top:27px !important;
+}
+.otherPagesWriteOtziv {
+height:26px;
+}
+.blueOtzivBlock .blueOtzivBlockChange{
+height:26px;
+}
+.baraholkaListItemOwner{
+padding-top:5px;
+}
+.otherPagesMyCompanyMainLeftColTime{
+width:139px;
+}
+.WideListOtziv h1{
+margin-right: 0px;
+}
+.innerCatalogSortAndStat .innerCatalogSort {
+right: 395px !important;
+}
+.innerContentGoodsSravn table {
+width:95.5%;
+}

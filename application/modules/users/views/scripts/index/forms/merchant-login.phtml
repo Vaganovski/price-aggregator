@@ -1,0 +1,21 @@
+<h3><?php echo $this->translate('Вход для продавцов'); ?></h3>
+<a class="otherPagesPostPriceRightColForgottPass" href="<?php echo $this->url(array(
+'module' => 'users',
+'controller' => 'index',
+'action' => 'password-restore'),
+   'default', true); ?>"><?php echo $this->translate('Забыли пароль?'); ?></a>
+<form id="<?php echo $this->element->getId();?>"
+      action="<?php echo $this->element->getAction();?>"
+      method="<?php echo $this->element->getMethod();?>">
+    <label for="<?php echo $this->element->login->getName(); ?>"><?php echo $this->translate('Логин'); ?>:</label>
+    <div class="baraholkaSearchBlockInput floatNone">
+        <?php echo $this->element->login; ?>
+        <?php echo $this->renderElementErrors($this->element->login); ?>
+    </div>
+    <label for="<?php echo $this->element->login->getName(); ?>"><?php echo $this->translate('Пароль'); ?>:</label>
+    <div class="baraholkaSearchBlockInput">
+        <span><?php echo $this->element->password; ?></span>
+        <?php echo $this->renderElementErrors($this->element->password); ?>
+    </div>
+    <?php echo $this->element->submit; ?>
+</form>

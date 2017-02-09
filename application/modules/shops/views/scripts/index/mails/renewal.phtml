@@ -1,0 +1,24 @@
+<p>
+    <?php echo $this->translate('Здравствуйте!'); ?>
+</p>
+<p>
+    <?php echo $this->translate('Ваша учетная запись продавца на eprice.kz продлена на '); ?>
+    <?php echo $this->period . ' ' . $this->translate(array(_('день'), _('деня'), _('деней'), $this->period, Zend_Locale::findLocale())); ?>
+    
+</p>
+<p>
+    <?php echo $this->translate('Теперь Вы можете размещать прайс-листы.'); ?>
+</p>
+<p>
+    <a href="<?php $url = $this->serverUrl() . $this->url(array('module' => 'shops', 'controller' => 'index',
+                                         'action' => 'profile'),
+                                   'default', true); echo $url;?>">
+       <?php echo $this->translate('Перейти в свою учетную запись'); ?>
+    </a>
+</p>
+
+<p>
+    <?php echo $this->translate('С уважением,'); ?>
+    <br />
+    <?php echo $this->translate('команда eprice.kz'); ?>
+</p>

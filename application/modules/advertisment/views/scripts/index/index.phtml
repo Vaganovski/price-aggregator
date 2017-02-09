@@ -1,0 +1,32 @@
+<h1>Реклама</h1>
+<div class="adminNameOfBanner" id="top">
+    <a href="#">Добавить кампанию</a>
+    <h4>Long-банер</h4>
+    <span>max 1024x90px</span>
+</div>
+<?php $i = 1; $formsCount = count($this->forms['top']);?>
+<?php foreach ($this->forms['top'] as $form):?>
+    <div class="adminAddReklamRow" <?php echo ($i == 1 ? 'style="display:none"' : ''); ?>>
+        <h5>Компания: <b><?php echo ($formsCount); ?></b></h5>
+            <?php echo $form; ?>
+    </div>
+<?php $i++; $formsCount--; ?>
+<?php endforeach; ?>
+<?php $script = 'topFormCount = ' . ($i - 1) . "\n"; ?>
+<?php $this->headScript()->appendScript($script);?>
+
+<div class="adminNameOfBanner" id="right">
+    <a href="#">Добавить кампанию</a>
+    <h4>Right Side-банер</h4>
+    <span>200x300px</span>
+</div>
+<?php $i = 1; $formsCount = count($this->forms['right']); ?>
+<?php foreach ($this->forms['right'] as $form):?>
+    <div class="adminAddReklamRow" <?php echo ($i == 1 ? 'style="display:none"' : ''); ?>>
+        <h5>Компания: <b><?php echo ($formsCount); ?></b></h5>
+            <?php echo $form; ?>
+    </div>
+<?php $i++; $formsCount--; ?>
+<?php endforeach; ?>
+<?php $script = 'rightFormCount = ' . ($i - 1) . "\n"; ?>
+<?php $this->headScript()->appendScript($script);?>

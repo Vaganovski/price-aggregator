@@ -1,0 +1,43 @@
+<form  id="<?php echo $this->element->getId();?>"
+       action="<?php echo $this->element->getAction();?>"
+       method="<?php echo $this->element->getMethod();?>">
+    <div class="registerRows">
+        <div class="labelContenter">
+            <label for="registerCompanyLab1"><?php echo $this->element->name->getLabel();?>:</label>
+        </div>
+        <div class="inputTextWide inputTextMiddle"><?php echo $this->element->name;?></div>
+    </div>
+
+    <div class="registerRows">
+        <div class="labelContenter">
+            <label for="registerCompanyLab4"><?php echo $this->element->city->getLabel();?></label>
+        </div>
+        <div class="inputTextWide inputTextMiddle">
+           <?php echo $this->element->city;?>
+        </div>
+    </div>
+
+    <div class="registerRows">
+        <div class="labelContenter">
+            <label for="registerCompanyLab44"><?php echo $this->element->phone->getLabel();?>:</label>
+        </div>
+        <div class="inputTextWide inputTextMiddle"><?php echo $this->element->phone;?></div>
+    </div>
+
+    <div class="registerRows">
+        <div class="labelContenter">
+            <label for="registerCompanyLab5"><?php echo $this->element->email->getLabel();?>:</label>
+        </div>
+        <div class="inputTextWide inputTextMiddle"><?php echo $this->element->email;?></div>
+    </div>
+
+    <div class="registerRows">
+        <div class="labelContenter labelContenterwide">
+            <label for="registerCompanyLab7"><?php echo $this->element->description->getLabel();?></label>
+        </div>
+        <div class="inputTextarea"><?php echo $this->element->description;?></div>
+    </div>
+    <?php echo $this->element->price_id;?>
+    <?php echo $this->element->product_id;?>
+    <?php echo $this->element->submit;?>
+</form>

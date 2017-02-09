@@ -1,0 +1,100 @@
+<config xmlns:zf="http://framework.zend.com/xml/zend-config-xml/1.0/">
+    <production>
+        <config><zf:const zf:name="APPLICATION_PATH" />/configs/zfengine.xml</config>
+        <email>
+            <noreply>noreply@eprice.kz</noreply>
+        </email>
+        <phpSettings>
+            <display_startup_errors value="1" />
+            <display_errors value="1" />
+        </phpSettings>
+        <includePath>
+            <library><zf:const zf:name="APPLICATION_PATH" />/../library</library>
+        </includePath>
+        <bootstrap>
+            <path><zf:const zf:name="APPLICATION_PATH" />/Bootstrap.php</path>
+            <class value="Bootstrap" />
+        </bootstrap>
+        <resources>
+            <frontController>
+                <moduleDirectory><zf:const zf:name="APPLICATION_PATH" />/modules</moduleDirectory>
+            </frontController>
+            <layout>
+                <layoutPath><zf:const zf:name="APPLICATION_PATH" />/layouts/scripts</layoutPath>
+            </layout>
+            <!--<modules />-->
+            <!--<navigation />-->
+            <view>
+                <encoding value="UTF-8" />
+            </view>
+            <mail>
+                <transport>
+                    <type value="Smtp" />
+                    <host value="localhost" />
+<!--                    <type value="Sendmail" />-->
+                </transport>
+            </mail>
+        </resources>
+        <locales>
+            <ru value="ru_RU" />
+            <!--<en value="en_EN" />-->
+        </locales>
+        <!-- Users module settings -->
+        <default>
+            <resources>
+                <router>
+                    <routes>
+                        <default type="Zend_Controller_Router_Route">
+                            <route>:module/:controller/:action/*</route>
+                            <defaults module="default" controller="index" action="index" />
+                        </default>
+                    </routes>
+                </router>
+            </resources>
+        </default>
+        <users>
+            <resources>
+                <router>
+                    <routes>
+                        <users-profile type="Zend_Controller_Router_Route">
+                            <route>user/:username</route>
+                            <defaults controller="users" action="view" />
+                        </users-profile>
+                    </routes>
+                </router>
+            </resources>
+        </users>
+        <feedback>
+            <emailRecipient>info@firmy.kz</emailRecipient>
+            <emailSender>noreply@eprice.kz</emailSender>
+        </feedback>
+        <shops>
+            <newShopPeriod>90</newShopPeriod>
+        </shops>
+    </production>
+    <testing zf:extends="production">
+        <phpSettings>
+            <display_startup_errors value="1" />
+            <display_errors value="1" />
+        </phpSettings>
+    </testing>
+    <staging zf:extends="production">
+        <phpSettings>
+            <display_startup_errors value="1" />
+            <display_errors value="1" />
+        </phpSettings>
+    </staging>
+    <development zf:extends="production">
+        <resources>
+            <mail>
+                <transport>
+                    <type value="Sendmail" />
+                </transport>
+            </mail>
+        </resources>
+        <phpSettings>
+            <display_startup_errors value="1" />
+            <display_errors value="1" />
+        </phpSettings>
+    </development>
+</config>

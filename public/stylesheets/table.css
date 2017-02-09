@@ -1,0 +1,12 @@
+.innerContent table th, .innerContent table td{
+vertical-align:middle;
+text-align:left;
+padding:13px 0 10px 0;
+border-bottom: 1px solid #d0e1e8;
+}
+.innerContent table{
+width:100%;
+}
+.innerChrumb{
+margin:0 0 24px 21%;
+}

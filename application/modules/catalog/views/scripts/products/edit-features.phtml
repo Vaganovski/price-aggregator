@@ -1,0 +1,73 @@
+<h1>
+    <?php echo $this->translate('Товары / модели'); ?>
+</h1>
+
+<div class="adminSortByType">
+    <a href="<?php echo $this->url(array(
+                        'module' => 'catalog',
+                        'controller' => 'products',
+                        'action' => 'list-admin',
+                        'tab' => 'no-filled'),
+                    'default', true); ?>" <?php echo ($this->tab == 'no-filled' ? 'class="adminSortByTypeActive"' : ''); ?>>незаполненные</a>
+    <a href="<?php echo $this->url(array(
+                        'module' => 'catalog',
+                        'controller' => 'products',
+                        'action' => 'list-admin',
+                        'tab' => 'filled'),
+                    'default', true); ?>" <?php echo ($this->tab == 'filled' ? 'class="adminSortByTypeActive"' : ''); ?>>заполненные</a>
+    <a href="<?php echo $this->url(array(
+                        'module' => 'catalog',
+                        'controller' => 'products',
+                        'action' => 'list-admin',
+                        'tab' => 'new'),
+                    'default', true); ?>" <?php echo ($this->tab == 'new' || !$this->tab ? 'class="adminSortByTypeActive"' : ''); ?>>новые</a>
+    <span><?php echo $this->translate('показывать:'); ?></span>
+</div>
+
+<?php echo $this->ProductSearchForm()
+                            ->setViewScript('catalog')
+                            ->getSearchForm('searchAdmin'); ?>
+
+<h2><a href="<?php echo $this->url(array(
+                        'module' => 'catalog',
+                        'controller' => 'products',
+                        'action' => 'view',
+                        'id' => $this->product->id),
+                    'default', true); ?>"><?php echo $this->title; ?></a></h2>
+<?php if ($this->form): ?>
+        <?php echo $this->form; ?>
+<?php else:?>
+    <div class="adminGoodsCharBigForm" style="margin-top: 10px;">
+        <?php echo $this->infoMessage($this->translate('Для категории данного товара не назначен шаблон характеристик.')); ?>
+    </div>
+<?php endif;?>
+
+<div class="adminGoodsUploadPhoto">
+    <div>
+        <h6>
+            <?php echo $this->translate('Основное фото:'); ?>
+        </h6>
+        <?php if($this->product->image_to_download): ?>
+            <p>
+                 <a href="<?php echo $this->escape($this->product->image_to_download); ?>" target="_target"><?php echo $this->translate('В очереди на загрузку'); ?></a>
+            </p>
+        <?php endif; ?>
+        <div id="main-image">
+        <?php if (strlen($this->product->image_filename)): ?>
+            <b><img width="45" src="<?php echo $this->product->image_thumbnail_url; ?>" alt="<?php echo $this->product->name; ?>"><i></i></b>
+        <?php endif;?>
+        </div>
+        <?php echo $this->formMainImage;?>
+        <h6>
+            <?php echo $this->translate('Загруженные фото:'); ?>
+        </h6>
+        <div id="another-images">
+        <?php if ($this->images): ?>
+            <?php foreach ($this->images as $image) :?>
+                <b><img src="<?php echo $image->image_thumbnail_url; ?>" alt="<?php echo $image->Product->name; ?>"><i></i></b>
+            <?php endforeach; ?>
+        <?php endif;?>
+        </div>
+        <?php echo $this->formImage;?>
+    </div>
+</div>

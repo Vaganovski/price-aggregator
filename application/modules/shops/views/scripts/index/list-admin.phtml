@@ -1,0 +1,32 @@
+<?php $count = (is_object($this->shops)) ? $this->shops->count(): 0;?>
+<?php if(!isset($this->user)): ?>
+    <?php echo $this->shopsSearchForm()
+                                ->setViewScript('shops')
+                                ->getSearchForm('searchAdmin'); ?>
+
+    <h1><?php echo $this->title; ?></h1>
+    <?php echo $this->tabMenu('shops', $count); ?>
+
+<?php endif; ?>
+<?php if ($count > 0): ?>
+
+    <?php if(isset($this->user)): ?>
+        <h2><?php echo sprintf($this->translate('Список магазинов пользователя "%s"'), $this->user->name); ?></h2>
+        <?php echo $this->render('partial/item-list.phtml'); ?>
+    <?php else: ?>
+        <?php if ($this->status == 'new'): ?>
+            <?php echo $this->render('partial/item-new.phtml'); ?>
+        <?php elseif ($this->status == 'disable'): ?>
+            <?php echo $this->render('partial/item-disable.phtml'); ?>
+        <?php elseif ($this->status == 'available'): ?>
+            <?php echo $this->render('partial/item-available.phtml'); ?>
+        <?php endif; ?>
+    <?php endif; ?>
+
+    <?php echo $this->pagination($this->paginator)->create_links('admin'); ?>
+<?php else: ?>
+    <?php echo $this->infoMessage($this->translate('Фирм продавцов пока нет.')); ?>
+<?php endif; ?>
+
+
+

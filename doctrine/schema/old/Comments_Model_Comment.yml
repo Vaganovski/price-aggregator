@@ -1,0 +1,48 @@
+## категории
+
+Comments_Model_Comment:
+  tableName: comments
+  actAs:
+    NestedSet:
+      hasManyRoots: true
+      rootColumnName: root_id
+    Timestampable:
+  options:
+    type: INNODB
+    collate: utf8_unicode_ci
+    charset: utf8
+  columns:
+    id:
+      type: integer(4)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    root_id:
+      type: integer(8)
+      notnull: true
+    lft:
+      type: integer(8)
+      notnull: true
+    rgt:
+      type: integer(8)
+      notnull: true
+    level:
+      type: integer(8)
+      notnull: true
+    text:
+      type: string()
+      notnull: true
+    user_id:
+      type: integer(4)
+      unsigned: true
+    entity_id:
+      type: integer(4)
+      unsigned: true
+  relations:
+    User:
+      class: Users_Model_User
+      local: user_id
+      foreign: id
+      foreignAlias: Comments
+      onUpdate: CASCADE
+      onDelete: CASCADE

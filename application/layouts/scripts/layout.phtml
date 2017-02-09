@@ -1,0 +1,150 @@
+<?php echo $this->doctype('XHTML11') . "\n"; ?>
+<?php $request = Zend_Controller_Front::getInstance()->getRequest();?>
+<?php $isFront = ($request->getRequestUri() == '/') ? true : false ; ?>
+<?php $controllerName = $request->getControllerName() ; ?>
+<?php $actionName = $request->getActionName() ; ?>
+<?php $moduleName = $request->getModuleName(); ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <?php if ($moduleName == 'default' && $actionName == 'index'):
+                  $this->headTitle(_('price.kz - cравнение цен на мобильные телефоны, компьютеры, мониторы, аудио, видео, бытовую технику в Казахстане'),
+                        Zend_View_Helper_Placeholder_Container_Abstract::SET);
+              else:
+                  $this->headTitle('price.kz');
+              endif;
+        ?>
+        <?php echo $this->headTitle() . "\n";?>
+        <?php echo $this->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=utf-8') . "\n"; ?>
+        <?php echo $this->headLink()->appendStylesheet('http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/ui-lightness/jquery-ui.css')
+                                    ->appendStylesheet('/stylesheets/main.css')
+                                    ->appendStylesheet('/stylesheets/inner.css')
+                                    ->appendStylesheet('/stylesheets/main-ie6.css', 'screen', 'IE 6')
+                                    ->appendStylesheet('/stylesheets/inner-ie6.css', 'screen', 'IE 6')
+                                    ->appendStylesheet('/stylesheets/main-ie7.css', 'screen', 'IE 7')
+                                    ->appendStylesheet('/stylesheets/common.css')
+                                    ->appendStylesheet('/javascripts/autocomplete/jquery.autocomplete.css') . "\n"; ?>
+        <?php echo $this->headScript()//->prependFile('http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js')
+                             ->prependFile('/javascripts/jquery.js')
+                                    ->appendFile('/javascripts/jquery-ui-all.min.js')
+                                    ->appendFile('/javascripts/jsScroll.js')
+                                    ->appendFile('/javascripts/autocomplete/jquery.autocomplete.js')
+                                    ->appendFile('/javascripts/jquery.client.js') . "\n"; ?>
+    </head>
+    <body id="<?php echo ($isFront) ? 'front' :'inner' ; ?>">
+        <?php echo $this->Banner()
+                            ->getTopBanner(); ?>
+        <!--main-->
+        <div class="main">
+            <!--header-->
+            <div class="header">
+                <div class="headerSlogan">
+                    <a href="/"><h1>eprice.kz</h1></a>
+                    Поиск товаров и цен <br/>
+                    среди <?php echo $this->ShopsCount(); ?> <?php echo $this->translate(array(_('магазина'), _('магазинов'), _('магазинов'), $this->ShopsCount(), $this->locale));?>.
+                </div>
+                
+                <?php echo $this->headerMenu(); ?>
+                
+                <?php echo $this->userBlock(); ?>
+                
+            <?php echo $this->ProductSearchForm()
+                            ->setServiceLayer('catalog', 'product')
+                            ->setViewScript('catalog')
+                            ->getSearchForm(); ?>
+            </div>
+            <!--/header-->
+
+            <!--inner content-->
+            <div class="innerContent">
+		<!--chrumb-->
+                <?php if ($moduleName != 'default'): ?>
+                    <?php echo $this->BreadCrumbs(); ?>
+                <?php endif;?>
+		<!--/chrumb-->
+
+		<!--content wrap-->
+                <div class="contentWrap">
+                    <?php echo $this->flashMessenger(); ?>
+                    <?php echo $this->layout()->content; ?>
+                </div>
+		<!--/content wrap-->
+            </div>
+            <!--/inner content-->
+        </div>
+        <!--/main-->
+
+        <!--footer-->
+        <div class="footerWrap">
+            <div class="footer">
+            <?php if ($isFront): ?>
+                <?php echo $this->RandomShops()->getRandomShops(7); ?>
+            <?php endif; ?>
+
+                <div class="footerCopy">
+                    <ul>
+                        <li><a href="<?php echo $this->url(array(
+                                'alias'=>'about',
+                           ), 'pages-view', true); ?>">О проекте</a></li>
+                        <li><a href="<?php echo $this->url(array(
+                                'alias'=>'contacts',
+                           ), 'pages-view', true); ?>">Контакты</a></li>
+                        <li><a href="<?php echo $this->url(array(
+                                'module'=>'pages',
+                                'controller'=>'index',
+                                'action'=>'sitemap',
+                           ), 'default', true); ?>">Карта сайта</a></li>
+                    </ul>
+                    ТОО &laquo;LCB&raquo; &copy; 2010. Разработка проекта: <a target="_blank" href="http://www.liberty.kz">LCB</a>.
+                </div>
+
+                <div class="footerBusinessLinks">
+                    <ul>
+                        <li><a href="<?php echo $this->url(array(
+                                'module'=>'pages',
+                                'controller'=>'index',
+                                'action'=>'prices',
+                           ), 'default', true); ?>">Размещение прайсов</a></li>
+                        <li><a href="<?php echo $this->url(array(
+                                    'alias'=>'advertisment',
+                               ), 'pages-view', true); ?>">Реклама на сайте</a></li>
+                    </ul>
+                </div>
+<div class="footerCounters">
+</div>
+
+                <div class="footerStat">
+                    <div>
+                        <span>Фирм: <?php echo $this->ShopsCount(); ?></span>
+                        <span>Предложений: <?php echo $this->PricesCount(); ?></span>
+                        <span>Товаров: <?php echo $this->ProductsCount(); ?></span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--/footer-->
+        
+        <!--login-->
+            <?php
+            if(isset ($this->loginForm)): ?>
+                <?php echo $this->loginForm; ?>
+            <?php else: ?>
+                <?php echo new Users_Form_User_Login(); ?>
+            <?php endif; ?>
+        <!--/login-->
+        <div id="TB_overlay" style="display: none;"></div> <!--темный фон-->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-1795206-8']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+    </body>
+</html>

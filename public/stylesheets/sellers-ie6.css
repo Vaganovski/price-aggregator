@@ -1,0 +1,57 @@
+.projectMapSite .shortTour, .projectMapSite .registerFirm{
+width:272px;
+height:91px;
+}
+.projectMapSite{
+height:245px;
+}
+.projectMapSiteGoods{
+zoom: 1;
+}
+.brandsListAlphabet ul li {
+z-index: expression( 
+runtimeStyle.zIndex = 1,
+this == parentNode.firstChild ? (className += " first-child") : 0 
+)
+}
+.labelContenter{
+width:194px;
+}
+.brandRows  h5{
+width: 190px;
+}
+.width{
+width: 204px;
+float: left;
+margin: 4px 0 0 2px;
+}
+.WideListOtziv .feedback{
+width:127px;
+height:26px;
+}
+.WideListOtziv .otzivDescr {
+zoom: 1;
+}
+.WideListOtziv{
+height:500px;
+}
+.formOtziv .registerRows .inputTextarea{
+width:482px;
+height:96px
+}
+.formOtziv .registerRows .labelContenter{
+width:180px;
+}
+.formOtziv .registerRows .inputTextarea textarea{
+width:470px;
+}
+.sellersList .brandsListAlphabet{
+width:641px;
+}
+.sellersListAll .feedback{
+width:127px;
+height:26px;
+}
+.sellersListAll .rowOtziv .ourAnswer{
+width:478px;
+}

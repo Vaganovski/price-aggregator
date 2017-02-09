@@ -1,0 +1,47 @@
+<form  id="<?php echo $this->element->getId();?>"
+       action="<?php echo $this->element->getAction();?>"
+       method="<?php echo $this->element->getMethod();?>" class="bla">
+    <div  class="otherPagesEditRows">
+        <div class="otherPagesEditRowsLabelCont">
+            <label for="<?php echo $this->element->name->getName(); ?>">
+                <?php echo $this->element->name->getLabel(); ?>
+            </label>
+        </div>
+        <div class="otherPagesEditRowsInputWide">
+            <?php echo $this->element->name; ?>
+        </div>
+        <?php echo $this->renderElementErrors($this->element->name); ?>
+    </div>
+
+    <div  class="otherPagesEditRows">
+        <div class="otherPagesEditRowsLabelCont">
+            <label for="<?php echo $this->element->city->getName(); ?>">
+                <?php echo $this->element->city->getLabel(); ?>
+            </label>
+        </div>
+        <div class="inputTextWide inputTextMiddle">
+            <?php echo $this->element->city; ?>
+        </div>
+        <?php echo $this->renderElementErrors($this->element->city); ?>
+    </div>
+
+    <div  class="otherPagesEditRows">
+        <div class="otherPagesEditRowsLabelCont">
+            <label for="<?php echo $this->element->email->getName(); ?>">
+                <?php echo $this->element->email->getLabel(); ?>
+            </label>
+        </div>
+        <div class="otherPagesEditRowsInputWide">
+            <?php echo $this->element->email; ?>
+        </div>
+        <?php echo $this->renderElementErrors($this->element->email); ?>
+    </div>
+
+    <?php echo $this->element->user_id; ?>
+    <?php if ($this->element->id): ?>
+        <?php echo $this->element->id; ?>
+    <?php endif;?>
+    <div  class="otherPagesEditRowsClear">
+        <?php echo $this->element->submit; ?>
+    </div>
+</form>

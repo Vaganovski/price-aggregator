@@ -1,0 +1,50 @@
+<?php $i = 1; ?>
+<?php $countHalf = ceil($this->categories->count() / 2); ?>
+<?php $count = $this->categories->count(); ?>
+<?php foreach ($this->categories as $category): ?>
+    <?php if ($countHalf == $i || $i == 1): ?>
+    <div class="categoriesListColumn">
+        <dl>
+    <?php endif; ?>
+    <?php $actionName = 'list'; ?>
+    <?php if (!$category->getNode()->hasChildren()): ?>
+        <?php $actionName = 'view'; ?>
+    <?php endif; ?>
+        <dt>
+        <a href="<?php echo $this->url(array(
+                                'module'=>$this->moduleName,
+                                'controller'=>$this->controllerName,
+                                'action'=>$actionName,
+                                'alias'=>$category->alias,
+                            ), 'default', true); ?>"><?php echo $category->title; ?></a>
+            <span><?php echo $this->MarketplaceProductsCount($category->lft, $category->rgt, $this->city); ?></span>
+        </dt>
+        <?php $categoriesChild = $category->getNode()->getChildren(); ?>
+        <?php if ($categoriesChild): ?>
+            <dd>
+                <ul>
+                <?php $categoriesChildCount = $categoriesChild->count(); ?>
+
+                    <?php foreach ($categoriesChild as $categoryChild): ?>
+                        <?php $actionName = 'list'; ?>
+                        <?php if (!$categoryChild->getNode()->hasChildren()): ?>
+                            <?php $actionName = 'view'; ?>
+                        <?php endif; ?>
+                        <li>
+                            <a href="<?php echo $this->url(array(
+                                        'module'=>$this->moduleName,
+                                        'controller'=>$this->controllerName,
+                                        'action'=>$actionName,
+                                        'alias'=>$categoryChild->alias,
+                                    ), 'default', true); ?>"><?php echo $categoryChild->title; ?></a>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </dd>
+        <?php endif; ?>
+    <?php if (($countHalf - 1) == $i || $i == $count): ?>
+        </dl>
+    </div>
+    <?php endif; ?>
+    <?php $i++; ?>
+<?php endforeach; ?>

@@ -1,0 +1,19 @@
+<p>
+    <?php echo $this->translate('Здравствуйте!'); ?>
+</p>
+<p>
+    <?php echo $this->translate('Ваша учетная запись продавца на eprice.kz активирована. Теперь Вы можете размещать прайс-листы.'); ?>
+</p>
+<p>
+    <a href="<?php $url = $this->serverUrl() . $this->url(array('module' => 'shops', 'controller' => 'index',
+                                         'action' => 'profile'),
+                                   'default', true); echo $url;?>">
+       Перейти в свою учетную запись
+    </a>
+</p>
+
+<p>
+    <?php echo $this->translate('С уважением,'); ?>
+    <br />
+    <?php echo $this->translate('команда eprice.kz'); ?>
+</p>

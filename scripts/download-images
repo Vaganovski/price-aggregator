@@ -1,0 +1,57 @@
+#!/usr/bin/env php
+<?php
+/**
+ * Doctrine CLI script
+ */
+
+require_once 'common.php';
+
+require_once 'Zend/Application.php';
+
+// Create application, bootstrap, and run
+$application = new Zend_Application(
+    APPLICATION_ENV,
+    APPLICATION_PATH . '/configs/application.xml'
+);
+
+$application->getBootstrap()
+    ->bootstrap();
+
+$_FILES['image_filename']['name'] = '';
+$_FILES['image_filename']['tmp_name'] = '';
+$_FILES['image_filename']['error'] = 4;
+
+/**
+* @var Zend_Http_Client
+*/
+$httpClient = new Zend_Http_Client(null, array(
+    'adapter'   => 'Zend_Http_Client_Adapter_Curl',
+    'timeout' => 10
+));
+
+// выбираем все подписки
+$productService = new Catalog_Model_ProductService();
+$products = $productService->getMapper()->findMustBeDownloadImages(100);
+foreach ($products as $product) {
+    try {
+        $request = $httpClient->setUri($product->image_to_download)->request();
+        if (!$request->isError()) {
+            $productService->setModel($product);
+            $productService->clearForm('productMainImage');
+            $result = $productService->processFormProductMainImage(
+                array('image_filename' => base64_encode($request->getBody()))
+            );
+			unset($product);
+        } else {
+            $result = false;
+        }
+    } catch (Exception $e) {
+        $result = false;
+    }
+    // Если произошла ошибка при загрузке картинки - зануляем даный урл
+    if ($result == false) {
+      $product->image_to_download = null;
+      $product->save();
+	  unset($product);
+    }
+}

@@ -1,0 +1,31 @@
+<!--search block-->
+<?php $this->headLink()->appendStylesheet('/stylesheets/notebooks-inner.css');?>
+<div class="innerSearchBlockWrapper">
+
+</div>
+
+
+
+<!--content wrap-->
+
+<div class="contentCatalog">
+    <h1><?php echo $this->title; ?></h1>
+    <div class="wideDescrItem2">
+        <?php if (strlen($this->product->image_filename)): ?>
+        <div class="wideDescrItemImgWrap">
+            <img alt="<?php echo $this->title; ?>" src="<?php echo $this->product->image_preview_url; ?>">
+        </div>
+        <?php endif;?>
+        
+        <div class="priceAndActions">
+            <span class="middleCoast">
+            <?php if ($this->product->type == 'buy'):?><?php echo $this->translate('куплю'); ?>
+            <?php elseif ($this->product->type == 'sell'):?><?php echo $this->translate('продам'); ?>
+            <?php endif; ?> <?php echo $this->translate('за'); ?> <span><?php echo $this->product->price_formated; ?></span> тенге</span>
+        </div>
+        <dl>
+            <?php echo $this->product->description; ?>
+        </dl>
+    </div>
+</div>
+<!--/content wrap-->

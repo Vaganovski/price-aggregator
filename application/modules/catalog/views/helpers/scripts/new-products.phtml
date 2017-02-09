@@ -1,0 +1,32 @@
+<?php if ($this->products->count()):?>
+<?php $this->headScript()->appendFile('/javascripts/jquery.items-slider.js')
+                              ->appendFile('/javascripts/bind-slider.js');?>
+<!--popular-->
+<div class="indexPopular indexNewOffer">
+    <h5>Новые товары <?php echo $this->brandName; ?></h5>
+    <div class="indexScroll" id="new-products">
+        <div class="indexScrollPopular">
+            <ul class="scroll-wrapper">
+                <?php foreach ($this->products as $product):?>
+                <li>
+                    <a href="<?php echo $this->url(array(
+                                            'module' => 'catalog',
+                                            'controller' => 'products',
+                                            'action' => 'view',
+                                            'id' => $product->id),
+                                        'default', true); ?>">
+                        <span><img alt="<?php echo $product->name ?>" src="<?php echo $product->image_thumbnail_url ?>" /></span>
+                        <b><?php echo $product->name; ?></b>
+                         <?php if ($product->min_price > 0): ?>    от <?php echo $product->min_price_formated; ?> тг<?php endif;?>
+                    </a>
+                </li>
+                <?php endforeach;?>
+            </ul>
+        </div>
+
+        <div id="indexOfferPrev" title="предудущие" class="indexOfferArrDisabled"></div>
+        <div id="indexOfferNext" title="следующие"></div>
+    </div>
+</div>
+<!--/popular-->
+<?php endif; ?>

@@ -1,0 +1,26 @@
+## Наборы характеристик
+
+Features_Model_Set:
+  tableName: features_sets
+  options:
+    type: INNODB
+    collate: utf8_unicode_ci
+    charset: utf8
+  columns:
+    id:
+      type: integer(4)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    features_group_id:
+      type: integer(4)
+      unsigned: true
+    title: string(255)
+  relations:
+    Group:
+      class: Features_Model_Group
+      local: features_group_id
+      foreign: id
+      foreignAlias: Sets
+      onUpdate: CASCADE
+      onDelete: CASCADE

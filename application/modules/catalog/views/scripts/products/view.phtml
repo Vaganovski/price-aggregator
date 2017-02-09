@@ -1,0 +1,129 @@
+<!--search block-->
+<div class="innerSearchBlockWrapper">    
+    <?php echo $this->ComparingProducts(); ?>
+    <?php echo $this->LastReviews()
+                    ->setServiceLayer('catalog', 'review')
+                    ->getLastReviews($this->product->id);?>
+    <!--/search block-->
+     <?php echo $this->Accessories()
+                    ->getAccessories($this->product->Categories->getFirst()->id);?>
+</div>
+
+<!--content wrap-->
+
+<div class="contentCatalog">
+    <h1><?php echo $this->title; ?></h1>
+    <div class="wideDescrItem2">
+        <?php if (strlen($this->product->image_filename)):?>
+        <div class="wideDescrItemImgWrap">
+            <a href="<?php echo $this->product->image_url; ?>" rel="lightbox-product">
+                <img alt="<?php echo $this->title; ?>" src="<?php echo $this->product->image_preview_url; ?>">
+            </a>
+            <div class="vievOfGoods">
+                <?php echo $this->renderImageForProduct($this->product); ?>
+            </div>
+        </div>
+        <?php endif;?>
+        <?php if (is_object($this->prices)): $countPrices = $this->PricesCountByProductId($this->product->id); else: $countPrices = 0; endif;?>
+        <div class="priceAndActions">
+            <a class="actionWithGoods actionWithGoods2" id="addToCompare" href="#"
+                <?php echo (is_array($this->product_ids) && in_array($this->product->id, $this->product_ids) ? 'style="display: none;"' : ''); ?>>
+                <span>добавить к сравнению</span>
+            </a>
+            <a class="actionWithGoods actionWithGoods2" id="goToCompare" 
+                    <?php echo (is_array($this->product_ids) && in_array($this->product->id, $this->product_ids) ? '' : 'style="display: none;"'); ?>
+                    href="<?php echo $this->url(array(
+                                        'module' => 'catalog',
+                                        'controller' => 'products',
+                                        'action' => 'compare',
+                                        'products' => ''),
+                                    'default', true); ?>">
+            <span><?php echo $this->translate('перейти к сравнению'); ?></span>
+        </a>
+            <a class="actionWithGoods" id="addToList" href="#"><span>отправить в список</span></a>
+            <?php if ($this->product->get('max_price') != $this->product->get('min_price')):?>
+                <span class="middleCoast">Средняя цена: <br><span><?php echo $this->product->avg_price; ?></span> тенге</span>
+            <?php else: ?>
+                <p>
+                    <span class="goodsPrice"><?php echo $this->product->price; ?></span>
+                    <a class="numbersOfOffers" href="#where-buy"><?php echo $countPrices; ?> <?php echo $this->translate(array(_('предложение'), _('предложения'), _('предложений'), $countPrices, $this->locale));?></a>
+                </p>
+            <?php endif; ?>
+        </div>
+        <?php if ($this->product->get('max_price') != $this->product->get('min_price')):?>
+            <p>
+                <span class="goodsPrice"><?php echo $this->product->price; ?></span>
+                <a class="numbersOfOffers" href="#where-buy"><?php echo $countPrices; ?> <?php echo $this->translate(array(_('предложение'), _('предложения'), _('предложений'), $countPrices, $this->locale));?></a>
+            </p>
+        <?php endif; ?>
+        <dl>
+            <?php echo $this->product->description; ?>
+        </dl>
+        <?php $count = count($this->features);?>
+        <?php if ($count > 1): ?>
+        <a class="allParams" href="#"><span>скрыть все параметры</span></a>
+        <?php endif;?>
+    </div>
+</div>
+<div class="tableContenter">
+    <?php if ($count > 1): ?>
+        <div class="wrapperForGoods">
+            <?php $i = 1; ?>
+            <?php foreach ($this->features as $featureKey => $feature):?>
+                <?php if ($i == 1): ?>
+                    <div class="wideDescrGoodsCol1">
+                <?php elseif (round($count / 2) == $i): ?>
+                    <div class="wideDescrGoodsCol1 wideDescrGoodsCol2">
+                <?php endif;?>
+
+                <h6><?php echo $featureKey;?></h6>
+                <?php foreach ($feature as $fieldKey => $fieldValue):?>
+                <div class="wideDescrGoodsCol1Row">
+                    <i><?php echo $fieldValue;?></i>
+                    <div class="wideDescrGoodsCol1RowType"><span><?php echo $fieldKey;?></span></div>
+                </div>
+                <?php endforeach;?>
+
+                <?php if (round($count / 2) - 1 == $i || $i == $count):?>
+                    </div>
+                <?php endif;?>
+                <?php $i++;?>
+            <?php endforeach;?>
+            <a class="findAnError" href="#">нашли ошибку в описании?</a>
+        </div>
+    <?php endif;?>
+
+    <table>
+        <thead>
+            <tr>
+                <th class="tableColumn1">
+                    <span id="where-buy">Где купить <i>(<?php echo $countPrices; ?>)</i></span>
+                </th>
+                <th class="tableColumn5" colspan="4" id="p<?php echo $this->product->id; ?>">
+                    <b><span class="priceSortNoActive" id="price-available"><i>цене и наличию</i></span></b><!--innerCatalogSortActive2 будет стрелочка вниз-->
+                    <b>Сортировать по: <span class="priceSortNoActive" id="price"><i>цене</i></span></b><!--ДОБАВИТЬ priceSortActiveDown будет стрелочка вниз priceSortActiveUp будет стрелочка вверх-->
+                </th>
+            </tr>
+         </thead>
+         <tbody>
+            <?php //echo $this->render('partial/item-prices.phtml');?>
+            <?php echo $this->ShowPrices($this->product->id);?>
+         </tbody>
+    </table>
+
+    <div id="fastOrder" class="popupFastOrder" style="display: none">
+        <div title="закрыть окно" id="windowLoginClose"></div>
+        <h3><?php echo $this->translate('Быстрый заказ'); ?></h3>
+        <p>Чтобы уточнить наличие, цену, условия доставки и оплаты заполните поля формы. С Вами свяжется представитель продавца.</p>
+        <p><i>Товар:</i><span id="description"><?php echo $this->product->name; ?></span></p>
+        <?php echo $this->buyForm; ?>
+        <div class="windowLoginTop"></div>
+        <div class="windowLoginBot"></div>
+    </div>
+    <?php echo $this->FindErrorForm($this->product->id); ?>
+            
+    <div class="productWrapperIndexPopular">
+        <?php echo $this->SimilarProducts()->getProducts($this->product->Categories->getFirst()->id, $this->product->id); ?>
+    </div>
+</div>
+<!--/content wrap-->

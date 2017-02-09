@@ -1,0 +1,28 @@
+<?php foreach ($this->reviews as $review):?>
+<div class="otzivDescr">
+    <div class="termOfUse">
+        <?php echo $this->translate('Опыт использования'); ?>:
+        <span><?php echo $review->mark_formated; ?></span>
+    </div>
+    <div class="userName">
+        <a href="<?php echo $this->url(array(
+                                        'module' => 'users',
+                                        'controller' => 'index',
+                                        'action' => 'profile',
+                                        'id' => $review->User->id),
+                                    'default', true); ?>">
+            <?php echo $review->User->login; ?>
+        </a> <?php echo $review->created_at_formated; ?></div>
+    <dl>
+                <?php if (strlen($review->advantages)): ?>
+                    <dt><?php echo $this->translate('Достоинства'); ?>:</dt> <dd><?php echo $review->advantages; ?></dd>
+                <?php endif; ?>
+                <?php if (strlen($review->disadvantages)): ?>
+                    <dt><?php echo $this->translate('Недостатки'); ?>:</dt> <dd><?php echo $review->disadvantages; ?></dd>
+                <?php endif; ?>
+                <?php if (strlen($review->comment)): ?>
+                    <dt><?php echo $this->translate('Комментарий'); ?>:</dt> <dd><?php echo $review->comment; ?></dd>
+                <?php endif; ?>
+    </dl>
+</div>
+<?php endforeach;?>

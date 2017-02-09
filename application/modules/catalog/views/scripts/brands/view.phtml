@@ -1,0 +1,46 @@
+<h1><?php echo $this->title; ?></h1>
+<!--brands list-->
+<div class="categoriesList innerBrandsList">
+    <?php $i = 1; ?>
+    <?php $countHalf = ceil(count($this->categories) / 2); ?>
+    <?php $count = count($this->categories); ?>
+    <?php foreach ($this->categories as $key => $category): ?>
+        <?php if ($countHalf == $i || $i == 1): ?>
+        <div class="categoriesListColumn">
+            <dl>
+        <?php endif; ?>
+            <dt>
+            <a href="<?php echo $this->url(array(
+                                    'module'=>'catalog',
+                                    'controller'=>'categories',
+                                    'action'=> 'list',
+                                    'alias'=>$category['this']->alias,
+                                ), 'default', true); ?>"><?php echo $category['this']->title; ?></a>
+                <span><?php echo $this->ProductsCount($category['this']->lft, $category['this']->rgt); ?></span>
+            </dt>
+            <dd>
+                <ul>
+                    <?php foreach ($category['children'] as $categoryChild): ?>
+                        <li>
+                            <a href="<?php echo $this->url(array(
+                                        'module'=>'catalog',
+                                        'controller'=>'categories',
+                                        'action'=>'view',
+                                        'alias'=>$categoryChild->alias
+                                    ), 'default', true); ?>#<?php echo 'brands=' . $this->brand->id; ?>"><?php echo $categoryChild->title; ?></a>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </dd>
+        <?php if (($countHalf - 1) == $i || $i == $count): ?>
+            </dl>
+        </div>
+        <?php endif; ?>
+        <?php $i++; ?>
+    <?php endforeach; ?>
+</div>
+<!--/brand list-->
+<?php echo $this->PopularProducts()
+                            ->getProducts($this->brand->id); ?>
+<?php echo $this->NewProducts()
+                            ->getProducts($this->brand->id); ?>

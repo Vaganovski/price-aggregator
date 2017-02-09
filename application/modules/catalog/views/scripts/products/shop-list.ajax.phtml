@@ -1,0 +1,13 @@
+<div class="contentCatalog prices-list">
+    <h1><?php echo $this->title; ?></h1>
+
+    <?php if (is_object($this->prices)): $count = $this->prices->count(); else: $count = 0; endif; ?>
+    <?php if ($count > 0): ?>
+        <?php echo $this->render('/products/partial/item-shop-list.phtml'); ?>
+        <?php echo $this->pagination($this->paginator)->create_links(); ?>
+    <?php else: ?>
+        <?php echo $this->infoMessage($this->translate('Товары пока отсутствуют.')); ?>
+    <?php endif;?>
+    <div id="backFormPopup"></div>
+    <div id="backFormloading"><img width="23" height="23" alt="" src="/images/inner/ajax-loader.gif"><span>Загрузка...</span></div>
+</div>

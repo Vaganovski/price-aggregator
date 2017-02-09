@@ -1,0 +1,19 @@
+<?php if (is_object($this->bannerTop)):?>
+<div class="headerBan positionBan" style="
+<?php if ($this->bannerTop->background_color): echo 'background-color: #' . $this->bannerTop->background_color . ';'; endif;
+      if ($this->bannerTop->background_image): echo 'background-image:url(' . $this->bannerTop->background_image_url . ')'; endif;
+?>">
+    <?php $index = $this->bannerTop->Images->count();?>
+    <?php $index = rand(0, $index - 1);?>
+    <a href="<?php echo $this->url(array(
+                        'module'=> 'advertisment',
+                        'controller'=> 'index',
+                        'action'=>'go',
+                        'id'=> $this->bannerTop->id
+                    ), 'default', true); ?>">
+        <img src="<?php echo $this->bannerTop->Images[$index]->image_url;?>" alt="#" />
+    </a>
+</div>
+<?php else: ?>
+<div class="headerBan positionBan"></div>
+<?php endif;?>

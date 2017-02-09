@@ -1,0 +1,23 @@
+<div class="marLeft">
+<br />
+<br />
+<br />
+
+<?php echo $this->Banner()
+                ->getRightBanner(); ?>
+
+<?php echo $this->CategoriesList()
+                ->setServiceLayer('catalog', 'category')
+                ->setControllerName('categories')
+                ->getCategoriesList(); ?>
+
+<?php echo $this->PopularProducts()
+                ->getProducts(); ?>
+
+<?php echo $this->NewProducts()
+                ->getProducts(); ?>
+
+<br />
+<br />
+<br />
+</div>

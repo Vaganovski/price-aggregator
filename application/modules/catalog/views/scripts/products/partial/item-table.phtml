@@ -1,0 +1,17 @@
+<table class="adminTableOfGoods">
+    <tbody>
+        <?php $count = 1; ?>
+        <?php foreach ($this->products as $product):?>
+            <?php if ($count == 1): echo '<tr>'; endif; ?>
+                <td><i><?php echo $this->escape($product->name) /*. $product->FeatureProduct->count();*/ ?></i>
+                    <a href="<?php echo $this->url(array(
+                        'module' => 'catalog',
+                        'controller' => 'products',
+                        'action' => 'edit-features',
+                        'id' => $product->id),
+                    'default', true); ?>"><?php echo $this->translate('заполнить'); ?></a></td>
+            <?php if ($count == 2): echo '</tr>'; $count = 0; endif; ?>
+            <?php $count++; ?>
+        <?php endforeach; ?>
+    </tbody>
+</table>

@@ -1,0 +1,56 @@
+<div class="my-shops-list">
+    <?php $comment = new Shops_Model_CommentService(); ?>
+    <?php foreach($this->shops as $shop): ?>
+        <?php if(isset($this->chain_id) && $shop->chain_shop_id != $this->chain_id): ?>
+            <?php continue; ?>
+        <?php endif; ?>
+        <div class="item">
+            <h2>
+                <a href="<?php echo $this->url(array(
+                    'module' => 'shops',
+                    'controller' => 'index',
+                    'action'=>'profile',
+                    'id'=>$shop->id
+                ), 'default', true); ?>"><?php echo $shop->name;?></a>
+                <span class="reviews"> &larr; <a href="<?php echo $this->url(array('module' => 'shops', 'controller' => 'comments', 'action' => 'my', 'id' => $shop->id), 'default', true); ?>"><?php echo $this->translate('Отзывы'); ?>
+                    <?php $commentCount = $comment->getMapper()->countByShopId($shop->id); ?>
+                    <?php if($commentCount > 0): ?>
+                        (<?php echo $commentCount; ?>)
+                    <?php endif; ?>
+                    </a>
+                </span>
+                <span class="reviews">
+                     <?php if ($this->user->role == Users_Model_User::ROLE_MERCHANT) : ?>
+                     &nbsp; <a href="<?php echo $this->url(array(
+                    'module' => 'shops',
+                    'controller' => 'index',
+                    'action'=>'disable-and-delete',
+                    'id'=>$shop->id
+                ), 'default', true); ?>"><?php echo $this->translate('удалить');?></a>
+                     <?php endif; ?>
+                </span>
+            </h2>
+            <?php if($shop->chain_shop_id): ?>
+                <p>[<?php echo $shop->ChainShop->name; ?>]</p>
+            <?php endif; ?>
+            <?php if ($shop->status == Shops_Model_Shop::SHOP_STATUS_DISABLE) :?>
+                <h1>Магазин отключен</h1>
+             <?php endif; ?>    
+            <p><em><?php echo $shop->city; ?><?php if($shop->address): ?>, <?php echo $shop->address; ?><?php endif ?></em></p>
+          <?php if ($shop->diff_untill_date_now_date > 0): ?>
+            <p><?php echo $this->translate('Срок размещения прайс-листа на сайте заканчивается через'); ?> <b><?php echo $shop->diff_untill_date_now_date; ?> <?php echo $this->translate(array('день', 'дня', 'дней', $shop->diff_untill_date_now_date, Zend_Locale::findLocale())); ?></b></p>
+            <?php else:?>
+                <p><b><?php echo $this->translate('Срок размещения прайс-листа на сайте закончился!'); ?></b></p>
+            <?php endif;?>
+            <p><?php echo $this->translate('Последнее обновление прайс-листа:'); ?> <b>
+            <?php if ($updated_at = $shop->price_updated_at): ?>
+                <?php echo $updated_at;?>
+            <?php else:?>
+                    <?php echo $this->translate('не было'); ?>
+            <?php endif;?>
+                </b>
+            </p>
+        </div>
+    <br />
+    <?php endforeach; ?>
+</div>

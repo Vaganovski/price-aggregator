@@ -1,0 +1,43 @@
+## категории
+
+Categories_Model_Category:
+  tableName: base_categories_must_deleted
+  actAs:
+    NestedSet:
+      hasManyRoots: true
+      rootColumnName: root_id
+    Timestampable:
+  options:
+    type: INNODB
+    collate: utf8_unicode_ci
+    charset: utf8
+  columns:
+    id:
+      type: integer(4)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    root_id:
+      type: integer(8)
+      notnull: true
+    lft:
+      type: integer(8)
+      notnull: true
+    rgt:
+      type: integer(8)
+      notnull: true
+    level:
+      type: integer(8)
+      notnull: true
+    title:
+      type: string(255)
+      notnull: true
+    alias:
+      type: string(255)
+      notnull: true
+    short_description:
+      type: string(255)
+      notnull: true
+    description:
+      type: string()
+      notnull: true

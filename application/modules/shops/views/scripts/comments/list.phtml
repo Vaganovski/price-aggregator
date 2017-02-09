@@ -1,0 +1,22 @@
+<?php if ($this->IsAllowed($this->shop, 'reply-comment')): ?>
+<div id="reply-form" style="display: none">
+  <?php echo $this->formCommentsReply; ?>
+</div>
+<?php endif; ?>
+<div class="sellersListAll">
+    <?php if ($this->IsAllowed($this->shop, 'new-comment')): ?>
+        <a href="#shops_form_comment_new" class="feedback"><?php echo $this->translate('Написать отзыв'); ?></a>
+    <?php else: ?>
+        <a href="#shops_form_comment_new" id="new_comment_need_login" class="feedback"><?php echo $this->translate('Написать отзыв'); ?></a>
+    <?php endif; ?>
+    <h2><?php echo $this->translate('Отзывы'); ?> <span>(<?php echo $this->countComments; ?>)</span></h2>
+
+<?php if ($this->commentsTree): ?>
+    <?php echo $this->commentsTree; ?>
+<?php else: ?>
+    <?php echo $this->infoMessage($this->translate('Ваш отзыв может стать первым.')); ?>
+<?php endif; ?>
+</div>
+<?php if ($this->IsAllowed($this->shop, 'new-comment')): ?>
+<?php echo $this->formCommentsNew; ?>
+<?php endif; ?>

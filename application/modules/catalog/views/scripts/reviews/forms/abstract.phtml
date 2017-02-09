@@ -1,0 +1,56 @@
+<form  id="<?php echo $this->element->getId();?>"
+       action="<?php echo $this->element->getAction();?>"
+       method="<?php echo $this->element->getMethod();?>" class="formOtziv">
+    <div class="registerRows registerRows2">
+        <div class="labelContenter">
+            <label for="<?php echo $this->element->mark->getName(); ?>">
+                <?php echo $this->element->mark->getLabel(); ?>
+            </label>
+        </div>
+        <div class="inputTextWide inputTextMiddle">
+            <?php echo $this->element->mark; ?>
+        </div>
+    </div>
+    <div class="registerRows">
+        <div class="labelContenter">
+            <label for="<?php echo $this->element->advantages->getName(); ?>">
+                <?php echo $this->element->advantages->getLabel(); ?>
+            </label>
+            <span><?php echo $this->element->advantages->getDescription(); ?></span>
+        </div>
+        <div class="inputTextarea"><?php echo $this->element->advantages; ?></div>
+    </div>
+    <div class="registerRows">
+        <div class="labelContenter">
+            <label for="<?php echo $this->element->disadvantages->getName(); ?>">
+                <?php echo $this->element->disadvantages->getLabel(); ?>
+            </label>
+            <span><?php echo $this->element->disadvantages->getDescription(); ?></span>
+        </div>
+        <div class="inputTextarea"><?php echo $this->element->disadvantages; ?></div>
+    </div>
+    <div class="registerRows">
+        <div class="labelContenter">
+            <label for="<?php echo $this->element->comment->getName(); ?>">
+                <?php echo $this->element->comment->getLabel(); ?>
+            </label>
+        </div>
+        <div class="inputTextarea"><?php echo $this->element->comment; ?></div>
+    </div>
+    <?php echo $this->element->product_id; ?>
+    <?php echo $this->element->user_id; ?>
+    <?php echo $this->element->id; ?>
+    <?php echo $this->renderFormErrors($this->element); ?>
+    <div class="formSbutton">
+        <?php echo $this->element->submit; ?>
+        <div>
+            <p>Ваш отзыв будет опубликован через некоторое время после проверки модератором.</p><b>Внимание!</b> Мы не публикуем отзывы:
+            <ul>
+                <li>- не содержащие полезной информации или слишком краткие;</li>
+                <li>- написанные ПРОПИСНЫМИ буквами;</li>
+                <li>- содержащие ненормативную лексику или оскорбления;</li>
+                <li>- не относящиеся к потребительским свойствам конкретного товара.</li>
+            </ul>
+        </div>
+    </div>
+</form>

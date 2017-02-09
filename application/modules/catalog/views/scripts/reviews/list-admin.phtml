@@ -1,0 +1,11 @@
+<h1><?php echo $this->title;?> (<?php echo $this->paginator->getTotalItemCount();?>)</h1>
+<?php echo $this->tabMenu('reviews', $this->paginator->getTotalItemCount()); ?>
+
+    <?php if (is_object($this->reviews)): $count = $this->reviews->count(); else: $count = 0; endif; ?>
+    <?php if ($count > 0): ?>
+        <?php echo $this->render('partial/item-admin.phtml'); ?>
+        <?php echo $this->pagination($this->paginator)->create_links('admin'); ?>
+
+    <?php else: ?>
+        <?php echo $this->infoMessage($this->translate('Отзывы к товару пока отсутствуют.')); ?>
+    <?php endif;?>

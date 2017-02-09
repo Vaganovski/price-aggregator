@@ -1,0 +1,43 @@
+<ul class="baraholkaList">
+<?php foreach($this->products as $product): ?>
+    <?php if ($product->image_thumbnail_url): $image = $product->image_thumbnail_url; else: $image = '/images/no-photo.png'; endif;?>
+    <li>
+        <div class="baraholkaListItemOwner">
+            <i><a href="<?php echo $this->url(array(
+                                            'module' => 'users',
+                                            'controller' => 'index',
+                                            'action' => 'profile',
+                                            'id' => $product->user->id),
+                                        'default', true); ?>"><?php echo $product->user->login; ?></a>
+                <span><?php echo $product->created_at_formated; ?></span></i>
+            <b><?php if ($product->type == 'buy'):?><?php echo $this->translate('покупаю'); ?>
+                <?php elseif ($product->type == 'sell'):?><?php echo $this->translate('продаю'); ?>
+                <?php endif; ?></b>
+            <a class="baraholkaListItemOwnerImg" href="<?php echo $this->url(array(
+                                            'module' => 'marketplace',
+                                            'controller' => 'products',
+                                            'action' => 'view',
+                                            'id' => $product->id),
+                                        'default', true); ?>">
+                <span class="baraholkaListItemOwnerImgContenter">
+                    <img alt="<?php echo $product->name ?>" src="<?php echo $image ?>">
+                </span>
+            </a>
+        </div>
+
+        <div class="baraholkaListItemWideDescr">
+            <h6><a href="<?php echo $this->url(array(
+                                        'module' => 'marketplace',
+                                        'controller' => 'products',
+                                        'action' => 'view',
+                                        'id' => $product->id),
+                                    'default', true); ?>"><?php echo $product->name ?></a> за
+                                    <span><?php echo $product->price_formated; ?></span> тенге</h6>
+            <p id="description"><?php echo $this->truncate($product->description, 250); ?></p>
+            <?php if (strlen($product->description) > 250): ?>
+            <a class="baraholkaListItemWideDescrMoreInfo" id="p<?php echo $product->id; ?>" href="#"><?php echo $this->translate('подробнее...'); ?></a>
+            <?php endif;?>
+        </div>
+    </li>
+<?php endforeach; ?>
+</ul>

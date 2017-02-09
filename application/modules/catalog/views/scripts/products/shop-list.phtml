@@ -1,0 +1,17 @@
+<div class="innerSearchBlock prices-list">
+    <?php if ($this->categories) :?>
+    <form class="shureSearch" action="#">
+        <h5>Категории</h5>
+
+        <div class="listOfComp">
+            <div><span>Все категории</span></div>
+
+            <?php echo $this->CreateCategoriesTree()->getCategoriesTree($this->categories); ?>
+        </div>
+    </form>
+    <div class="innderSearchBlockBot"></div>
+    <?php endif;?>
+</div>
+
+
+<?php echo $this->render('/products/shop-list.ajax.phtml'); ?>

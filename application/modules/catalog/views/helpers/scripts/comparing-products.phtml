@@ -1,0 +1,22 @@
+<?php if (is_object($this->comaringProducts)): $count = $this->comaringProducts->count(); else: $count = 0; endif; ?>
+<?php if ($count > 0): ?>
+    <div class="acsessoirs sravneniye">
+        <h6><?php echo $this->translate('Сравниваемые модели'); ?></h6>
+        <ul>
+            <?php foreach ($this->comaringProducts as $product): ?>
+            <li><a href="<?php echo $this->url(array(
+                                            'module' => 'catalog',
+                                            'controller' => 'products',
+                                            'action' => 'view',
+                                            'id' => $product->id),
+                                        'default', true); ?>"><?php echo $product->name; ?></a></li>
+            <?php endforeach; ?>
+        </ul>
+        <a class="compare" href="<?php echo $this->url(array(
+                                            'module' => 'catalog',
+                                            'controller' => 'products',
+                                            'action' => 'compare'),
+                                        'default', true); ?>">Сравнить</a>
+        <i id="clear-compare">Очистить</i>
+    </div>
+<?php endif; ?>

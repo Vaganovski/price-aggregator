@@ -1,0 +1,36 @@
+
+<h2>
+    <?php echo $this->translate('Регистрационные данные магазина:'); ?>
+</h2>
+<p><?php echo $this->translate('Название'); ?>: <?php echo $this->shop->name; ?></p>
+<p><?php echo $this->translate('Город'); ?>: <?php echo $this->shop->city; ?></p>
+<p><?php echo $this->translate('Адрес'); ?>: <?php echo $this->shop->address; ?></p>
+<p><?php echo $this->translate('E-mail'); ?>: <?php echo $this->shop->email; ?></p>
+<p><?php echo $this->translate('Телефон'); ?>: <?php echo $this->shop->phone; ?></p>
+<p><?php echo $this->translate('Сайт магазина'); ?>: <?php echo $this->shop->site_url; ?></p>
+<p><?php echo $this->translate('Режим работы'); ?>: <?php echo $this->shop->work_time; ?></p>
+<p><?php echo $this->translate('Доставка'); ?>: <?php echo $this->shop->delivery; ?></p>
+<p><?php echo $this->translate('Возможность кредита'); ?>: <?php echo $this->shop->credit; ?></p>
+
+<h2>
+    <?php echo $this->translate('Регистрационные данные продавца:'); ?>
+</h2>
+<p><?php echo $this->translate('Имя'); ?>: <?php echo $this->shop->User->name; ?></p>
+<p><?php echo $this->translate('Логин'); ?>: <?php echo $this->shop->User->login; ?></p>
+<p><?php echo $this->translate('E-mail'); ?>: <?php echo $this->shop->User->email; ?></p>
+<p><?php echo $this->translate('Город'); ?>: <?php echo $this->shop->User->city; ?></p>
+<p><?php echo $this->translate('Дата регистрации'); ?>: <?php echo $this->shop->User->created_at; ?></p>
+<p><?php echo $this->translate('IP регистрации'); ?>: <?php echo $this->shop->User->registration_ip; ?></p>
+
+<p>
+    <a href="<?php $url = $this->serverUrl() . $this->url(array('module' => 'shops', 'controller' => 'index',
+                                         'action' => 'view-admin', 'id' => $this->shop->id),
+                                   'default', true); echo $url; ?>">
+       <?php echo $this->translate('Посмотреть профиль магазина'); ?>  
+    </a> |
+    <a href="<?php $url = $this->serverUrl() . $this->url(array('module' => 'default', 'controller' => 'index',
+                                         'action' => 'admin'),
+                                   'default', true); echo $url; ?>">
+       <?php echo $this->translate('Перейти в админку'); ?>
+    </a>
+</p>

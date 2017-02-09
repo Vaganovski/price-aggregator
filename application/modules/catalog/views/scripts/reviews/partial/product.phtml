@@ -1,0 +1,41 @@
+<div class="wideDescrItem" id="p<?php echo $this->product->id; ?>">
+    <a href="<?php echo $this->url(array(
+                                        'module' => 'catalog',
+                                        'controller' => 'products',
+                                        'action' => 'view',
+                                        'id' => $this->product->id),
+                                    'default', true); ?>">
+        <img alt="<?php echo $this->product->name; ?>" src="<?php echo $this->product->image_preview_url; ?>">
+    </a>
+    <div class="vievOfGoods">
+        <?php foreach ($this->product->Images as $image): ?>
+        <a href="#">
+            <img alt="<?php echo $this->title; ?>" src="<?php echo $image->image_thumbnail_url; ?>">
+        </a>
+        <?php endforeach; ?>
+    </div>
+    <h2><?php echo $this->product->name; ?></h2>
+    <dl>
+        <?php echo $this->product->description; ?>
+    </dl>
+    <span class="goodsPrice"><?php echo $this->product->price; ?></span>
+    <a class="numbersOfOffers" href="<?php echo $this->url(array(
+                                        'module' => 'catalog',
+                                        'controller' => 'products',
+                                        'action' => 'view',
+                                        'id' => $this->product->id),
+                                    'default', true); ?>#where-buy">
+        <?php echo $this->PricesCountByProductId($this->product->id); ?> <?php echo $this->translate(array(_('предложение'), _('предложения'), _('предложений'), $this->PricesCountByProductId($this->product->id), $this->locale));?>
+    </a>
+    <br />
+    <br />
+    <a class="actionWithGoods" id="addToMyList" href="#"><span><?php echo $this->translate('отправить в список'); ?></span></a>
+    <a class="actionWithGoods actionWithGoods2" id="addToCompare" href="#"><span><?php echo $this->translate('добавить к сравнению'); ?></span></a>
+    <a class="actionWithGoods actionWithGoods2" id="goToCompare" style="display: none;" href="<?php echo $this->url(array(
+                                        'module' => 'catalog',
+                                        'controller' => 'products',
+                                        'action' => 'compare',
+                                        'products' => ''),
+                                    'default', true); ?>">
+                                    <span><?php echo $this->translate('перейти к сравнению'); ?></span></a>
+</div>

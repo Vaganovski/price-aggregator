@@ -1,0 +1,35 @@
+## мой список
+
+Catalog_Model_MyProductsList:
+  tableName: catalog_my_products_list
+  options:
+    type: INNODB
+    collate: utf8_unicode_ci
+    charset: utf8
+  columns:
+    id:
+      type: integer(4)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    user_id:
+      type: integer(4)
+      unsigned: true
+    product_id:
+      type: integer(4)
+      unsigned: true
+  relations:
+    Product:
+      class: Catalog_Model_Product
+      local: product_id
+      foreign: id
+      foreignAlias: ProductsList
+      onUpdate: CASCADE
+      onDelete: CASCADE
+    User:
+      class: Users_Model_User
+      local: user_id
+      foreign: id
+      foreignAlias: ProductsList
+      onUpdate: CASCADE
+      onDelete: CASCADE

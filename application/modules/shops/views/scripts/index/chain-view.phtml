@@ -1,0 +1,48 @@
+<div class="companyOtziv">
+    <h1><?php echo $this->title; ?></h1>
+
+    <?php foreach ($this->shops as $shop): ?>
+    <h2><a href="<?php echo $this->url(array(
+                            'module'=> 'shops',
+                            'controller'=> 'index',
+                            'action'=>'view',
+                            'id'=>$shop->id
+                        ), 'default', true); ?>"><?php echo $shop->name; ?></a></h2>
+        <!--about page content-->
+        <div class="adressOfSeller">
+            <a class="seeAllPrice" href="<?php echo $this->url(array(
+                            'module'=> 'catalog',
+                            'controller'=> 'products',
+                            'action'=>'shop-list',
+                            'id'=>$shop->id
+                        ), 'default', true); ?>"><i><?php echo $this->translate('Просмотреть весь прайс-лист'); ?> <?php echo $shop->name; ?></i> <img width="13" height="5" alt="" src="/images/inner/next-arrow.png"></a>
+            <?php if ($shop->image_preview_url):?>
+            <img class="logoOfComp" alt="<?php echo $this->escape($shop->name); ?>" src="<?php echo $shop->image_preview_url; ?>">
+            <?php endif;?>
+            <dl>
+                <dt>Адрес</dt><dd><?php echo $shop->city; ?><?php if($shop->address): ?>, <?php echo $shop->address; endif;?></dd>
+                <?php if ($shop->phone): ?>
+                <dt>Телефоны</dt><dd><?php echo $shop->phone; ?></dd>
+                <?php endif;?>
+                <?php if ($shop->site): ?>
+                <dt>Сайт</dt><dd><a href="<?php echo $shop->site_url; ?>"><?php echo $shop->site; ?></a></dd>
+                <?php endif;?>
+                <?php if ($shop->work_time): ?>
+                <dt>Режим работы</dt><dd><?php echo $shop->work_time; ?></dd>
+                <?php endif;?>
+                <?php if ($shop->delivery): ?>
+                <dt>Доставка</dt><dd><?php echo $shop->delivery; ?></dd>
+                <?php endif;?>
+                <?php if ($shop->credit): ?>
+                <dt>Возможность кредита</dt><dd><?php echo $shop->credit; ?></dd>
+                <?php endif;?>
+            </dl>
+            <div style="clear: both"></div>
+        </div>
+        <br />
+    <?php endforeach; ?>
+
+    
+    <?php echo $this->PopularProducts()->getProducts(); ?>
+        <!--/about page content-->
+</div>

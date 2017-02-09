@@ -1,0 +1,19 @@
+<h1 class="baraholkaMyItemH1"><?php echo $this->title; ?></h1>
+
+<?php echo $this->userMenu(); ?>
+
+
+<a href="<?php echo $this->url(array(
+        'module' => 'shops',
+        'controller' => 'chain-shop',
+        'action' => 'new'),
+    'default', true); ?>"><?php echo $this->translate('Создать сеть'); ?></a>
+
+<div class="baraholkaMyListItemWide leftMarginReset">
+    <?php if (is_object($this->chains)): $count = $this->chains->count(); else: $count = 0; endif; ?>
+    <?php if ($count > 0): ?>
+        <?php echo $this->render('partial/item.phtml'); ?>
+    <?php else: ?>
+        <?php echo $this->infoMessage($this->translate('Сетей магазинов пока нет.')); ?>
+    <?php endif; ?>
+</div>

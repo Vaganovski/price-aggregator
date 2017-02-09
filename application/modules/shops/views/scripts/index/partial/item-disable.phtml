@@ -1,0 +1,38 @@
+<!--таблица заявок-->
+<table class="listAdminFirmsZayavki">
+    <tbody>
+        <?php foreach($this->shops as $shop): ?>
+        <?php $last_renewal_date = new Zend_Date($shop->last_renewal_date); ?>
+        <tr>
+            <td class="listAdminFirmsZayavkiCol1">
+                <b><?php echo $shop->name;?></b>
+                <a href="<?php echo $this->url(array(
+                        'module'=>$this->moduleName,
+                        'controller'=>$this->controllerName,
+                        'action'=>'view-admin',
+                        'id'=>$shop->id
+                    ), 'default', true); ?>"><?php echo $this->translate('профиль'); ?></a>
+            </td>
+            <td class="listAdminFirmsZayavkiCol2 wid266">последнее продление: <?php echo $last_renewal_date->toString("dd.MM.YYYY");?></td>
+            <?php if ($shop->diff_untill_date_now_date > 0): ?>
+            <td class="listAdminFirmsZayavkiCol21">истекает через <b><?php echo $shop->diff_untill_date_now_date;?></b> дн.</td>
+            <?php else:?>
+            <td class="listAdminFirmsZayavkiCol21"><b>истек</b></td>
+            <?php endif;?>
+            <td class="listAdminFirmsZayavkiCol3 wid90"><a href="<?php echo $this->url(array(
+                        'module'=>$this->moduleName,
+                        'controller'=>$this->controllerName,
+                        'action'=>'available',
+                        'id'=>$shop->id
+                    ), 'default', true); ?>">включить</a></td>
+            <td class="listAdminFirmsZayavkiCol4 wid209"><a href="<?php echo $this->url(array(
+                        'module'=>$this->moduleName,
+                        'controller'=>$this->controllerName,
+                        'action'=>'delete',
+                        'id'=>$shop->id
+                    ), 'default', true); ?>">удалить</a></td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+<!--/таблица заявок-->

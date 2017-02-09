@@ -1,0 +1,27 @@
+<div class="categoriesList userprofile">
+    <h1 class="baraholkaMyItemH1"><?php echo $this->title;?> <span>(<?php echo $this->paginator->getTotalItemCount();?>)</span></h1>
+
+
+    <!--myListWrap-->
+    <div class="myListWrap">
+        <?php if ($this->user): ?>
+            <?php echo $this->userMenu($this->user); ?>
+        <?php else:?>
+            <?php echo $this->unauthorizedUserMenu(); ?>
+        <?php endif;?>
+
+        <?php if (is_object($this->products)): $count = $this->products->count(); else: $count = 0; endif; ?>
+        <?php if ($count > 0): ?>
+            <?php $this->mylist = 1; ?>
+            <?php echo $this->render('/products/partial/item-list.phtml'); ?>
+
+            <?php echo $this->pagination($this->paginator)->create_links(); ?>
+
+        <?php else: ?>
+            <div class="baraholkaMyListItemWide leftMarginReset">
+                <?php echo $this->infoMessage($this->translate('В Вашем списке нет товаров.')); ?>
+            </div>
+        <?php endif;?>
+    </div>
+    <!--/myListWrap-->
+</div>

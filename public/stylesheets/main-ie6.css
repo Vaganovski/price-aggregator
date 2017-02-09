@@ -1,0 +1,201 @@
+html {
+filter: expression(document.execCommand("BackgroundImageCache", false, true));
+}
+.main {
+width:expression(document.body.clientWidth < 1000? "1000px": "auto" );
+height: 100%;
+}
+#windowPodcategory {
+width:expression(document.body.clientWidth < 1000? "1000px": "auto" );
+}
+.headerReg {
+width: 133px;
+height: 26px;
+}
+.headerSearch {
+top: 61px;
+}
+.headerSearchRight {
+righty:expression(parentNode.offsetWidth % 2 ? style.right="-1px" : style.right="0px");
+}
+* html input {
+z-index: expression(
+runtimeStyle.zIndex = 1,
+type == "text" ? (className += " formText") : 0,
+type == "password" ? (className += " formText") : 0,
+type == "submit" ? (className += " formSubmit") : 0
+)
+}
+.headerSearch form .formText {
+border: 1px solid #788d99;
+border-right-color: #d1dfe8;
+border-bottom-color: #d1dfe8;
+font-size: 15px;
+height: 30px;
+padding: 6px 5px 5px 15px;
+display: block;
+width: 100%;
+zoom: 1;
+}
+.headerSearch form .formSubmit {
+width: 67px;
+height: 31px;
+font-size: 12px;
+color: #264e63;
+border: none;
+background: url(/images/header/but-search.png);
+cursor: pointer;
+position: absolute;
+top: 0;
+right: 134px;
+z-index: 1;
+zoom: 1;
+}
+#headerSearchChooseCity {
+right: 10px;
+left: auto;
+zoom: 1;
+margin-left: 0;
+text-align: left;
+}
+.footerWrap {
+width:expression(document.body.clientWidth < 1000? "1000px": "auto" );
+height: 148px;
+}
+.footerBusinessLinks li,
+.footerCopy li {
+z-index: expression(
+runtimeStyle.zIndex = 1,
+this == parentNode.firstChild ? (className += " first-child") : 0
+)
+}
+.footerBusinessLinks .first-child {
+margin: 0;
+padding: 0;
+background: none;
+}
+.footerCopy .first-child {
+padding: 0;
+background: none;
+}
+.footerStat div {
+margin: 0 380px 0 280px;
+}
+.footerBusinessLinks {
+right: 4%;
+}
+.indexCaregoriesCol li {
+display: inline;
+zoom: 1;
+}
+.indexScroll li {
+display: inline;
+z-index: expression(
+runtimeStyle.zIndex = 1,
+this == parentNode.firstChild ? (className += " first-child") : 0
+)
+}
+.indexScroll .first-child {
+margin-left: 0;
+}
+.indexCategories .indexCaregoriesCol {
+display: inline;
+z-index: expression(
+runtimeStyle.zIndex = 1,
+this == parentNode.firstChild ? (className += " first-child") : 0
+)
+}
+.indexCategories .first-child {
+margin-left: 0 !important;
+}
+.indexScroll li span {
+display: block;
+}
+.indexScroll li span img {
+z-index: expression(
+runtimeStyle.zIndex = 1,
+this == ((75/2)-parseInt(offsetHeight)/2) <0 ? style.marginTop="0" : style.marginTop=(75/2)-(parseInt(offsetHeight)/2) +'px');
+)
+}
+.footerCopy {
+position: absolute;
+top: 81px;
+left: -50px;
+}
+#TB_overlay {
+position: absolute;
+height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px');
+}
+#windowLogin,
+#windowPodcategory {
+position: absolute;
+
+}
+.windowPodcategoryWrap {
+background: #fff;
+margin: 0 49px 0 99px;
+position: relative;
+zoom: 1;
+}
+#windowLogin {
+margin: 173px 0 0 -195px;
+}
+.windowLoginTop {
+background: none;
+filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/popup/login-top.png');
+}
+.windowLoginBot {
+background: none;
+filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/popup/login-bot.png');
+}
+#windowLogin span input {
+height: 31px;
+width: 214px;
+}
+#windowLogin form .formSubmit {
+width: 99px;
+height: 38px;
+background: url(/images/popup/login-but.png);
+cursor: pointer;
+border: none;
+color: #fff;
+font-size: 18px;
+text-align: center;
+margin: 5px 0 0 61px;
+}
+.windowPodcategoryLT {
+background: none;
+filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/popup/podcategory-lt.png');
+}
+.windowPodcategoryRT {
+background: none;
+filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/popup/podcategory-rt.png');
+righty:expression(parentNode.offsetWidth % 2 ? style.right="-1px" : style.right="0px");
+}
+.windowPodcategoryRB {
+background: none;
+filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/popup/podcategory-rb.png');
+righty:expression(parentNode.offsetWidth % 2 ? style.right="-1px" : style.right="0px");
+}
+.windowPodcategoryLB {
+background: none;
+filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/popup/podcategory-lb.png');
+}
+#headerSearchHint li span {
+right: 13px;
+}
+#headerSearchHint li {
+z-index: expression(
+runtimeStyle.zIndex = 1,
+this == parentNode.firstChild ? (className += " first-child") : 0
+)
+}
+#headerSearchHint .first-child {
+border: none;
+}
+.acsessoirs{
+margin-bottom:-200px;
+}
+.innerContentGoodsSravn table{
+width: 95% !important;
+}

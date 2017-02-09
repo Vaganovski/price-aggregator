@@ -1,0 +1,13 @@
+<form  id="<?php echo $this->element->getId();?>"
+       action="<?php echo $this->element->getAction();?>"
+       method="<?php echo $this->element->getMethod();?>"
+       enctype="<?php echo $this->element->getEnctype();?>">
+    <div class="baraholkaMyListItemWidePhoto">
+        <?php echo $this->element->price_filename;?>
+        <input type="text" class="baraholkaMyListItemWidePhotoinputFileVal" readonly="readonly" id="fileName" />
+    </div>
+    <?php echo $this->renderFormErrors($this->element); ?>
+    <?php echo $this->element->shop_id;?>
+    <?php echo $this->element->submit;?>
+</form>
+

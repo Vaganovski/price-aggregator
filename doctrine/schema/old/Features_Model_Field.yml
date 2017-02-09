@@ -1,0 +1,39 @@
+## Поля характеристик
+
+Features_Model_Field:
+  tableName: features_fields
+  options:
+    type: INNODB
+    collate: utf8_unicode_ci
+    charset: utf8
+  columns:
+    id:
+      type: integer(4)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    features_set_id:
+      type: integer(4)
+      unsigned: true
+    title: string(255)
+    type:
+      type: enum
+      notnull: true
+      values: [select, text]
+    unit:
+      type: string(140)
+      notnull: true
+    slider: boolean()
+  relations:
+    Set:
+      class: Features_Model_Set
+      local: features_set_id
+      foreign: id
+      foreignAlias: Fields
+      onUpdate: CASCADE
+      onDelete: CASCADE
+  indexes:
+    features_fields_unit:
+      fields:
+        unit:
+          length: 10

@@ -1,0 +1,47 @@
+## Значение характерстик - Продукт
+## Связь "many to many"
+
+Catalog_Model_Price:
+  tableName: catalog_prices
+  options:
+    type: INNODB
+    collate: utf8_unicode_ci
+    charset: utf8
+  columns:
+    id:
+      type: integer(4)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    product_id:
+      type: integer(4)
+      unsigned: true
+    shop_id:
+      type: integer(4)
+      unsigned: true
+    url: string(255)
+    price: decimal(14,2)
+    description: string()
+    available:
+      type: enum
+      notnull: true
+      values: [available, in_stock]
+      default: available
+    exist:
+      type: boolean
+      default: false
+  relations:
+    Product:
+      class: Catalog_Model_Product
+      local: product_id
+      foreign: id
+      foreignAlias: Prices
+      onUpdate: CASCADE
+      onDelete: CASCADE
+    Shop:
+      class: Shops_Model_Shop
+      local: shop_id
+      foreign: id
+      foreignAlias: Prices
+      onUpdate: CASCADE
+      onDelete: CASCADE

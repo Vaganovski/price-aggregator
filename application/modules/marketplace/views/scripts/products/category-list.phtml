@@ -1,0 +1,69 @@
+<h1 class="baraholkaTitleH1">
+    <?php echo $this->title; ?>
+<div class="barholkaCity" id="SearchChooseCity2"><span><?php echo $this->city; ?></span>
+    <!--hidden block-->
+    <span>
+        <ul>
+            <?php foreach ($this->GetCities() as $city):?>
+            <li><b><?php echo $city; ?></b></li>
+            <?php endforeach;?>
+        </ul>
+        <form method="get" style="display:none">
+            <input type="hidden" name="city"/>
+            <input type="hidden" name="keywords"/>
+        </form>
+    </span>
+    <!--/hidden block-->
+</div>
+</h1>
+<div class="bar-inner">
+    <div class="baraholkaMainaddAndSearch">
+            <?php echo $this->ProductSearchForm()
+                            ->setServiceLayer('marketplace', 'product')
+                            ->setViewScript('catalog')
+                            ->getSearchForm('searchUser'); ?>
+        <a class="baraholkaAddPost" href="<?php echo $this->url(array(
+                        'module' => 'marketplace',
+                        'controller' => 'products',
+                        'action' => 'new'),
+                    'default', true); ?>"><?php echo $this->translate('Добавить объявление'); ?></a>
+        <?php if ($this->searchFall != 1):?>
+        <div class="baraholkaTypesOfPost">
+            <?php if ($this->category):
+                      $urlParams = array(
+                        'module' => 'marketplace',
+                        'controller' => 'categories',
+                        'action' => 'view',
+                        'alias' => $this->category->alias);
+                  else:
+                      $urlParams = array(
+                        'module' => 'marketplace',
+                        'controller' => 'search',
+                        'action' => 'index');
+                  endif;
+            ?>
+            <span>Тип объявления:</span>
+            <a href="<?php echo $this->url($urlParams,'default', true); ?>?city=<?php echo $this->city; ?><?php echo isset($this->keywords) ? '&keywords='.$this->keywords : ''; ?>"
+                    <?php echo !$this->type ? 'class="baraholkaTypesOfPostActive"' : ''; ?>>
+                Все</a>
+            <a href="<?php echo $this->url(array_merge($urlParams,array('type' => 'sell')),
+                    'default', true); ?>?city=<?php echo $this->city; ?><?php echo isset($this->keywords) ? '&keywords='.$this->keywords : ''; ?>"
+                    <?php echo $this->type == 'sell' ? 'class="baraholkaTypesOfPostActive"' : ''; ?>>
+                Продажа</a>
+            <a href="<?php echo $this->url(array_merge($urlParams,array('type' => 'buy')),
+                    'default', true); ?>?city=<?php echo $this->city; ?><?php echo isset($this->keywords) ? '&keywords='.$this->keywords : ''; ?>"
+                    <?php echo $this->type == 'buy' ? 'class="baraholkaTypesOfPostActive"' : ''; ?>>
+                Покупка</a>
+        </div>
+        <?php endif;?>
+    </div>
+<?php if (is_object($this->products)): $count = $this->products->count(); else: $count = 0; endif; ?>
+<?php if ($count > 0): ?>
+    <?php echo $this->render('/products/partial/item-category-list.phtml'); ?>
+    
+    <?php echo $this->pagination($this->paginator)->create_links(); ?>
+
+<?php else: ?>
+    <?php echo $this->infoMessage($this->translate('Товары пока отсутствуют.')); ?>
+<?php endif;?>
+</div>

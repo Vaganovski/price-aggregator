@@ -1,0 +1,55 @@
+<div class="adminMainThreeColsTitles">
+    <h3><?php echo $this->translate('Новые заявки на регистрацию фирмы/продавца'); ?>:</h3>
+    <h3><?php echo $this->translate('Новые модели товаров'); ?>:</h3>
+    <h3><?php echo $this->translate('Новые товары на Барахолке'); ?>:</h3>
+</div>
+<div class="adminMainThreeCols">
+    <ul>
+        <?php foreach($this->shops as $shop): ?>
+            <li><a href="<?php echo $this->url(array(
+                'module' => 'shops',
+                'controller' => 'index',
+                'action' => 'view-admin',
+                'id'=>$shop->id),
+            'default', true); ?>"><?php echo $this->escape($shop->name) ?></a></li>
+        <?php endforeach; ?>
+        <li class="bold"><a href="<?php echo $this->url(array(
+                'module' => 'shops', 'controller' => 'index',
+                'action' => 'list-admin', 'status'=>'new'),
+            'default', true); ?>"><?php echo $this->translate('все'); ?>...</a></li>
+    </ul>
+</div>
+<div class="adminMainThreeCols">
+    <ul>
+        <?php foreach($this->products as $product): ?>
+            <li><a href="<?php echo $this->url(array(
+                'module' => 'catalog',
+                'controller' => 'products',
+                'action' => 'view',
+                'id'=>$product->id),
+            'default', true); ?>"><?php echo $this->escape($product->name) ?></a><span><?php echo $product->Categories->getFirst()->title; ?></span></li>
+        <?php endforeach; ?>
+        <li class="bold"><a href="<?php echo $this->url(array(
+                'module' => 'catalog',
+                'controller' => 'products',
+                'action' => 'new-admin'),
+            'default', true); ?>"><?php echo $this->translate('все'); ?>...</a><span></span></li>
+    </ul>
+</div>
+<div class="adminMainThreeCols">
+    <ul>
+        <?php foreach($this->marketplaceProducts as $product): ?>
+            <li><a href="<?php echo $this->url(array(
+                'module' => 'marketplace',
+                'controller' => 'products',
+                'action' => 'view',
+                'id'=>$product->id),
+            'default', true); ?>"><?php echo $this->escape($product->name) ?></a><span><?php echo $product->Categories->getFirst()->title; ?></span></li>
+        <?php endforeach; ?>
+        <li class="bold"><a href="<?php echo $this->url(array(
+                'module' => 'marketplace',
+                'controller' => 'products',
+                'action' => 'list-admin'),
+            'default', true); ?>"><?php echo $this->translate('все'); ?>...</a><span></span></li>
+    </ul>
+</div>

@@ -1,0 +1,156 @@
+<!--categories-->
+<div class="categoriesList baraholkaMain">
+    <h1 class="baraholkaMyItemH1"><?php echo $this->title; ?></h1>
+    <!--класс для пиктограмм аналогичные как в категоряих, отличаются только префиксом. В основном списке indexCategoriesComp, в подкатегориях categoriesListComp -->
+    <a href="<?php echo $this->url(array(
+                        'module'=> 'catalog',
+                        'controller'=> 'products',
+                        'action'=>'shop-list',
+                        'id'=>$this->shop->id
+                    ), 'default', true); ?>" class="otherPagesMyCompanyMainAllPrice">Весь прайс-лист <?php echo $this->shop->name; ?> на сайте</a>
+    <div class="otherPagesMyCompanyMainLeftCol">
+        <?php if(Users_Model_UserService::getUserAuthIdentity()->role == Users_Model_User::ROLE_MANAGER): ?>
+            <?php echo $this->userMenu($this->shop->Manager); ?>
+        <?php else: ?>
+            <?php echo $this->userMenu($this->shop->User); ?>
+        <?php endif; ?>
+        <div class="otherPagesMyCompanyMainLeftColTime">
+            <?php if ($this->shop->diff_untill_date_now_date > 0): ?>
+            <p>Срок размещения прайс-листа на сайте заканчивается через <b><?php echo $this->shop->diff_untill_date_now_date; ?> <?php echo $this->translate(array('день', 'дня', 'дней', $this->shop->diff_untill_date_now_date, Zend_Locale::findLocale())); ?></b></p>
+            <?php else:?>
+                <p><b>Срок размещения прайс-листа на сайте закончился!</b></p>
+            <?php endif;?>
+            <p>Чтобы продлить размещение нужно написать об этом службе поддержки</p>
+            <ul>
+            	<li><a href="mailto:manager@eprice.kz">manager@eprice.kz</a></li>
+                <li><a href="mailto:info@eprice.kz">info@eprice.kz</a></li>
+                <li>Skype: <b>vaganovski</b></li>
+				<li>Тел.: <br><b>
+				+7 (727) 394-48-38 <br>
+				+7 (701) 779-12-56 <br>+7 (701) 900-10-14</b></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="otherPagesMyCompanyMainRightCol">
+        <div class="otherPagesMyCompanyMainRightColBlueBlock">
+            <div class="otherPagesMyCompanyMainRightColBlueBlockTOP"></div>
+            <div class="otherPagesMyCompanyMainRightColBlueBlockBOT"></div>
+            <h3>Обновление / Загрузка прайс-листа</h3>
+            <?php if ($this->shop->status == 'available' || $this->shop->status == 'new'): ?>
+                <?php if ($this->shop->price_status != Shops_Model_Shop::PRICE_STATUS_QUEUE): ?>
+                    <?php echo $this->priceForm; ?>
+                <?php else: ?>
+                    <p><?php echo $this->translate('Прайс в очереди на обработку. По завершению процеса на вашу электронную почту будет отправлено уведомление.'); ?></p>
+                <?php endif; ?>
+            <?php elseif ($this->shop->status == 'disable'):?>
+                <p><?php echo $this->translate('Для возможности обновления вам необходимо продлить срок размещения прайс-листа.'); ?></p>
+            <?php endif; ?>
+            <p class="otherPagesMyCompanyMainLastUpload">Последнее обновление прайс-листа: <b>
+            <?php if ($updated_at = $this->shop->price_updated_at): ?>
+                <?php echo $updated_at;?>
+            <?php else:?>
+                    <?php echo $this->translate('не было'); ?>
+            <?php endif;?>
+                </b>
+            </p>
+            <?php if (strlen($this->shop->price_filename)): ?>
+                <p><?php echo $this->translate('Загруженный прайс-лист'); ?>:</p>
+                <div>
+                    <a href="<?php echo $this->shop->price_filename_url; ?>"><?php echo $this->translate('Скачать XLS'); ?></a><br/>
+                </div>
+            <?php endif;?>
+        </div>
+        <div class="otherPagesMyCompanyMainDownloadPrices">
+            <span>Пример прайс-листа:</span>
+            <ul>
+                <li><a href="/upload/prices/primer.xls">Скачать в формате  XLS</a></li>
+                <li><a href="/upload/prices/primer.xls.zip">Скачать в архиве ZIP</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--/left col-->
+
+    <!--blocks of goods-->
+    <div class="otherPagesMyCompanyMain">
+        <div class="floatForIe6">
+            <div class="otherPagesMyCompanyMainContactList">
+                <?php if ($this->shop->status == Shops_Model_Shop::SHOP_STATUS_DISABLE) :?>
+                <h1>Магазин отключен</h1>
+                <?php endif; ?>
+                <p><span>Название фирмы</span><i><?php echo $this->shop->name; ?></i></p>
+                <p><span>Адрес</span><i><?php echo $this->shop->city; ?><?php if($this->shop->address): ?>, <?php echo $this->shop->address; endif;?></i></p>
+                <?php if ($this->shop->phone): ?>
+                <p><span>Телефоны</span><i><?php echo $this->shop->phone; ?></i></p>
+                <?php endif;?>
+                <?php if ($this->shop->site): ?>
+                <p><span>Сайт</span><i><a href="<?php echo $this->shop->site_url; ?>"><?php echo $this->shop->site; ?></a></i></p>
+                <?php endif;?>
+                <?php if ($this->shop->work_time): ?>
+                <p><span>Режим работы</span><i><?php echo $this->shop->work_time; ?></i></p>
+                <?php endif;?>
+                <?php if ($this->shop->description): ?>
+                <p><span>Описание</span><i><?php echo $this->shop->description; ?></i></p>
+                <?php endif;?>
+                <?php if ($this->shop->delivery): ?>
+                <p><span>Доставка</span><i><?php echo $this->shop->delivery; ?></i></p>
+                <?php endif;?>
+                <?php if ($this->shop->credit): ?>
+                <p><span>Возможность кредита</span><i><?php echo $this->shop->credit; ?></i></p>
+                <?php endif;?>
+                <a href="<?php echo $this->url(array(
+                        'module'=>$this->moduleName,
+                        'controller'=>$this->controllerName,
+                        'action'=>'edit',
+                        'id'=>$this->shop->id
+                    ), 'default', true); ?>" class="otherPagesMyCompanyMainContactListA"><?php echo $this->translate('Изменить'); ?></a>
+            </div>
+
+            <div class="otherPagesMyCompanyMainContactList">
+                <?php if ($this->shop->Manager->id !== null):?>
+                    <?php $manager = $this->shop->Manager; ?>
+                    <p><span><?php echo $this->translate('Логин'); ?></span><i><?php echo $manager->login; ?></i></p>
+                    <p><span><?php echo $this->translate('Ф.И.О. менеджера'); ?></span><i><?php echo $manager->name; ?></i></p>
+                    <p><span><?php echo $this->translate('Телефон менеджера'); ?></span><i><?php echo $manager->phone; ?></i></p>
+                    <p><span><?php echo $this->translate('E-mail менеджера'); ?></span><i><?php echo $manager->email; ?></i></p>
+                    <p><span><?php echo $this->translate('Город'); ?></span><i><?php echo $manager->city; ?></i></p>
+                    <?php if($this->shop->Manager->id != $manager->id): ?>
+                        <a href="<?php echo $this->url(array(
+                            'module'=>$this->moduleName,
+                            'controller'=>'manager',
+                            'action'=>'edit',
+                            'id'=>$manager->id
+                        ), 'default', true); ?>" class="otherPagesMyCompanyMainContactListA"><?php echo $this->translate('Изменить'); ?></a>
+                    <?php endif; ?>
+                <?php else:?>
+                    <a href="<?php echo $this->url(array(
+                        'module'=>$this->moduleName,
+                        'controller'=>'manager',
+                        'action'=>'new',
+                        'shop-id'=>$this->shop->id
+                    ), 'default', true); ?>" class="otherPagesMyCompanyMainContactListA"><?php echo $this->translate('Добавить менеджера'); ?></a>
+                <?php endif;?>
+            </div>
+
+            <div class="otherPagesMyCompanyMainContactList otherPagesMyCompanyMainContactListBorNone">
+                <p>
+                    <span><b><?php echo $this->translate('Логотип'); ?></b>
+                    <a href="<?php echo $this->url(array(
+                        'module'=>$this->moduleName,
+                        'controller'=>$this->controllerName,
+                        'action'=>'edit-image',
+                        'id'=>$this->shop->id
+                    ), 'default', true); ?>" class="otherPagesMyCompanyMainContactListA">Изменить / Загрузить</a>
+                    </span>
+                <?php if ($this->shop->image_preview_url): ?>
+                    <img src="<?php echo $this->shop->image_preview_url; ?>" alt="<?php echo $this->shop->name; ?>" /></p>
+                <?php endif;?>
+            </div>
+        </div>
+    </div>
+    <!--/blocks of goods-->
+    <div id="backFormPopup"></div>
+    <div id="backFormloading"><img width="23" height="23" alt="" src="/images/inner/ajax-loader.gif"><span>Загрузка...</span></div>
+</div>
+<!--/categories-->
+

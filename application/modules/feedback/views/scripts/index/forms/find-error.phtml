@@ -1,0 +1,24 @@
+<form id="<?php echo $this->element->getId();?>"
+       action="<?php echo $this->element->getAction();?>"
+       method="<?php echo $this->element->getMethod();?>">
+    <?php if ($this->element->email):?>
+    <div class="registerRows">
+        <div class="labelContenter labelContenterwide">
+            <label for="<?php echo $this->element->email->getName(); ?>"><?php echo $this->element->email->getLabel();?>:</label>
+        </div>
+        <div class="inputTextWide inputTextMiddle"><?php echo $this->element->email;?></div>
+    </div>
+    <?php endif;?>
+    <div class="registerRows">
+        <div class="labelContenter labelContenterwide">
+            <label for="<?php echo $this->element->message->getName(); ?>">
+                <?php echo $this->element->message->getLabel();?>
+            </label>
+        </div>
+        <div class="inputTextarea"><?php echo $this->element->message;?></div>
+    </div>
+  
+    <?php echo $this->element->captcha; ?>
+    <?php echo $this->element->product_id; ?>
+    <?php echo $this->element->submit;?>
+</form>

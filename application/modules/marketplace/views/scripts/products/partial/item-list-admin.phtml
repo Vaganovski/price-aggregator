@@ -1,0 +1,39 @@
+<table class="adminTableOfGoods2">
+    <tbody>
+    <?php $i = 0; ?>
+    <?php foreach ($this->products as $product):?>
+        <?php if ($i == 0): ?>
+        <tr>
+        <?php endif; ?>
+            <td><a href="<?php echo $this->url(array(
+                        'module' => 'marketplace',
+                        'controller' => 'products',
+                        'action' => 'view',
+                        'id' => $product->id),
+                    'default', true); ?>"><?php echo $product->name; ?></a>
+                <?php if ($product->approve == 1 || $product->approve == 0): ?>
+                <a href="<?php echo $this->url(array(
+                        'module' => 'marketplace',
+                        'controller' => 'products',
+                        'action' => 'approve',
+                        'value' => 2,
+                        'id' => $product->id),
+                    'default', true); ?>"><?php echo $this->translate('подтвердить'); ?></a>
+                <?php endif; ?>
+                <?php if ($product->approve == 2 || $product->approve == 0): ?>
+                <a href="<?php echo $this->url(array(
+                        'module' => 'marketplace',
+                        'controller' => 'products',
+                        'action' => 'approve',
+                        'value' => 1,
+                        'id' => $product->id),
+                    'default', true); ?>"><?php echo $this->translate('отклонить'); ?></a>
+                <?php endif; ?>
+            </td>
+        <?php if ($i == 2): ?>
+        </tr>
+        <?php endif; ?>
+        <?php $i++; ?>
+    <?php endforeach;?>
+    </tbody>
+</table>

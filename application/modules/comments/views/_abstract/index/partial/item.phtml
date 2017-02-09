@@ -1,0 +1,38 @@
+<?php foreach ($this->comments as $comment): ?>
+    <?php if ($comment->level == 0) continue; ?>
+    <?php $date = new Zend_Date($comment->created_at); ?>
+    <?php $id = 'c' . $comment->id; ?>
+    <li class="comment-container" id="<?php echo $id; ?>">
+    <div class="comment textmod">
+        <div class="inner">
+            <div class="hd">
+                <img src="/images/user-small.gif" alt="#"/>
+            </div>
+            <div style="width: 504px;" class="bd">
+                <div class="text"><?php echo $this->escape($comment->text); ?></div>
+                <div><small><?php echo $comment->User->login; ?><span><?php echo $date->toString("dd MMMM YYYY"); ?></span></small></div>
+                <div>
+                    <?php if ($this->IsAllowed('mvc:comments:index', 'reply')): ?>
+                    <a href="#<?php echo $id; ?>" class="reply-comment" id="o<?php echo $comment->id;?>">
+                            <?php echo $this->translate('Reply'); ?></a>
+                    <?php endif; ?>
+                    <?php if ($this->IsAllowed('mvc:comments:index', 'delete')): ?>
+                    &nbsp;&nbsp;
+                    <a href="#<?php echo $id; ?>" class="delete-comment" id="d<?php echo $comment->id;?>">
+                            <?php echo $this->translate('Delete'); ?>
+                    </a>
+                    <?php endif; ?>
+                    <?php if ($this->IsAllowed('mvc:comments:index', 'delete')): ?>
+                    &nbsp;&nbsp;
+                    <a href="#<?php echo $id; ?>" class="edit-comment" id="e<?php echo $comment->id;?>">
+                            <?php echo $this->translate('Edit'); ?>
+                    </a>
+                    <?php endif; ?>
+                </div>
+                <?php //if ($this->IsAllowed('mvc:comments:report-as-spam')): ?>
+                    <a href="#"><?php echo $this->translate('Пометить как спам'); ?></a>
+                <?php //endif; ?>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>

@@ -1,0 +1,26 @@
+.action{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.action a{
+    padding: 3px;
+    background-color:MintCream;
+    border-left:3px solid #4A88A7;
+}
+
+.leftMarginReset {
+    margin-left: 17%;
+    left: 0;
+}
+
+#users_form_userbase_passwordchange dl {
+    overflow: hidden;
+    padding-top: 10px;
+}
+#users_form_userbase_passwordchange dt {
+    clear: left;
+}
+#users_form_userbase_passwordchange dd {
+    float: left;
+}

@@ -1,0 +1,39 @@
+<?php if ($this->categories): ?>
+<h1 class="baraholkaTitleH1">
+    <?php echo $this->title; ?>
+    <div class="barholkaCity" id="SearchChooseCity2"><span><?php echo $this->city; ?></span>
+        <!--hidden block-->
+        <span>
+                <ul>
+                    <?php foreach ($this->GetCities() as $city):?>
+                    <li><b><?php echo $city; ?></b></li>
+                    <?php endforeach;?>
+                </ul>
+            <form method="get" style="display:none">
+                <input type="hidden" name="city"/>
+            </form>
+        </span>
+        <!--/hidden block-->
+    </div>
+</h1>
+<div class="categoriesList bar-inner">
+    <div class="baraholkaMainaddAndSearch">
+            <?php echo $this->ProductSearchForm()
+                            ->setServiceLayer('marketplace', 'product')
+                            ->setViewScript('catalog')
+                            ->getSearchForm('searchUser'); ?>
+        <a class="baraholkaAddPost" href="<?php echo $this->url(array(
+                        'module' => 'marketplace',
+                        'controller' => 'products',
+                        'action' => 'new'),
+                    'default', true); ?>">Добавить объявление</a>
+    </div>
+    <?php echo $this->render('/partial/item-subcategories.phtml'); ?>
+</div>
+<?php else: ?>
+<div class="categoriesList bar-inner">
+    <?php echo $this->infoMessage($this->translate('В данной категорий нет подкатегорий.')); ?>
+</div>
+<?php endif; ?>
+
+

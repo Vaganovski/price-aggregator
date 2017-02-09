@@ -1,0 +1,42 @@
+## Магазин
+
+Shops_Model_ShopBase:
+  tableName: shops
+  actAs:
+    Timestampable:
+  options:
+    type: INNODB
+    collate: utf8_unicode_ci
+    charset: utf8
+  columns:
+    id:
+      type: integer(4)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    name: string(255)
+    city:
+      type: string(140)
+      notnull: true
+    address: string(255)
+    site: string(255)
+    phone: string(255)
+    email:
+      type: string(128)
+      notnull: true
+      unique: true
+      email: true
+    image_filename:
+      type: string(45)
+      notnull: true
+    user_id:
+      type: integer(4)
+      unsigned: true
+  relations:
+    User:
+      class: Users_Model_User
+      local: user_id
+      foreign: id
+      foreignAlias: UserShop
+      onUpdate: CASCADE
+      onDelete: CASCADE

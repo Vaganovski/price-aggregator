@@ -1,0 +1,34 @@
+## категории
+
+Catalog_Model_Category:
+  tableName: catalog_categories
+  inheritance:
+    extends: Categories_Model_Category
+    type: concrete
+  columns:
+    features_group_id:
+      type: integer(4)
+      unsigned: true
+    image_filename:
+      type: string(45)
+      notnull: true
+  relations:
+    Products:
+      local: category_id
+      foreign: product_id
+      class: Catalog_Model_Product
+      foreignAlias: Categories
+      refClass: Catalog_Model_CategoryProduct
+    Accessories:
+      local: category_accessory_id
+      foreign: category_id
+      class: Catalog_Model_Category
+      foreignAlias: CategoriesAccessories
+      refClass: Catalog_Model_CategoryAccessories
+    Group:
+      class: Features_Model_Group
+      local: features_group_id
+      foreign: id
+      foreignAlias: Categories
+      onUpdate: CASCADE
+      onDelete: CASCADE

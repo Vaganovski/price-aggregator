@@ -1,0 +1,6 @@
+<routes>
+<!--    <category type="Zend_Controller_Router_Route">
+        <route>category/:controller/:action/*</route>
+        <defaults module="category" controller="index" action="index" />
+    </category>-->
+</routes>

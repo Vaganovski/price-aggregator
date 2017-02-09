@@ -1,0 +1,42 @@
+<?php if ($this->categories): ?>
+<?php foreach ($this->categories as $category): ?>
+<li id='<?php echo $category->id ?>' class="folder-close">
+    <span><span class="text"><?php echo $category->title ?></span>
+          <?php if ($this->IsAllowed('mvc:' . $this->moduleName . ':' . $this->controllerName . '', 'edit') &&
+                  $this->IsAllowed('mvc:' . $this->moduleName . ':' . $this->controllerName . '', 'delete')): ?>
+        <?php endif; ?>
+    </span>
+    <span class="controls-wrapper">
+        <a class="controls add" href="<?php echo $this->url(array(
+                    'module'=>$this->moduleName,
+                    'controller'=>$this->controllerName,
+                    'action'=>'new',
+                    'id_to'=>$category->id
+                ), 'default', true); ?>" title="<?php echo $this->translate('Добавить в категорию'); ?>"></a>
+        <a class="controls edit" href="<?php echo $this->url(array(
+                    'module'=>$this->moduleName,
+                    'controller'=>$this->controllerName,
+                    'action'=>'edit',
+                    'id'=>$category->id
+                ), 'default', true); ?>" title="<?php echo $this->translate('Редактировать'); ?>" ></a>
+        <a class="controls delete" href="<?php echo $this->url(array(
+                    'module'=>$this->moduleName,
+                    'controller'=>$this->controllerName,
+                    'action'=>'delete',
+                    'id'=>$category->id
+                ), 'default', true); ?>" title="<?php echo $this->translate('Удалить'); ?>" ></a>
+    </span>
+                <ul class="ajax">
+                    <li id='4'>{url:<?php echo $this->url(array(
+                                        'module'=>$this->moduleName,
+                                        'controller'=>$this->controllerName,
+                                        'action'=>'tree',
+                                        'id'=>$category->id,
+                                        'tree'=>1
+                                   ), 'default', true); ?>}</li>
+                </ul>
+            </li>
+<?php endforeach;?>
+<?php else:?>
+    <li class="line-last"></li>
+<?php endif;?>

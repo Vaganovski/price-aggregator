@@ -1,0 +1,50 @@
+<form class="adminBaraholkaAddThemeForm"  id="<?php echo $this->element->getId();?>"
+       action="<?php echo $this->element->getAction();?>"
+       method="<?php echo $this->element->getMethod();?>"
+       enctype="<?php echo $this->element->getEnctype();?>">
+    <div id="categories-container">
+        <div class="adminBaraholkaAddThemeFormSelectMiddle">
+            <?php echo $this->element->category; ?>
+        </div>
+    </div>
+    <?php if ($this->element->id): ?>
+        <h3 style="clear: both" class="adminBaraholkaTitle">Редактировать категорию</h3>
+    <?php else: ?>
+        <h3 style="clear: both" class="adminBaraholkaTitle">Новая категория</h3>
+    <?php endif; ?>
+    <label for="<?php echo $this->element->title->getName(); ?>" class="labelCategoryForm">
+        <?php echo $this->element->title->getLabel(); ?>:
+    </label>
+    <div class="adminBaraholkaAddThemeFormInputWide inputCategoryForm"><?php echo $this->element->title; ?></div>
+    <label for="<?php echo $this->element->short_description->getName(); ?>" class="labelCategoryForm">
+        <?php echo $this->element->short_description->getLabel(); ?>:
+    </label>
+    <div class="adminBaraholkaAddThemeFormInputWide inputCategoryForm"><?php echo $this->element->short_description; ?></div>
+    <label for="<?php echo $this->element->alias->getName(); ?>" class="labelCategoryForm">
+        <?php echo $this->element->alias->getLabel(); ?>:
+    </label>
+    <div class="adminBaraholkaAddThemeFormInputWide inputCategoryForm"><?php echo $this->element->alias; ?></div>
+    <label for="<?php echo $this->element->accessory->getName(); ?>" class="labelCategoryForm">
+        Аксессуары:
+    </label>
+    <div id="features-container">
+            <?php echo $this->element->accessory; ?>
+    </div>
+    <label for="<?php echo $this->element->features_group_id->getName(); ?>" class="labelCategoryForm">
+        <?php echo $this->element->features_group_id->getLabel(); ?>:
+    </label>
+    <div class="adminBaraholkaAddThemeFormSelectMiddle inputCategoryForm">
+        <?php echo $this->element->features_group_id; ?>
+    </div>
+    <label for="<?php echo $this->element->image_filename->getName(); ?>" class="labelCategoryForm">
+        <?php echo $this->element->image_filename->getLabel(); ?>:
+    </label>
+    <?php $dataFromModel = $this->element->getAttrib('dataFromModel');?>
+    <div><?php echo $this->element->image_filename; ?>
+        <?php if (strlen($dataFromModel['image_url'])): ?>
+        <img src="<?php echo $dataFromModel['image_url']; ?>" alt="#">
+        <?php endif; ?>
+    </div>
+    <?php echo $this->element->id; ?>
+    <input type="submit" value="Добавить">
+</form>

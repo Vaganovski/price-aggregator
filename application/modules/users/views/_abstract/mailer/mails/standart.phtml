@@ -1,0 +1,15 @@
+<p>
+<?php echo $this->translate('Здравствуйте, %username%!'); ?>
+</p>
+<p>
+<?php echo $this->translate('Вами получено сообщение от администрации сайта:') . $_SERVER['HTTP_HOST']; ?>
+</p>
+<p>
+<?php echo $this->body; ?>
+</p>
+<p>
+<?php echo $this->translate('С уважением,'); ?>
+</p>
+<p>
+<?php echo $this->translate('команда ') . $_SERVER['HTTP_HOST']; ?>
+</p>

@@ -1,0 +1,35 @@
+<form  id="<?php echo $this->element->getId();?>"
+       action="<?php echo $this->element->getAction();?>"
+       method="<?php echo $this->element->getMethod();?>" class="formOtziv">
+    <div class="firstFormCol">
+        <div class="registerRows">
+            <div class="labelContenter">
+                <label for="<?php echo $this->element->text->getName(); ?>">
+                    <?php echo $this->element->text->getLabel(); ?>
+                </label>
+            </div>
+            <div class="inputTextarea"><?php echo $this->element->text;?></div>
+        </div>
+        <div class="registerRows registerRows2">
+            <div class="labelContenter">
+                <label for="<?php echo $this->element->mark->getName(); ?>">
+                    <?php echo $this->element->mark->getLabel(); ?>
+                </label>
+            </div>
+            <div class="inputTextWide inputTextMiddle">
+                <?php echo $this->element->mark;?>
+            </div>
+        </div>
+    </div>
+    <?php echo $this->element->entity_id; ?>
+    <?php echo $this->element->user_id; ?>
+    <?php echo $this->element->parent_id; ?>
+    <div class="formSbutton">
+        <?php echo $this->element->submit; ?>
+        <div class="inputWarning">
+            <p><?php echo $this->translate('Пожалуйста, пишите честный отзыв.'); ?></p>
+            <p><?php echo $this->translate('Отзывы содержащие ненормативную лексику и текст, написанный ПРОПИСНЫМИ буквами будут удаляться.'); ?></p>
+        </div>
+    </div>
+
+</form>

@@ -1,0 +1,36 @@
+<form  id="<?php echo $this->element->getId();?>"
+       action="<?php echo $this->element->getAction();?>"
+       method="<?php echo $this->element->getMethod();?>"
+       enctype="<?php echo $this->element->getEnctype();?>">
+    <div class="baraholkaMyListItemWideSelect">
+        <?php echo $this->element->type; ?>
+    </div>
+    <div class="baraholkaMyListItemWideSelect">
+        <?php echo $this->element->category; ?>
+    </div>
+    <div class="baraholkaMyListItemWideinputWrap positing">
+        <div class="baraholkaMyListItemWideinput"><?php echo $this->element->name; ?></div>
+        <label for="baraholkaMyListItemWidePrice">за</label>
+        <div class="baraholkaMyListItemSmallerinput"><?php echo $this->element->price; ?></div>
+        <span>тенге</span>
+    </div>
+    <div class="baraholkaMyListItemWideTextWrap">
+        <div class="baraholkaMyListItemWideText"><?php echo $this->element->description; ?></div>
+        <?php echo $this->element->submit; ?>
+        <p>После отправки будет проведена<br> промодерация объявления.</p>
+    </div>
+    <div class="baraholkaMyListItemWidePhotoCapchaWrap">
+        <div class="baraholkaMyListItemWidePhotoWrap">
+            <label for="<?php echo $this->element->image_filename->getName(); ?>">
+                <?php echo $this->element->image_filename->getLabel(); ?>
+            </label>
+            <div class="baraholkaMyListItemWidePhoto">
+                <?php echo $this->element->image_filename; ?>
+                <input type="text" id="fileName" readonly="readonly" class="baraholkaMyListItemWidePhotoinputFileVal">
+            </div>
+        </div>
+        <?php echo $this->element->captcha; ?>
+    </div>
+    <?php echo $this->element->id; ?>
+    <?php echo $this->element->user_id; ?>
+</form>

@@ -1,0 +1,29 @@
+## товари
+
+Marketplace_Model_Product:
+  tableName: marketplace_products
+  inheritance:
+    extends: Products_Model_Product
+    type: concrete
+  columns:
+    clicks:
+      type: int(4)
+      notnull: true
+    user_id:
+      type: integer(4)
+      unsigned: true
+    type:
+      type: enum
+      values: [buy, sell]
+    price: decimal(14,2)
+    approve:
+      type: integer(1)
+      notnull: true
+  relations:
+    user:
+      class: Users_Model_User
+      local: user_id
+      foreign: id
+      foreignAlias: Products
+      onUpdate: CASCADE
+      onDelete: CASCADE

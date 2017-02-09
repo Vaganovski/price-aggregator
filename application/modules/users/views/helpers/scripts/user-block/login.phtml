@@ -1,0 +1,11 @@
+<div class="headerLogin" id="link-container">
+    <span id="headerLogin" title="<?php echo $this->translate('Войти на сайт'); ?>"><i><?php echo $this->translate('Войти'); ?></i></span>
+    <a href="/page/register<?php
+        //echo $this->url(array(
+        //    'module' => 'users',
+        //    'controller' => 'index',
+        //    'action' => 'registration'), 'default', true
+        //); ?>" class="headerReg"><?php echo $this->translate('Регистрация'); ?></a>
+    <?php echo $this->CompareProductsCountLink(); ?>
+    <?php echo $this->MyListProductsCountLink(); ?>
+</div>

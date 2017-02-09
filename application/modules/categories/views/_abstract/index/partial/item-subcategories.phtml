@@ -1,0 +1,16 @@
+<?php 
+foreach ($this->categories as $category): ?>
+    <?php $actionName = 'list'; ?>
+    <?php if (!$category->getNode()->hasChildren()): ?>
+        <?php $actionName = 'view'; ?>
+    <?php endif; ?>
+    <div>
+        <a href="<?php echo $this->url(array(
+                                'module'=>$this->moduleName,
+                                'controller'=>$this->controllerName,
+                                'action'=>$actionName,
+                                'alias'=>$category->alias,
+                            ), 'default', true); ?>"><?php echo $category->title; ?></a>
+
+    </div>
+<?php endforeach; ?>

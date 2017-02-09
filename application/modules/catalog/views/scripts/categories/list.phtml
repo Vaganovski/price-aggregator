@@ -1,0 +1,26 @@
+<?php if ($this->categories): ?>
+<h1 class="baraholkaTitleH1">
+    <?php if ($this->category->image_url):?>
+        <div class="categories-image"><img src="<?php echo $this->category->image_url; ?>" alt="<?php echo $this->category->title; ?>"/></div>
+        <div class="categories-heading"><?php echo $this->title; ?></div>
+        <div style="clear:both"></div>
+    <?php else:?>
+        <?php echo $this->title; ?>
+    <?php endif;?>
+</h1>
+<div class="categoriesList bar-inner">
+    <?php echo $this->render('/partial/item-subcategories.phtml'); ?>
+</div>
+<?php else: ?>
+<div class="categoriesList">
+    <?php echo $this->infoMessage($this->translate('В данной категорий нет подкатегорий.')); ?>
+</div>
+<?php endif; ?>
+<?php 
+/**
+ * @todo Этот список продуктов выводился в всплывающем окне на главной
+ */
+// echo $this->PopularProducts()->getProducts();
+?>
+
+

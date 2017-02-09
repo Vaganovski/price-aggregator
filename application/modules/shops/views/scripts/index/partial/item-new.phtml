@@ -1,0 +1,42 @@
+<!--таблица заявок-->
+<table class="listAdminFirmsZayavki">
+    <tbody>
+        <?php foreach($this->shops as $shop): ?>
+        <?php $createdAt = new Zend_Date($shop->created_at); ?>
+        <tr>
+            <td class="listAdminFirmsZayavkiCol1">
+                <b><?php echo $shop->name;?></b>
+                <a href="<?php echo $this->url(array(
+                        'module'=>$this->moduleName,
+                        'controller'=>$this->controllerName,
+                        'action'=>'view-admin',
+                        'id'=>$shop->id
+                    ), 'default', true); ?>"><?php echo $this->translate('профиль'); ?></a>
+            </td>
+            <td class="listAdminFirmsZayavkiCol2"><?php echo $createdAt->toString('dd.MM.y WW'); ?></td>
+            <?php if ($shop->last_renewal_date): ?>
+                <td class="listAdminFirmsZayavkiCol3"><a href="<?php echo $this->url(array(
+                            'module'=>$this->moduleName,
+                            'controller'=>$this->controllerName,
+                            'action'=>'available',
+                            'id'=>$shop->id
+                        ), 'default', true); ?>"><?php echo $this->translate('подтвердить'); ?></a></td>
+            <?php else:?>
+                <td class="listAdminFirmsZayavkiCol3"><a href="<?php echo $this->url(array(
+                            'module'=>$this->moduleName,
+                            'controller'=>$this->controllerName,
+                            'action'=>'renewal',
+                            'id'=>$shop->id
+                        ), 'default', true); ?>"><?php echo $this->translate('подтвердить'); ?></a></td>
+            <?php endif;?>
+            <td class="listAdminFirmsZayavkiCol4"><a href="<?php echo $this->url(array(
+                        'module'=>$this->moduleName,
+                        'controller'=>$this->controllerName,
+                        'action'=>'disable',
+                        'id'=>$shop->id
+                    ), 'default', true); ?>"><?php echo $this->translate('отключить'); ?></a></td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+<!--/таблица заявок-->

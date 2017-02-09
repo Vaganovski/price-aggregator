@@ -1,0 +1,36 @@
+## Значение характерстик - Продукт
+## Связь "many to many"
+
+Catalog_Model_FeatureProduct:
+  tableName: catalog_features_products
+  options:
+    type: INNODB
+    collate: utf8_unicode_ci
+    charset: utf8
+  columns:
+    id:
+      type: integer(4)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    product_id:
+      type: integer(4)
+      unsigned: true
+    features_value_id:
+      type: integer(4)
+      unsigned: true
+  relations:
+    Product:
+      class: Catalog_Model_Product
+      local: product_id
+      foreign: id
+      foreignAlias: FeatureProduct
+      onUpdate: CASCADE
+      onDelete: CASCADE
+    Value:
+      class: Features_Model_Value
+      local: features_value_id
+      foreign: id
+      foreignAlias: FeatureProduct
+      onUpdate: CASCADE
+      onDelete: CASCADE

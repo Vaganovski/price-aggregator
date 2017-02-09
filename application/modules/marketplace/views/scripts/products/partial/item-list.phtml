@@ -1,0 +1,40 @@
+<?php foreach ($this->products as $product):?>
+<div class="baraholkaListItem">
+    <a class="baraholkaListItemOwnerImg" href="<?php echo $this->url(array(
+                        'module' => 'marketplace',
+                        'controller' => 'products',
+                        'action' => 'view',
+                        'id' => $product->id),
+                    'default', true); ?>">
+        <span class="baraholkaListItemOwnerImgContenter">
+            <img src="<?php echo $product->image_thumbnail_url; ?>" alt="<?php echo $product->name; ?>">
+        </span>
+    </a>
+    <div class="baraholkaListItemWideDescr marbot14">
+        <span class="baraholkaSellerStatus">
+            <?php if ($product->type == 'buy'):?><?php echo $this->translate('покупаю'); ?>
+            <?php elseif ($product->type == 'sell'):?><?php echo $this->translate('продаю'); ?>
+            <?php endif; ?>
+        </span>
+        <h6><a href="<?php echo $this->url(array(
+                        'module' => 'marketplace',
+                        'controller' => 'products',
+                        'action' => 'view',
+                        'id' => $product->id),
+                    'default', true); ?>"><?php echo $product->name; ?></a> за <span><?php echo $product->price_formated; ?></span> тенге</h6>
+       <p><?php echo $product->description; ?></p>
+        <a class="myListEdit" href="<?php echo $this->url(array(
+                        'module' => 'marketplace',
+                        'controller' => 'products',
+                        'action' => 'edit',
+                        'id' => $product->id),
+                    'default', true); ?>"><span>изменить</span></a>
+        <a class="myListDelWide" href="<?php echo $this->url(array(
+                        'module' => 'marketplace',
+                        'controller' => 'products',
+                        'action' => 'delete',
+                        'id' => $product->id),
+                    'default', true); ?>"><span>удалить</span></a>
+    </div>
+</div>
+<?php endforeach;?>

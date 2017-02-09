@@ -1,0 +1,14 @@
+## Пользователь
+
+Users_Model_UserExtended:
+  tableName: users
+  inheritance:
+    extends: Users_Model_UserBase
+    type: concrete
+  columns:
+    activated: boolean
+    activation_code: string(8)
+    registered: boolean
+    registration_ip:
+      type: string(15)
+      ip: true

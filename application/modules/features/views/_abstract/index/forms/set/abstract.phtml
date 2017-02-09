@@ -1,0 +1,19 @@
+<form  id="<?php echo $this->element->getId();?>"
+       action="<?php echo $this->element->getAction();?>"
+       method="<?php echo $this->element->getMethod();?>" 
+       class="adminBaraholkaAddThemeForm wid100">
+    <div class="adminShablAParamRows">
+        <div class="adminBaraholkaAddThemeFormInputWide adminBaraholkaAddThemeFormInputWide2">
+            <?php echo $this->element->title; ?>
+            <?php echo $this->renderElementErrors($this->element->title); ?>
+        </div>
+        <a class="adminShablAddAParam" href="#">Добавить параметр</a>
+    </div>
+    <div class="adminEditFeaturesSet">
+        <?php echo $this->element->fields;?>
+    </div>
+    <?php echo $this->element->id;?>
+    <?php echo $this->element->features_group_id;?>
+<?php echo $this->element->submit; ?>
+</form>
+

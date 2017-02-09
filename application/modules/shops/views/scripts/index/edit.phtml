@@ -1,0 +1,14 @@
+<!--categories-->
+<div class="categoriesList">
+    <h1 class="baraholkaMyItemH1"><?php echo $this->title;?></h1>
+    <!--класс для пиктограмм аналогичные как в категоряих, отличаются только префиксом. В основном списке indexCategoriesComp, в подкатегориях categoriesListComp -->
+    <?php echo $this->userMenu($this->shop->User); ?>
+    <!--/left col-->
+
+    <!--blocks of goods-->
+    <div class="baraholkaMyListItemWide leftMarginReset">
+        <?php echo $this->form;?>
+    </div>
+    <!--/blocks of goods-->
+</div>
+<!--/categories-->

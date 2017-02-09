@@ -1,0 +1,82 @@
+<ul class="myListUl">
+<?php foreach($this->products as $product): ?>
+    <?php if ($product->image_thumbnail_url): $image = $product->image_thumbnail_url; else: $image = '/images/no-photo.png'; endif;?>
+    <li>
+        <a class="myListPic" href="<?php echo $this->url(array(
+                                        'module' => 'catalog',
+                                        'controller' => 'products',
+                                        'action' => 'view',
+                                        'id' => $product->id),
+                                    'default', true); ?>">
+            <img alt="<?php echo $product->name ?>" src="<?php echo $image ?>">
+        </a>
+        <div class="myListDesc">
+            <h6><a href="<?php echo $this->url(array(
+                                        'module' => 'catalog',
+                                        'controller' => 'products',
+                                        'action' => 'view',
+                                        'id' => $product->id),
+                                    'default', true); ?>"><?php echo $product->name ?></a>
+                                       <?php $countReviews = $this->ReviewsCount($product->id); ?>
+                                       <?php if ($countReviews > 0):?>
+                                        &nbsp;|&nbsp;<span>
+                                            <a href="<?php echo $this->url(array(
+                                            'module' => 'catalog',
+                                            'controller' => 'reviews',
+                                            'action' => 'list',
+                                            'id' => $product->id),
+                                        'default', true); ?>">
+                                                <?php echo $countReviews; ?> <?php echo $this->translate(array(_('отзыв'), _('отзыва'), _('отзывов'), $countReviews));?>
+                                            </a>
+                                        </span>
+                                        <?php else:?>
+                                            <?php if ($this->isAllowed('mvc:catalog:reviews', 'new')):?>
+                                            &nbsp;|&nbsp;<span>
+                                                <a href="<?php echo $this->url(array(
+                                                'module' => 'catalog',
+                                                'controller' => 'reviews',
+                                                'action' => 'new',
+                                                'id' => $product->id),
+                                            'default', true); ?>">
+                                                    <?php echo $this->translate('Написать отзыв'); ?>
+                                                </a>
+                                            </span>
+                                            <?php endif;?>
+                                        <?php endif;?>
+            </h6>
+            <div class="myListDescPrice">
+                <?php echo $product->price; ?>
+            </div>
+            <div class="myListDescChar"><?php echo $product->Categories->getFirst()->title ?>
+                <?php if (strlen($product->description)): ?>
+                    | <?php echo $this->truncate(strip_tags($product->description), 500); ?>
+                <?php endif; ?>
+            </div>
+            <?php $prices = $this->GetPrices($product->id);?>
+            <?php if (is_object($prices)): $pricesCount = $this->PricesCountByProductId($product->id); else: $pricesCount = 0; endif; ?>
+            <?php if ($pricesCount == 1) :?>
+                <a class="myListAmountOffers" href="<?php echo $this->url(array(
+                                        'module' => 'catalog',
+                                        'controller' => 'products',
+                                        'action' => 'view',
+                                        'id' => $product->id),
+                                    'default', true); ?>"><?php echo $prices->getFirst()->Shop->name; ?></a>
+            <?php elseif ($pricesCount > 0): ?>
+                <a class="myListAmountOffers" href="<?php echo $this->url(array(
+                                        'module' => 'catalog',
+                                        'controller' => 'products',
+                                        'action' => 'view',
+                                        'id' => $product->id),
+                                    'default', true); ?>#where-buy"><?php echo $pricesCount; ?> <?php echo $this->translate(array(_('предложение'), _('предложения'), _('предложений'), $pricesCount, $this->locale));?></a>
+            <?php else: ?>
+                <?php echo $this->translate('нет предложений'); ?>
+            <?php endif;?>
+        </div>
+        <?php if (isset($this->mylist)) :?>
+            <a class="myListDel" href="#"><span id="p<?php echo $product->id; ?>">удалить</span></a>
+        <?php elseif (empty($this->search)): ?>
+            <span class="innerCatalogCheckBox" id="p<?php echo $product->id; ?>"><input type="checkbox"></span>
+        <?php endif;?>
+    </li>
+<?php endforeach; ?>
+</ul>

@@ -1,0 +1,55 @@
+<h1>Шаблоны характеристик</h1>
+<a class="adminBaraholkaAddAPart" href="<?php echo $this->url(array(
+                        'module'=>$this->moduleName,
+                        'controller'=>$this->controllerName,
+                        'action'=>'new-group'
+                    ), 'default', true); ?>">новый  шаблон</a>
+<ul class="adminBaraholkaMainListParts">
+<?php foreach ($this->groups as $group): ?>
+    <li>
+        <span><i><?php echo $group->title; ?></i>
+        <b style="display: none">
+            <a href="<?php echo $this->url(array(
+                        'module'=>$this->moduleName,
+                        'controller'=>$this->controllerName,
+                        'action'=>'edit-group',
+                        'id'=> $group->id
+                    ), 'default', true); ?>" class="adminBaraholkaMainListPartsChange"></a>
+            <a href="<?php echo $this->url(array(
+                        'module'=>$this->moduleName,
+                        'controller'=>$this->controllerName,
+                        'action'=>'delete-group',
+                        'id'=> $group->id
+                    ), 'default', true); ?>" class="adminBaraholkaMainListPartsDel"></a>
+        </b>
+            </span>
+        <ul>
+            <?php foreach ($group->Sets as $set): ?>
+            <li>
+                <span><i><?php echo $set->title; ?></i>
+                <b style="display: none">
+                    <a href="<?php echo $this->url(array(
+                        'module'=>$this->moduleName,
+                        'controller'=>$this->controllerName,
+                        'action'=>'new-set',
+                        'group_id'=> $group->id
+                    ), 'default', true); ?>" class="adminBaraholkaMainListPartsAdd"></a>
+                    <a href="<?php echo $this->url(array(
+                        'module'=>$this->moduleName,
+                        'controller'=>$this->controllerName,
+                        'action'=>'edit-set',
+                        'id'=> $set->id
+                    ), 'default', true); ?>" class="adminBaraholkaMainListPartsChange"></a>
+                    <a href="<?php echo $this->url(array(
+                        'module'=>$this->moduleName,
+                        'controller'=>$this->controllerName,
+                        'action'=>'delete-set',
+                        'id'=> $set->id
+                    ), 'default', true); ?>" class="adminBaraholkaMainListPartsDel"></a>
+                </b></span>
+            </li>
+            <?php endforeach;?>
+        </ul>
+    </li>
+<?php endforeach;?>
+</ul>

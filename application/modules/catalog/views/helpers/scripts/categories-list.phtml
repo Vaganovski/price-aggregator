@@ -1,0 +1,106 @@
+<div class="indexCategories">
+<?php $j = 1; $col = 1; $first = true; $i = 1; ?>
+<?php if ($this->categories): ?>
+<?php $count = $this->categories->count(); ?>
+<?php $countOfCol = ceil($count/3); ?>
+<?php $countOfColLast = round(($count-$countOfCol)/2); ?>
+<?php foreach ($this->categories as $category): ?>
+    <?php if ($col > 0): ?>
+        <?php if ($j > 1): ?>
+        </div>
+        <?php endif; ?>
+        <div class="indexCaregoriesCol">
+    <?php endif; ?>
+            
+        <div class="indexCategory">
+            <div class="categories-image">
+                <?php if ($category->image_url): $image = $category->image_url; else: $image = '/images/no-category.jpg'; endif;?>
+                <img src="<?php echo $image; ?>" alt="<?php echo $category->title; ?>"/>
+            </div>
+            <h6>
+                <a href="<?php echo $this->url(array(
+                                    'module'=>$this->moduleName,
+                                    'controller'=>$this->controllerName,
+                                    'action'=>'view',
+                                    'alias'=>$category->alias,
+                                ), 'default', true); ?>">
+                    <strong><?php echo $category->title; ?></strong>
+                </a>
+                <span><?php echo $this->ProductsCount($category->lft, $category->rgt); ?></span>
+            </h6>
+            <?php $categoriesChild = $category->getChildren(6); ?>
+            <?php if ($categoriesChild): ?>
+                <ul>
+                <?php $categoriesChildCount = $categoriesChild->count(); ?>
+                
+                    <?php foreach ($categoriesChild as $categoryChild): ?>
+                        <?php $actionName = 'view'; ?>
+                        <li>
+                            <a href="<?php echo $this->url(array(
+                                        'module'=>$this->moduleName,
+                                        'controller'=>$this->controllerName,
+                                        'action'=>$actionName,
+                                        'alias'=>$categoryChild->alias,
+                                    ), 'default', true); ?>"><?php echo $categoryChild->title; ?></a>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+                <a class="indexCategoriesShowAll" href="#" id="<?php echo $category->alias; ?>"><?php echo $this->translate('показать все'); ?></a>
+            <?php endif; ?>
+        </div>
+
+      <?php if ($j == $count): ?>
+            <div class="indexCategory">
+            <h6 class="indexCategoriesAll">
+                <a href="<?php echo $this->url(array(
+                                    'module'=>$this->moduleName,
+                                    'controller'=>$this->controllerName,
+                                    'action'=>'list',
+                                ), 'default', true); ?>">
+                    <strong><?php echo $this->translate('Все категории...'); ?></strong>
+                </a>
+            </h6>
+            </div>
+    <?php endif; ?>
+
+    <?php if(!$first): ?>
+        <?php $countOfCol = $countOfColLast; ?>
+    <?php endif; ?>
+            
+    <?php if ($i == $countOfCol): ?>
+        <?php $col++; $i = 1;?>
+        <?php $first = false; ?>
+    <?php else: ?>
+        <?php $col = 0; $i++ ?>
+    <?php endif; ?>
+
+    <?php if ($j == $count-1): ?>
+        <?php $col = 0; ?>
+    <?php endif; ?>
+            
+    <?php $j++ ?>
+<?php endforeach; ?>
+</div>
+
+<div id="windowPodcategory" style="top: 100px; left: 0">
+    <div class="windowPodcategoryWrap">
+        <!--padding-->
+        <div class="windowPodcategoryPadding">
+        </div>
+
+
+        <div title="закрыть" id="windowPodcategoryClose"></div>
+        <div class="windowPodcategoryTop">
+            <div class="windowPodcategoryLT"></div>
+            <div class="windowPodcategoryRT"></div>
+            <div class="windowPodcategoryBorder"></div>
+        </div>
+        <div class="windowPodcategoryBot">
+            <div class="windowPodcategoryLB"></div>
+            <div class="windowPodcategoryRB"></div>
+            <div class="windowPodcategoryBorder"></div>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+</div>
